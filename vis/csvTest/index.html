@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>CSV Reader</title>
+    <link href="../src/vis-network.css" rel="stylesheet" type="text/css" />
+    <style>
+      #mynetwork{
+        width: 100%;
+        height: 100%;
+      }
+      html, body {
+        font: 10pt arial;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="readCSV()">run</button>
+    <div id="mynetwork"></div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+  <script type="text/javascript" src="csvReader.js"></script>
+</html>
