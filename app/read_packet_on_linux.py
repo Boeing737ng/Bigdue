@@ -63,6 +63,7 @@ def get_src_ipaddress(data):
 
     return string
     """
+    # TODO(LuHa): get src ip address!
     return ''
 
 
@@ -73,6 +74,7 @@ def get_dst_ipaddress(data):
 
     return string
     """
+    # TODO(LuHa): get dst ip address!
     return ''
 
 
@@ -83,6 +85,7 @@ def get_src_port(data):
 
     return string
     """
+    # TODO(LuHa): get src port!
     return ''
 
 
@@ -93,6 +96,7 @@ def get_dst_port(data):
 
     return string
     """
+    # TODO(LuHa): get dst port!
     return ''
 
 
