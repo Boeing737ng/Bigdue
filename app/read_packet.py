@@ -5,7 +5,8 @@
 import sys
 import socket
 import time
-
+import struct
+import ipaddress
 
 
 def main(argv):
@@ -26,11 +27,12 @@ def main(argv):
     try:
         while True:
             read_data = read_socket.recv(1580)
-
-    except Exception as exp:
+            print(read_data.hex())
+            print(handle_data(read_data))
+            break
+    except socket.timeout:
         print('i will out')
-        print(exp)
-
+        return
 
 
 def handle_data(data):
@@ -51,7 +53,7 @@ def get_time():
     return current time
     we use unixtime(epochtime)
     """
-    current_time = (time.time()).split('.')[0]
+    current_time = int(time.time())
 
     return current_time
 
@@ -63,8 +65,24 @@ def get_src_ipaddress(data):
 
     return string
     """
+    cursor = data
     # TODO(LuHa): get src ip address!
-    return ''
+    l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
+    if l2_type != 0x0800:
+        return None
+    cursor = cursor[14:]
+
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    l3_srcaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[8]
+    l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
+
+    return str(ipaddress.IPv4Address(l3_srcaddress))
+
+
+
 
 
 
@@ -74,8 +92,21 @@ def get_dst_ipaddress(data):
 
     return string
     """
+    cursor = data
     # TODO(LuHa): get dst ip address!
-    return ''
+    l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
+    if l2_type != 0x0800:
+        return None
+    cursor = cursor[14:]
+
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    l3_srcaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[8]
+    l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
+
+    return str(ipaddress.IPv4Address(l3_dstaddress))
 
 
 
