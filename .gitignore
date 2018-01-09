@@ -1,3 +1,6 @@
+# temporary files
+/vis/csvTest/test.csv
+
 # python venv
 /bin
 /include
