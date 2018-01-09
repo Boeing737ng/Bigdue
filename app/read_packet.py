@@ -83,9 +83,6 @@ def get_src_ipaddress(data):
 
 
 
-
-
-
 def get_dst_ipaddress(data):
     """
     return dst ip address
@@ -116,8 +113,24 @@ def get_src_port(data):
 
     return string
     """
+    cursor = data
     # TODO(LuHa): get src port!
-    return ''
+    l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
+    if l2_type != 0x0800:
+        return None
+    cursor = cursor[14:]
+
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    if (l3_protocol != 0x06) and (l3_protocol !=0x11):
+        return None
+    cursor = cursor[l3_headersize:]
+    l4_srcport = struct.unpack('!HH', cursor[0:4])[0]
+    l4_dstport = struct.unpack('!HH', cursor[0:4])[1]
+
+    return l4_srcport
 
 
 
@@ -127,8 +140,24 @@ def get_dst_port(data):
 
     return string
     """
+    cursor = data
     # TODO(LuHa): get dst port!
-    return ''
+    l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
+    if l2_type != 0x0800:
+        return None
+    cursor = cursor[14:]
+
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    if (l3_protocol != 0x06) and (l3_protocol !=0x11):
+        return None
+    cursor = cursor[l3_headersize:]
+    l4_srcport = struct.unpack('!HH', cursor[0:4])[0]
+    l4_dstport = struct.unpack('!HH', cursor[0:4])[1]
+
+    return l4_dstport
 
 
 
