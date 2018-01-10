@@ -7,8 +7,7 @@ import struct
 import ipaddress
 import csv
 from collections import deque
-if sys.platform == 'darwin':
-    import pcapy
+import pcap
 
 CONST_MAX_LEN = 1000
 
@@ -28,39 +27,32 @@ def main(argv):
         read_socket.settimeout(10)
     elif sys.platform == 'win32':
         # TODO(LuHa): create socket and bind it!
-        # Get host
-        host = socket.gethostbyname(socket.gethostname())
-        print('IP: {}'.format(host))
+        niffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
+        for ts, pkt in sniffer:
+            handled_data = handle_data(pkt)
+            if not(None in handled_data):
+                paket_deque.append(handled_data)
+                print(handled_data)
 
-        # Create a raw socket and bind it
-        read_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW)
-        read_socket.bind((host, 0))
-
-        # Include IP headers
-        read_socket.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-        # Enable promiscuous mode
-        read_socket.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+            if len(paket_deque) == CONST_MAX_LEN:
+                print(paket_deque)
+                # make_csv_file("save_"+str(i)+".csv", paket_deque)
+                paket_deque.clear()
 
         pass
     elif sys.platform == 'darwin':
         # TODO : create socket and bind it!
-        cap = pcapy.open_live('en0' , 1500 , 1 , 0)
-        i = 0
-        #start sniffing packets
-        while True :
-            (header, read_data) = cap.next()
-            handled_data = handle_data(read_data)
-
+        sniffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
+        for ts, pkt in sniffer:
+            handled_data = handle_data(pkt)
             if not(None in handled_data):
                 paket_deque.append(handled_data)
+                print(handled_data)
 
             if len(paket_deque) == CONST_MAX_LEN:
-                i = i+1
                 print(paket_deque)
-                make_csv_file("save_"+str(i)+".csv", paket_deque)
+                # make_csv_file("save_"+str(i)+".csv", paket_deque)
                 paket_deque.clear()
-            # print(handle_data(read_data))
-        return
 
     try:
         i = 0
@@ -70,6 +62,7 @@ def main(argv):
 
             if not(None in handled_data):
                 paket_deque.append(handled_data)
+                print(handled_data)
 
             if len(paket_deque) == CONST_MAX_LEN:
                 i = i+1
@@ -128,8 +121,6 @@ def get_src_ipaddress(data):
     l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
 
     return str(ipaddress.IPv4Address(l3_srcaddress))
-
-
 
 def get_dst_ipaddress(data):
     """
