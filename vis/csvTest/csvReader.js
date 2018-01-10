@@ -62,23 +62,41 @@ function readCSV() {
 function parseCSV(data) {
     nodes = []; // Create a data table with nodes.
     edges = []; // Create a data table with links.
+    var tempSrcIP = [];
+    var tempDestIP = [];
+    var duplicateDIP = false;
+    var duplicateSIP = false;
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     
     // Draw nodes
     for(var row = 1; row < csv.length; row++) {
         var parsed = csv[row].split(',');
-        var srcIP = parsed[1];
-        nodes.push({id: srcIP, label: srcIP, group: 'switch', value: parsed[5]});
-    }
+        var sip = parsed[1];
+        var dip = parsed[3];
+        tempSrcIP.push(sip);
+        tempDestIP.push(dip);
+        // Check duplicate IP address
+        for(var i = 0; i < tempSrcIP.length; i++){
+          if(sip === tempDestIP[i]){
+            duplicateDIP = true;
+            break;
+          }
+          if(dip === tempSrcIP[i]){
+            duplicateSIP = true;
+            break;
+          }
+        }
+        if(!duplicateDIP){
+          nodes.push({id: sip, label: sip, group: 'internet', value: 20});
+        }
+        if(!duplicateSIP){
+          nodes.push({id: dip, label: dip, group: 'internet', value: 40});
+        }
+        edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY, fontColor: GRAY, width: WIDTH_SCALE});
 
-    // Draw edges
-    for(var i = 1; i < csv.length; i++) {
-        var parsed = csv[i].split(',');
-        var srcIP = parsed[1];
-        var destinationIP = parsed[3];
-        console.log(srcIP + " ---> " + destinationIP);
-        edges.push({from: srcIP, to: destinationIP, length: LENGTH_MAIN, color: GRAY, width: WIDTH_SCALE * 3, label: '0.71 mbps'});
+        duplicateDIP = false;
+        duplicateSIP = false;
     }
     var container = document.getElementById('mynetwork');
     var data = {

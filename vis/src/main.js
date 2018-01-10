@@ -2,8 +2,8 @@ var nodes = null;
 var edges = null;
 var network = null;
 
-var LENGTH_MAIN = 100,
-    LENGTH_SERVER = 100,
+var LENGTH_MAIN = 500,
+    LENGTH_SERVER = 500,
     LENGTH_SUB = 50,
     WIDTH_SCALE = 2,
     GREEN = 'green',
