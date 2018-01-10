@@ -24,7 +24,6 @@ def main(argv):
                           type = socket.SOCK_RAW)
         read_socket.bind(('wlp4s0', 0x0003))
 
-        read_socket.settimeout(10)
     elif sys.platform == 'win32':
         # TODO(LuHa): create socket and bind it!
         niffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
@@ -39,7 +38,6 @@ def main(argv):
                 # make_csv_file("save_"+str(i)+".csv", paket_deque)
                 paket_deque.clear()
 
-        pass
     elif sys.platform == 'darwin':
         # TODO : create socket and bind it!
         sniffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
@@ -72,7 +70,7 @@ def main(argv):
             print(handle_data(read_data))
             # break
     except socket.timeout:
-        print('i will out')
+        print('I will out')
         return
 
 def handle_data(data):
