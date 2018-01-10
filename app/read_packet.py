@@ -5,13 +5,19 @@ import socket
 import time
 import struct
 import ipaddress
+import csv
+from collections import deque
 if sys.platform == 'darwin':
     import pcapy
+
+CONST_MAX_LEN = 1000
 
 def main(argv):
     """
     capturing packet on any interfaces.
     """
+
+    paket_deque = deque(maxlen=CONST_MAX_LEN)
 
     if sys.platform == 'linux':
         read_socket = socket.socket(
@@ -39,22 +45,41 @@ def main(argv):
     elif sys.platform == 'darwin':
         # TODO : create socket and bind it!
         cap = pcapy.open_live('en0' , 1500 , 1 , 0)
-    
+        i = 0
         #start sniffing packets
         while True :
             (header, read_data) = cap.next()
-            print(handle_data(read_data))
+            handled_data = handle_data(read_data)
+
+            if not(None in handled_data):
+                paket_deque.append(handled_data)
+
+            if len(paket_deque) == CONST_MAX_LEN:
+                i = i+1
+                print(paket_deque)
+                make_csv_file("save_"+str(i)+".csv", paket_deque)
+                paket_deque.clear()
+            # print(handle_data(read_data))
         return
 
     try:
         while True:
             read_data = read_socket.recv(1500)
+            handled_data = handle_data(read_data)
+
+            if not(None in handled_data):
+                paket_deque.append(handled_data)
+
+            if len(paket_deque) == CONST_MAX_LEN:
+                i = i+1
+                print(paket_deque)
+                make_csv_file("save_"+str(i)+".csv", paket_deque)
+                paket_deque.clear()
             print(handle_data(read_data))
             # break
     except socket.timeout:
         print('i will out')
         return
-
 
 def handle_data(data):
     """
@@ -184,12 +209,16 @@ def get_dst_port(data):
     return l4_dstport
 
 def make_csv_file(file_name, data):
+    if file_name.find('.csv') == -1:
+        file_name = file_name+".csv"
+
     csv_file = open(file_name, 'w', newline='')
     writer = csv.writer(csv_file)
-    writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port', 'packet_size'])
+    writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port'])
     for row in data:
         writer.writerow(row)
     csv_file.close()
 
 if __name__ == '__main__':
+    make_csv_file("test.csv", [])
     sys.exit(main(sys.argv))
