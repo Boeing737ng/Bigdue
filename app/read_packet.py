@@ -25,7 +25,6 @@ def main(argv):
                           type = socket.SOCK_RAW)
         read_socket.bind(('wlp4s0', 0x0003))
 
-        read_socket.settimeout(10)
     elif sys.platform == 'win32':
         # TODO(LuHa): create socket and bind it!
         # Get host
@@ -41,7 +40,6 @@ def main(argv):
         # Enable promiscuous mode
         read_socket.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 
-        pass
     elif sys.platform == 'darwin':
         # TODO : create socket and bind it!
         cap = pcapy.open_live('en0' , 1500 , 1 , 0)
@@ -79,7 +77,7 @@ def main(argv):
             print(handle_data(read_data))
             # break
     except socket.timeout:
-        print('i will out')
+        print('I will out')
         return
 
 def handle_data(data):
