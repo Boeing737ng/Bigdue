@@ -4,8 +4,8 @@ var network = null;
 
 var LENGTH_MAIN = 1000,
     LENGTH_SERVER = 100,
-    LENGTH_SUB = 5000,
-    WIDTH_SCALE = 2,
+    LENGTH_SUB = 100,
+    WIDTH_SCALE = 1,
     GREEN = 'green',
     RED = '#C5000B',
     ORANGE = 'orange',
@@ -21,7 +21,7 @@ var options = {
     },
     edges: {
       arrows: {
-        to:     {enabled: true, scaleFactor:3, type:'arrow'},
+        to:     {enabled: true, scaleFactor:1, type:'arrow'},
         middle: {enabled: false, scaleFactor:3, type:'arrow'},
         from:   {enabled: false, scaleFactor:3, type:'arrow'}
       },
@@ -59,7 +59,7 @@ var options = {
 function readCSV() {
     $.ajax({
         type:'GET',
-        url: 'test.csv',
+        url: 'save_1.csv',
         dataType: 'text',
       }).done(parseCSV);
 }
@@ -67,10 +67,12 @@ function readCSV() {
 function parseCSV(data) {
     nodes = []; // Create a data table with nodes.
     edges = []; // Create a data table with links.
-    var tempSrcIP = [];
-    var tempDestIP = [];
-    var duplicateDIP = false;
-    var duplicateSIP = false;
+    var tempSrcIP = [],
+        tempDestIP = [];
+    var duplicateSrcFromSrc = false,
+        duplicateSrcFromDes = false,
+        duplicateDesFromSrc = false,
+        duplicateDesFromDes = false;
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     
@@ -79,29 +81,48 @@ function parseCSV(data) {
         var parsed = csv[row].split(',');
         var sip = parsed[1];
         var dip = parsed[3];
+        // Check duplicate IP address
+        for(var i = 0; i < tempSrcIP.length; i++) {
+          if(sip === tempSrcIP[i]) {
+            duplicateSrcFromSrc = true;
+            //break;
+          }
+          if(sip === tempDestIP[i]) {
+            duplicateSrcFromDes = true;
+            //break;
+          }
+          if(dip === tempSrcIP[i]) {
+            duplicateDesFromSrc = true;
+            //break;
+          }
+          if(dip === tempDestIP[i]) {
+            duplicateDesFromDes = true;
+            //break;
+          }
+        }
         tempSrcIP.push(sip);
         tempDestIP.push(dip);
-        // Check duplicate IP address
-        for(var i = 0; i < tempSrcIP.length; i++){
-          if(sip === tempDestIP[i]){
-            duplicateDIP = true;
-            break;
-          }
-          if(dip === tempSrcIP[i]){
-            duplicateSIP = true;
-            break;
-          }
-        }
-        if(!duplicateDIP){
+
+        if(!duplicateSrcFromSrc && !duplicateSrcFromDes) {
           nodes.push({id: sip, label: sip, group: 'internet', value: 20});
         }
-        if(!duplicateSIP){
-          nodes.push({id: dip, label: dip, group: 'internet', value: 40});
+        if(!duplicateDesFromSrc && !duplicateDesFromDes) {
+          if(sip !== dip) {
+            nodes.push({id: dip, label: dip, group: 'internet', value: 20});
+          }
         }
+        // if(!duplicateDIP){
+        //   nodes.push({id: sip, label: sip, group: 'internet', value: 20});
+        // }
+        // if(!duplicateSIP){
+        //   nodes.push({id: dip, label: dip, group: 'internet', value: 40});
+        // }
         edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY, fontColor: GRAY, width: WIDTH_SCALE});
 
-        duplicateDIP = false;
-        duplicateSIP = false;
+        duplicateSrcFromSrc = false;
+        duplicateSrcFromDes = false;
+        duplicateDesFromSrc = false;
+        duplicateDesFromDes = false;
     }
     var container = document.getElementById('mynetwork');
     var data = {
@@ -109,4 +130,10 @@ function parseCSV(data) {
       edges: edges
     };
     network = new vis.Network(container, data, options);
+    network.on("stabilizationIterationsDone", function () {
+      network.setOptions({
+          nodes: {physics: false},
+          edges: {physics: false},
+      });
+  });
 }

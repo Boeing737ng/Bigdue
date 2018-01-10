@@ -81,7 +81,8 @@ Session.vim
 # temporary
 .netrwhist
 *~
-
 # OS generate files
 .DS_Store
 .DS_Store?
+*.csv
+
