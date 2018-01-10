@@ -5,13 +5,14 @@ import socket
 import time
 import struct
 import ipaddress
-
+if sys.platform == 'darwin':
+    import pcapy
 
 def main(argv):
     """
     capturing packet on any interfaces.
     """
-    print(sys.platform)
+
     if sys.platform == 'linux':
         read_socket = socket.socket(
                           family = socket.AF_PACKET,
@@ -35,9 +36,16 @@ def main(argv):
         read_socket.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 
         pass
-    elif sys.platform == 'darwin':]
+    elif sys.platform == 'darwin':
         # TODO : create socket and bind it!
-        pass
+        cap = pcapy.open_live('en0' , 1500 , 1 , 0)
+    
+        #start sniffing packets
+        while True :
+            (header, read_data) = cap.next()
+            print(handle_data(read_data))
+        return
+
     try:
         while True:
             read_data = read_socket.recv(1500)
@@ -57,7 +65,7 @@ def handle_data(data):
     src_port = get_src_port(data)
     dst_port = get_dst_port(data)
 
-    return (current_time, src_ipaddress, src_port, dst_ipaddress, dst_port)
+    return [current_time, src_ipaddress, src_port, dst_ipaddress, dst_port]
 
 
 
@@ -80,19 +88,18 @@ def get_src_ipaddress(data):
     """
     cursor = data
     # TODO(LuHa): get src ip address!
-    if sys.platform == 'linux':
+    if sys.platform != 'win32':
         l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
         if l2_type != 0x0800:
             return None
         cursor = cursor[14:]
-    elif sys.platform == 'win32':
-        l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
-        l3_headersize = l3_headersize & 0b00001111
-        l3_headersize = l3_headersize * 4
-        l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
-        l3_srcaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[8]
-        # print(ipaddress.IPv4Address(l3_srcaddress))
-        l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    l3_srcaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[8]
+    # print(ipaddress.IPv4Address(l3_srcaddress))
+    l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
 
     return str(ipaddress.IPv4Address(l3_srcaddress))
 
@@ -106,18 +113,18 @@ def get_dst_ipaddress(data):
     """
     cursor = data
     # TODO(LuHa): get dst ip address!
-    if sys.platform == 'linux':
+    if sys.platform != 'win32':
         l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
         if l2_type != 0x0800:
             return None
         cursor = cursor[14:]
-    elif sys.platform == 'win32':
-        l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
-        l3_headersize = l3_headersize & 0b00001111
-        l3_headersize = l3_headersize * 4
-        l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
-        l3_srcaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[8]
-        l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
+    
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    l3_srcaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[8]
+    l3_dstaddress = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[9]
 
     return str(ipaddress.IPv4Address(l3_dstaddress))
 
@@ -131,21 +138,20 @@ def get_src_port(data):
     """
     cursor = data
     # TODO(LuHa): get src port!
-    if sys.platform == 'linux':
+    if sys.platform != 'win32':
         l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
         if l2_type != 0x0800:
             return None
         cursor = cursor[14:]
-    elif sys.platform == 'win32':
-        l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
-        l3_headersize = l3_headersize & 0b00001111
-        l3_headersize = l3_headersize * 4
-        l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
-        if (l3_protocol != 0x06) and (l3_protocol !=0x11):
-            return None
-        cursor = cursor[l3_headersize:]
-        l4_srcport = struct.unpack('!HH', cursor[0:4])[0]
-        l4_dstport = struct.unpack('!HH', cursor[0:4])[1]
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    if (l3_protocol != 0x06) and (l3_protocol !=0x11):
+        return None
+    cursor = cursor[l3_headersize:]
+    l4_srcport = struct.unpack('!HH', cursor[0:4])[0]
+    l4_dstport = struct.unpack('!HH', cursor[0:4])[1]
 
     return l4_srcport
 
@@ -159,21 +165,21 @@ def get_dst_port(data):
     """
     cursor = data
     # TODO(LuHa): get dst port!
-    if sys.platform == 'linux':
+    if sys.platform != 'win32':
         l2_type = struct.unpack('!6s6sH', cursor[0:14])[2]
         if l2_type != 0x0800:
             return None
         cursor = cursor[14:]
-    elif sys.platform == 'win32':
-        l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
-        l3_headersize = l3_headersize & 0b00001111
-        l3_headersize = l3_headersize * 4
-        l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
-        if (l3_protocol != 0x06) and (l3_protocol !=0x11):
-            return None
-        cursor = cursor[l3_headersize:]
-        l4_srcport = struct.unpack('!HH', cursor[0:4])[0]
-        l4_dstport = struct.unpack('!HH', cursor[0:4])[1]
+    
+    l3_headersize = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[0]
+    l3_headersize = l3_headersize & 0b00001111
+    l3_headersize = l3_headersize * 4
+    l3_protocol = struct.unpack('!BBHHHBBH4s4s', cursor[0:20])[6]
+    if (l3_protocol != 0x06) and (l3_protocol !=0x11):
+        return None
+    cursor = cursor[l3_headersize:]
+    l4_srcport = struct.unpack('!HH', cursor[0:4])[0]
+    l4_dstport = struct.unpack('!HH', cursor[0:4])[1]
 
     return l4_dstport
 
