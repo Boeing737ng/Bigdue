@@ -4,7 +4,7 @@ var network = null;
 
 var LENGTH_MAIN = 500,
     LENGTH_SERVER = 500,
-    LENGTH_SUB = 50,
+    LENGTH_SUB = 50, // TODO:: length of edges should be depends on its relationship 
     WIDTH_SCALE = 2,
     GREEN = 'green',
     RED = '#C5000B',
@@ -61,7 +61,8 @@ $(function() {
   var tempDestIP = []; // Array of inserted destinaion IP
   var duplicateDIP = false;
   var duplicateSIP = false;
-
+  
+  // TODO:: get CSV from python
   $("#upload").bind("click", function() {
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
     if (regex.test($("#fileUpload").val().toLowerCase())) {
@@ -88,6 +89,7 @@ $(function() {
                 }
               }
               if(!duplicateDIP){ // If there is no duplication
+                // TODO:: ID of node
                 nodes.push({id: sip, label: sip, group: 'internet', value: 20});
               }
               if(!duplicateSIP){
@@ -98,7 +100,6 @@ $(function() {
               duplicateDIP = false;
               duplicateSIP = false;
           }
-          // create a network
           var container = document.getElementById('mynetwork');
           var data = {
             nodes: nodes,
