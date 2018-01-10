@@ -51,12 +51,12 @@ var options = {
 };
 
 // Called when the Visualization API is loaded.
-function draw() {
-  nodes = []; // Create a data table with nodes.
-  edges = [];// Create a data table with links.
-
-  // csv file read and parse
+// csv file read and parse
   $(function() {
+
+    nodes = []; // Create a data table with nodes.
+    edges = [];// Create a data table with links.
+
     $("#upload").bind("click", function() {
       var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
       if (regex.test($("#fileUpload").val().toLowerCase())) {
@@ -65,34 +65,29 @@ function draw() {
           reader.onload = function(e) {
             var rows = e.target.result.split("\n");
             for (var i = 1; i < rows.length; i++) {
-              var cells = rows[i].split(",");
-              //console.log(cells);
-              for(var j = 0; j < cells.length; j++){
-                var sip = cells[1];
-                var dip = cells[3];
-                nodes.push({id: sip, label: sip, group: 'internet', value: 2});
-                nodes.push({id: dip, label: dip, group: 'internet', value: 2});
-                edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY, fontColor: GRAY, width: WIDTH_SCALE})
-              }
-              console.log(nodes);
+              var paresd = rows[i].split(",");
+              var sip = paresd[1];
+              var dip = paresd[3];
+              nodes.push({id: "s" + i, label: sip, group: 'internet', value: 2});
+              nodes.push({id: "d" + i, label: dip, group: 'internet', value: 2});
+              edges.push({from: "s" + i, to: "d" + i, length: LENGTH_SUB, color: GRAY, fontColor: GRAY, width: WIDTH_SCALE})
             }
-
-          };
+            // create a network
+            var container = document.getElementById('mynetwork');
+            var data = {
+              nodes: nodes,
+              edges: edges
+            };
+            network = new vis.Network(container, data, options);
+          }
           reader.readAsText($("#fileUpload")[0].files[0]);
+        }else {
+            alert("This browser does not support HTML5.");
+          }
         } else {
-          alert("This browser does not support HTML5.");
+          alert("Please upload a valid CSV file.");
         }
-      } else {
-        alert("Please upload a valid CSV file.");
-      }
     });
-  });
 
-  // create a network
-  var container = document.getElementById('mynetwork');
-  var data = {
-    nodes: nodes,
-    edges: edges
-  };
-  network = new vis.Network(container, data, options);
-}
+
+  });
