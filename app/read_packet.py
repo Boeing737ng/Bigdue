@@ -11,9 +11,10 @@ def main(argv):
     """
     capturing packet on any interfaces.
     """
+    print(sys.platform)
     if sys.platform == 'linux':
         read_socket = socket.socket(
-                          family = socket.AF_INET,
+                          family = socket.AF_PACKET,
                           type = socket.SOCK_RAW)
         read_socket.bind(('wlp4s0', 0x0003))
 
@@ -34,7 +35,9 @@ def main(argv):
         read_socket.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 
         pass
-
+    elif sys.platform == 'darwin':]
+        # TODO : create socket and bind it!
+        pass
     try:
         while True:
             read_data = read_socket.recv(1500)
@@ -72,6 +75,7 @@ def get_time():
 def get_src_ipaddress(data):
     """
     return src ip address
+
     return string
     """
     cursor = data
@@ -97,6 +101,7 @@ def get_src_ipaddress(data):
 def get_dst_ipaddress(data):
     """
     return dst ip address
+
     return string
     """
     cursor = data
@@ -121,6 +126,7 @@ def get_dst_ipaddress(data):
 def get_src_port(data):
     """
     return src port number
+
     return string
     """
     cursor = data
@@ -148,6 +154,7 @@ def get_src_port(data):
 def get_dst_port(data):
     """
     return dst port number
+
     return string
     """
     cursor = data
