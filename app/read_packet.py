@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-
-
 import sys
 import socket
 import time
@@ -15,21 +13,34 @@ def main(argv):
     """
     if sys.platform == 'linux':
         read_socket = socket.socket(
-                          family = socket.AF_PACKET,
+                          family = socket.AF_INET,
                           type = socket.SOCK_RAW)
         read_socket.bind(('wlp4s0', 0x0003))
 
         read_socket.settimeout(10)
     elif sys.platform == 'win32':
         # TODO(LuHa): create socket and bind it!
+        # Get host
+        host = socket.gethostbyname(socket.gethostname())
+        print('IP: {}'.format(host))
+
+        # Create a raw socket and bind it
+        read_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_IP)
+        read_socket.bind((host, 0))
+
+        # Include IP headers
+        read_socket.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+        # Enable promiscuous mode
+        read_socket.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+
         pass
 
     try:
         while True:
             read_data = read_socket.recv(1580)
-            print(read_data.hex())
+            # print(read_data.hex())
             print(handle_data(read_data))
-            break
+            # break
     except socket.timeout:
         print('i will out')
         return
