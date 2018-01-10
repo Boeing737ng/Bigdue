@@ -63,6 +63,7 @@ def main(argv):
         return
 
     try:
+        i = 0
         while True:
             read_data = read_socket.recv(1500)
             handled_data = handle_data(read_data)
@@ -220,5 +221,4 @@ def make_csv_file(file_name, data):
     csv_file.close()
 
 if __name__ == '__main__':
-    make_csv_file("test.csv", [])
     sys.exit(main(sys.argv))
