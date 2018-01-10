@@ -20,6 +20,11 @@ var options = {
       }
     },
     edges: {
+      arrows: {
+        to:     {enabled: true, scaleFactor:3, type:'arrow'},
+        middle: {enabled: false, scaleFactor:3, type:'arrow'},
+        from:   {enabled: false, scaleFactor:3, type:'arrow'}
+      },
       color: GRAY,
       smooth: true
     },
