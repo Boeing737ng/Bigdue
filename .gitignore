@@ -81,3 +81,4 @@ Session.vim
 # temporary
 .netrwhist
 *~
+*.csv
