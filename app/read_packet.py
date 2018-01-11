@@ -10,7 +10,7 @@ from collections import deque
 if sys.platform == 'darwin':
     import pcapy
 
-CONST_MAX_LEN = 1000
+CONST_MAX_LEN = 10000
 
 def main(argv):
     """
