@@ -26,7 +26,7 @@ def main(argv):
 
     elif sys.platform == 'win32':
         # TODO(LuHa): create socket and bind it!
-        niffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
+        sniffer = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
         for ts, pkt in sniffer:
             handled_data = handle_data(pkt)
             if not(None in handled_data):
