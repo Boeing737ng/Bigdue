@@ -100,7 +100,7 @@ def read_packet():
                 read_whole_packet = read_socket.recv(1500)
                 retrieved_data = retrieve_data(read_whole_packet)
                 if not (None in retrieved_data):
-                    print(retrieve_data)
+                    print(retrieved_data)
                     store_packet_in_buffer(packet_deque, retrieved_data)
                 if len(packet_deque) == CONST_MAX_LEN:
                     csv_counter = csv_counter + 1
