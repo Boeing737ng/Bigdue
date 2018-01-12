@@ -44,7 +44,7 @@ def retrieve_data(data):
     return [current_time, src_ipaddress, src_port, dst_ipaddress, dst_port]
 
 def get_src_ipaddress(data):
-    src_ipaddress=l3_header(data)[8]
+    src_ipaddress = l3_header(data)[8]
     return str(ipaddress.IPv4Address(src_ipaddress))
 
 def get_dst_ipaddress(data):
@@ -95,11 +95,12 @@ def read_packet():
     if sys.platform == "win32":
         try:
             csv_counter = 0
-            read_whole_packet = connect_socket()
+            read_socket = connect_socket()
             while True:
-                read_whole_packet = read_whole_packet.recv(1500)
-                retrieved_data=retrieve_data(read_whole_packet)
+                read_whole_packet = read_socket.recv(1500)
+                retrieved_data = retrieve_data(read_whole_packet)
                 if not (None in retrieved_data):
+                    print(retrieve_data)
                     store_packet_in_buffer(packet_deque, retrieved_data)
                 if len(packet_deque) == CONST_MAX_LEN:
                     csv_counter = csv_counter + 1
