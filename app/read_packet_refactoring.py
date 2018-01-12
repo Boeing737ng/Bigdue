@@ -66,6 +66,8 @@ def get_time():
     current_time = int(time.time())
     return current_time
 
+# TODO : Layer 계층별 분류 작업 및 코드 Layer 함수 추가 리팩토링
+
 def l2_header(data):
     cursor = data
     return struct.unpack('! 6s 6s H', cursor[:14])
