@@ -13,6 +13,7 @@ CONST_MAX_LEN = 10
 
 # socket을 통해 packet capture (window용) 
 # 추후 pcap 사용시 제거
+# TODO : 제거 or 윈도우에서 라이브러리 없을 시 실행하도록 할지 결정 필요
 def connect_socket():
     """
     connect socket and bind
