@@ -93,11 +93,15 @@ def export_csv_file(file_name, data):
 def read_packet():
     packet_deque = deque(maxlen=CONST_MAX_LEN)
     nic_devs = pcap.findalldevs()
+
     if len(nic_devs) < 1:
         print("no network card")
         return
 
-    read_whole_packet = pcap.pcap(name=nic_devs[0], promisc=True, immediate=True, timeout_ms=50)
+    print("My Network Card Names : ", nic_devs)
+    
+    nic_name = input('Input the Network Card Names : ')
+
     for ts, pkt in read_whole_packet:
         retrieved_data = retrieve_data(pkt)
         if not(None in retrieved_data):
