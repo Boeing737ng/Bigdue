@@ -102,6 +102,8 @@ def read_packet():
     
     nic_name = input('Input the Network Card Names : ')
 
+    read_whole_packet = pcap.pcap(name=nic_name, promisc=True, immediate=True, timeout_ms=50)
+
     for ts, pkt in read_whole_packet:
         retrieved_data = retrieve_data(pkt)
         if not(None in retrieved_data):
