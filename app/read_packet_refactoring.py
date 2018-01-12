@@ -92,38 +92,55 @@ def export_csv_file(file_name, data):
 
 def read_packet():
     packet_deque = deque(maxlen=CONST_MAX_LEN)
-    if sys.platform == "win32":
-        try:
-            csv_counter = 0
-            read_socket = connect_socket()
-            while True:
-                read_whole_packet = read_socket.recv(1500)
-                retrieved_data = retrieve_data(read_whole_packet)
-                if not (None in retrieved_data):
-                    print(retrieved_data)
-                    store_packet_in_buffer(packet_deque, retrieved_data)
-                if len(packet_deque) == CONST_MAX_LEN:
-                    csv_counter = csv_counter + 1
-                    export_csv_file("save_" + str(csv_counter) + ".csv", packet_deque)
-                    flush_packets_in_buffer(packet_deque)
-                # print(retrieve_data(read_whole_packet))
-                # break
+    nic_devs = pcap.findalldevs()
+    if len(nic_devs) < 1:
+        print("no network card")
+        return
 
-        except socket.timeout:
-            print('!Message: Socket time-out')
-            return
-    else:
-        read_whole_packet = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
-        for ts, pkt in read_whole_packet:
-            retrieved_data = retrieve_data(pkt)
-            if not(None in retrieved_data):
-                packet_deque.append(retrieved_data)
-                print(retrieved_data)
+    read_whole_packet = pcap.pcap(name=nic_devs[0], promisc=True, immediate=True, timeout_ms=50)
+    for ts, pkt in read_whole_packet:
+        retrieved_data = retrieve_data(pkt)
+        if not(None in retrieved_data):
+            packet_deque.append(retrieved_data)
+            print(retrieved_data)
 
-            if len(packet_deque) == CONST_MAX_LEN:
-                print(packet_deque)
-                # make_csv_file("save_"+str(i)+".csv", packet_deque)
-                packet_deque.clear()
+        if len(packet_deque) == CONST_MAX_LEN:
+            print(packet_deque)
+            # make_csv_file("save_"+str(i)+".csv", packet_deque)
+            packet_deque.clear()
+
+    # if sys.platform == "win32":
+    #     try:
+    #         csv_counter = 0
+    #         read_socket = connect_socket()
+    #         while True:
+    #             read_whole_packet = read_socket.recv(1500)
+    #             retrieved_data = retrieve_data(read_whole_packet)
+    #             if not (None in retrieved_data):
+    #                 print(retrieved_data)
+    #                 store_packet_in_buffer(packet_deque, retrieved_data)
+    #             if len(packet_deque) == CONST_MAX_LEN:
+    #                 csv_counter = csv_counter + 1
+    #                 export_csv_file("save_" + str(csv_counter) + ".csv", packet_deque)
+    #                 flush_packets_in_buffer(packet_deque)
+    #             # print(retrieve_data(read_whole_packet))
+    #             # break
+
+    #     except socket.timeout:
+    #         print('!Message: Socket time-out')
+    #         return
+    # else:
+    #     read_whole_packet = pcap.pcap(name=None, promisc=True, immediate=True, timeout_ms=50)
+    #     for ts, pkt in read_whole_packet:
+    #         retrieved_data = retrieve_data(pkt)
+    #         if not(None in retrieved_data):
+    #             packet_deque.append(retrieved_data)
+    #             print(retrieved_data)
+
+    #         if len(packet_deque) == CONST_MAX_LEN:
+    #             print(packet_deque)
+    #             # make_csv_file("save_"+str(i)+".csv", packet_deque)
+    #             packet_deque.clear()
 
 def store_packet_in_buffer(packet_deque, retrieved_data):
     packet_deque.append(retrieved_data)
