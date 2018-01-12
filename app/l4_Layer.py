@@ -9,6 +9,12 @@ class l4_Layer:
         self.l4_header = struct.unpack('! H H', l3_payload[:4])
         self.l4_payload = l3_payload[4:]
     
+    def get_l4_header(self):
+        return self.l4_header
+
+    def get_l4_payload(self):
+        return self.l4_payload
+
     def get_src_port(self):
         return self.l4_header[0]
 

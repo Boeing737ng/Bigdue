@@ -11,6 +11,12 @@ class l3_Layer:
         self.l3_header = struct.unpack('! B B H H H B B H 4s 4s', l2_payload[:20])
         self.l3_payload = l2_payload[20:]
     
+    def get_l3_header(self):
+        return self.l3_header
+
+    def get_l3_payload(self):
+        return self.l3_payload
+
     def get_l4_Layer(self):
         return l4_Layer.l4_Layer(self.l3_payload)
 

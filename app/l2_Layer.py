@@ -8,6 +8,12 @@ class l2_Layer:
         self.l2_header = struct.unpack('! 6s 6s H', packet_data[:14])
         self.l2_payload = packet_data[14:]
 
+    def get_l2_header(self):
+        return self.l2_header
+
+    def get_l2_payload(self):
+        return self.l2_payload
+
     def get_l3_Layer(self):
         return l3_Layer.l3_Layer(self.l2_payload)
 
