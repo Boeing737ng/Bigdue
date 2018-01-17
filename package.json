@@ -1,0 +1,19 @@
+{
+  "name": "bigdue",
+  "version": "1.0.0",
+  "description": "## Network Packet Analysis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boeing737ng/Bigdue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boeing737ng/Bigdue/issues"
+  },
+  "homepage": "https://github.com/Boeing737ng/Bigdue#readme"
+}
