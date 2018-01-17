@@ -1,6 +1,9 @@
 var Hello = {
-    message: 'Hello world',
+    message: 'Hello',
     greeting() {
-      return this.message;
+      return `this.message ${this.getName()}`;
+    },
+    getName() {
+      return 'World';
     }
   };
