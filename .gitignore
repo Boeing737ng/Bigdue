@@ -87,3 +87,5 @@ Session.vim
 .DS_Store?
 *.csv
 
+#dependencies
+/node_modules
