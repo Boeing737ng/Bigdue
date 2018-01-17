@@ -67,7 +67,6 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 ./vis/jsDocument
-
 # PyBuilder
 target/
 
