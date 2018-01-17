@@ -14,7 +14,7 @@
     "opts": {
       "template": "node_modules/docdash", // 다운받은 템플릿 경로
       "encoding": "utf8",
-      "destination": "YOUR DOCUMENT OUTPUT PATH", // 문서를 만들 경로
+      "destination": "./vis/jsDocument", // 문서를 만들 경로
       "recurse": true,
       "verbose": true
     },
