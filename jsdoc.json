@@ -3,7 +3,7 @@
       "allowUnknownTags": false
     },
     "source": {
-      "include": ["YOUR SOURCE PATH"], // 주석을 읽을 파일명이나 디렉토리명 배열
+      "include": ["./vis"], // 주석을 읽을 파일명이나 디렉토리명 배열
       "includePattern": ".js$", // 읽을 파일의 패턴
       "exclude": ["./docs"], // 제외할 파일명이나 디렉토리명 배열
       "excludePattern": "(node_modules/|docs)" // 제외할 파일의 패턴

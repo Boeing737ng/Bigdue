@@ -65,6 +65,10 @@ function readCSV() {
 }
 
 function parseCSV(data) {
+  /**
+   * CSV파일을 parsing하여 node와 edge를 push하는 함수입니다.
+   * 
+   */
     nodes = []; // Create a data table with nodes.
     edges = []; // Create a data table with links.
     var tempSrcIP = [],
