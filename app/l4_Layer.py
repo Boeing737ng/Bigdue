@@ -1,13 +1,16 @@
 import struct
+import l3_Layer
 
-class l4_Layer:
+class l4_Layer(l3_Layer.l3_Layer):
     l4_header = []
     l4_payload = []
 
-    def __init__(self, l3_payload):
+    def __init__(self, packet):
         # TODO : 생성자 코드작성
-        self.l4_header = struct.unpack('! H H', l3_payload[:4])
-        self.l4_payload = l3_payload[4:]
+        # super().__init__(packet)
+        l3_Layer.l3_Layer.__init__(self, packet)
+        self.l4_header = struct.unpack('! H H', self.l3_payload[:4])
+        self.l4_payload = self.l3_payload[4:]
     
     def get_l4_header(self):
         return self.l4_header

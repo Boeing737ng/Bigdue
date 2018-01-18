@@ -1,5 +1,5 @@
 import struct
-import l3_Layer
+# import l3_Layer
 
 class l2_Layer:
     l2_header = []
@@ -14,11 +14,11 @@ class l2_Layer:
     def get_l2_payload(self):
         return self.l2_payload
 
-    def get_l3_Layer(self):
-        return l3_Layer.l3_Layer(self.l2_payload)
+    # def get_l3_Layer(self):
+    #     return l3_Layer.l3_Layer(self.l2_payload)
 
-    def get_l4_Layer(self):
-        return self.get_l3_Layer().get_l4_Layer()
+    # def get_l4_Layer(self):
+    #     return self.get_l3_Layer().get_l4_Layer()
 
     def get_header(self):
         return self.l2_header

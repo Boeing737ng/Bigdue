@@ -1,24 +1,22 @@
 import struct
 import ipaddress
-import l4_Layer
+import l2_Layer
 
-class l3_Layer:
+class l3_Layer(l2_Layer.l2_Layer):
     l3_header = []
     l3_payload = []
 
-    def __init__(self, l2_payload):
+    def __init__(self, packet):
         # TODO : 생성자 코드작성
-        self.l3_header = struct.unpack('! B B H H H B B H 4s 4s', l2_payload[:20])
-        self.l3_payload = l2_payload[20:]
+        l2_Layer.l2_Layer.__init__(self, packet)
+        self.l3_header = struct.unpack('! B B H H H B B H 4s 4s', self.l2_payload[:20])
+        self.l3_payload = self.l2_payload[20:]
     
     def get_l3_header(self):
         return self.l3_header
 
     def get_l3_payload(self):
         return self.l3_payload
-
-    def get_l4_Layer(self):
-        return l4_Layer.l4_Layer(self.l3_payload)
 
     def get_src_ipaddress(self):
         src_ipaddress = self.l3_header[8]
