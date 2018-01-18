@@ -102,7 +102,7 @@ function parseCSV(data) {
         }
         tempSrcIP.push(sip);
         tempDestIP.push(dip);
-
+        
         if(!duplicateSrcFromSrc && !duplicateSrcFromDes) {
           nodes.push({id: sip, label: sip, group: 'internet', value: 20});
         }
@@ -111,8 +111,8 @@ function parseCSV(data) {
             nodes.push({id: dip, label: dip, group: 'internet', value: 20});
           }
         }
-        edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY, fontColor: GRAY, width: WIDTH_SCALE});
-
+        edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY, 
+                    fontColor: GRAY, width: WIDTH_SCALE});
         duplicateSrcFromSrc = false;
         duplicateSrcFromDes = false;
         duplicateDesFromSrc = false;
