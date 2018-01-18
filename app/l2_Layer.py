@@ -7,15 +7,6 @@ class l2_Layer:
     def __init__(self, packet_data):
         self.l2_header = struct.unpack('! 6s 6s H', packet_data[:14])
         self.l2_payload = packet_data[14:]
-
-    def get_l2_header(self):
-        return self.l2_header
-
-    def get_l2_payload(self):
-        return self.l2_payload
-
-    def get_header(self):
-        return self.l2_header
     
     def get_src_mac_addr(self):
         return self.l2_header[0]
