@@ -7,7 +7,7 @@ class l3_Layer(l2_Layer.l2_Layer):
     l3_payload = []
 
     def __init__(self, packet):
-        l2_Layer.l2_Layer.__init__(self, packet)
+        super().__init__(packet)
         self.l3_header = struct.unpack('! B B H H H B B H 4s 4s', self.l2_payload[:20])
         self.l3_payload = self.l2_payload[20:]
 
