@@ -1,5 +1,7 @@
 import pcap
-import l4_Layer
+# import l4_Layer from Layer
+
+from Layer import l4_Layer
 def test():
     nic_devs = pcap.findalldevs()
 

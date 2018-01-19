@@ -1,5 +1,5 @@
 import struct
-import l3_Layer
+from Layer import l3_Layer
 
 class l4_Layer(l3_Layer.l3_Layer):
     l4_header = []

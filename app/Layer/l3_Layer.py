@@ -1,6 +1,6 @@
 import struct
 import ipaddress
-import l2_Layer
+from Layer import l2_Layer
 
 class l3_Layer(l2_Layer.l2_Layer):
     l3_header = []
