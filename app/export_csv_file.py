@@ -25,7 +25,11 @@ class export_csv_file:
         for row in self.data:
             writer.writerow(row)
         csv_file.close()
+        self.data = list()
 
     def set_file_name(self, file_name):
         self.file_name = file_name
         self.rename_csv()
+    
+    def get_data_length(self):
+        return len(self.data)
