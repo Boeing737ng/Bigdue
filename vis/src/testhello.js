@@ -1,3 +1,7 @@
+/**
+ * Hello test
+ * @type {{message: string, greeting: (()), getName: (())}}
+ */
 var Hello = {
     message: 'Hello',
     greeting() {
@@ -8,6 +12,10 @@ var Hello = {
     }
   };
 
+/**
+ * helloWorld test
+ * @returns {string}
+ */
 function helloWorld(){
     return "Hello world!";
 }
