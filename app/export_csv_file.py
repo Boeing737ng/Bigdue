@@ -28,3 +28,4 @@ class export_csv_file:
 
     def set_file_name(self, file_name):
         self.file_name = file_name
+        self.rename_csv()

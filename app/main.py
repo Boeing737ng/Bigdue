@@ -8,7 +8,7 @@ def main(argv):
     for timestamp, read_data in read_whole_packet:
         retrieved_data = packet.retrieve_data(timestamp, read_data)
         if not(None in retrieved_data):
-            print(str(i)+retrieved_data)
+            print(retrieved_data)
         else:
             print("dst port or src port is None")
     return
