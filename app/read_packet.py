@@ -9,7 +9,7 @@ import csv
 from collections import deque
 import pcap
 
-CONST_MAX_LEN = 1000
+CONST_MAX_LEN = 10000
 
 def main(argv):
     """
