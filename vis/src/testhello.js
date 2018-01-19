@@ -7,3 +7,7 @@ var Hello = {
       return 'World';
     }
   };
+
+function helloWorld(){
+    return "Hello world!";
+}
