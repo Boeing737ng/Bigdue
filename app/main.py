@@ -6,7 +6,11 @@ def main(argv):
     read_whole_packet = packet.get_whole_packet()
 
     for timestamp, read_data in read_whole_packet:
-        print(packet.retrieve_data(timestamp, read_data))
+        retrieved_data = packet.retrieve_data(timestamp, read_data)
+        if not(None in retrieved_data):
+            print(str(i)+retrieved_data)
+        else:
+            print("dst port or src port is None")
     return
 
 if __name__ == '__main__':
