@@ -5,7 +5,7 @@ import csv
 # class 나누기
 class export_csv_file:
 
-    def __init__(self, data):
+    def __init__(self):
         self.data = list()
         self.file_name = ""
     
