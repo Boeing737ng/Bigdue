@@ -15,8 +15,12 @@ def test():
     for ts, pkt in read_whole_packet:
         print("--------------------------------")
         # print(pkt)
-        print(retrieve_data(pkt))
-    
+        retrieved_data = retrieve_data(pkt)
+        if not(None in retrieved_data):
+            print(retrieved_data)
+        else :
+            print("None!!!!!!!!!!!!!")
+
         # retrieved_data = retrieve_data(pkt)
         # if not(None in retrieved_data):
         #     packet_deque.append(retrieved_data)
