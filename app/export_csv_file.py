@@ -5,16 +5,19 @@ import csv
 # class 나누기
 class export_csv_file:
 
-    def __init__(self, file_name, data):  
-        self.file_name = file_name
-        self.data = data
+    def __init__(self, data):
+        self.data = list()
+        self.file_name = ""
     
-    def check_csv_name(self):
+    def feed(self, data):
+        self.data.append(data)
+
+    def rename_csv(self):
         if self.file_name[-4:] != '.csv':
             self.file_name = self.file_name+".csv"
 
-    def write_csv_file(self):
-        self.check_csv_name()
+    def write_csv_file(self, file_name):
+        self.set_file_name(file_name)
 
         csv_file = open(self.file_name, 'w', newline='')
         writer = csv.writer(csv_file)
@@ -22,3 +25,6 @@ class export_csv_file:
         for row in self.data:
             writer.writerow(row)
         csv_file.close()
+
+    def set_file_name(self, file_name):
+        self.file_name = file_name
