@@ -2,10 +2,10 @@
 /vis/csvTest/test.csv
 
 # python venv
-/bin
-/include
-/lib
-/lib64
+*/bin
+*/include
+*/lib
+*/lib64
 pip-selfcheck.json
 pyvenv.cfg
 
