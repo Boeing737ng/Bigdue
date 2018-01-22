@@ -15,7 +15,7 @@ def main(argv):
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data):
-            print("No. "+str(i)+str(retrieved_data))
+            print("No. "+str(i)+" "+str(retrieved_data))
             csv_file.feed(retrieved_data)
         else:
             print("dst port or src port is None")
