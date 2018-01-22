@@ -8,7 +8,7 @@ class Vis2(object):
     def __init__(self):
         self.data = list()
 
-    def feed(self, data):
+    def feed(self, data: object) -> object:
         self.data.append(data)
 
     def export_csv(self):

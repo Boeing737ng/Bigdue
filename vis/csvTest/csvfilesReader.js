@@ -1,5 +1,8 @@
-var nodes = null;
-var edges = null;
+/**
+ * Created by jinhyeok on 2018. 1. 22..
+ */
+var nodes = [];
+var edges = [];
 var network = null;
 
 var LENGTH_MAIN = 1000,
@@ -59,68 +62,71 @@ var options = {
 function readCSV() {
     $.ajax({
         type:'GET',
-        url: 'save_1.csv',
+        url: 'save_2.csv',
         dataType: 'text',
       }).done(parseCSV);
 }
+
+function readSrcCSV() {
+    $.ajax({
+        type:'GET',
+        url: 'srcNode.csv',
+        dataType: 'text',
+      }).done(srcNodeAdd());
+}
+
+function readDstCSV() {
+    $.ajax({
+        type:'GET',
+        url: 'dstNode.csv',
+        dataType: 'text',
+      }).done(dstNodeAdd());
+}
+
+function srcNodeAdd(data){
+    var reg= /\r?\n|\r/;
+    var csv = data.split(reg);
+    for(var row = 1; row < csv.length; row++){
+        var parsed = csv[row].split(',');
+        var srcIp = parsed[0];
+        var weight = parsed[1];
+
+        nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
+    }
+}
+
+function dstNodeAdd(data){
+    var reg= /\r?\n|\r/;
+    var csv = data.split(reg);
+    for(var row = 1; row < csv.length; row++){
+        var parsed = csv[row].split(',');
+        var dstIp = parsed[0];
+        var weight = parsed[1];
+
+        nodes.push({id: dstIp, label: dstIp, group: 'internet', value: weight});
+    }
+}
+
+
 /**
  * CSV파일을 parsing하여 node와 edge를 push하는 함수입니다.
  * @author ryan
- * @param {*} data 
+ * @param {*} data
  */
 function parseCSV(data) {
-    nodes = []; // Create a data table with nodes.
-    edges = []; // Create a data table with links.
-    var tempSrcIP = [],
-        tempDestIP = [];
-    var duplicateSrcFromSrc = false,
-        duplicateSrcFromDes = false,
-        duplicateDesFromSrc = false,
-        duplicateDesFromDes = false;
+        readSrcCSV()
+        readDstCSV()
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
-    
+
     // Draw nodes
     for(var row = 1; row < csv.length; row++) {
         var parsed = csv[row].split(',');
         var sip = parsed[1];
         var dip = parsed[3];
-        // Check duplicate IP address
-        for(var i = 0; i < tempSrcIP.length; i++) {
-          if(sip === tempSrcIP[i]) {
-            duplicateSrcFromSrc = true;
-            //break;
-          }
-          if(sip === tempDestIP[i]) {
-            duplicateSrcFromDes = true;
-            //break;
-          }
-          if(dip === tempSrcIP[i]) {
-            duplicateDesFromSrc = true;
-            //break;
-          }
-          if(dip === tempDestIP[i]) {
-            duplicateDesFromDes = true;
-            //break;
-          }
-        }
-        tempSrcIP.push(sip);
-        tempDestIP.push(dip);
-        
-        if(!duplicateSrcFromSrc && !duplicateSrcFromDes) {
-          nodes.push({id: sip, label: sip, group: 'internet', value: 20});
-        }
-        if(!duplicateDesFromSrc && !duplicateDesFromDes) {
-          if(sip !== dip) {
-            nodes.push({id: dip, label: dip, group: 'internet', value: 20});
-          }
-        }
-        edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY, 
+
+        edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY,
                     fontColor: GRAY, width: WIDTH_SCALE});
-        duplicateSrcFromSrc = false;
-        duplicateSrcFromDes = false;
-        duplicateDesFromSrc = false;
-        duplicateDesFromDes = false;
     }
     var container = document.getElementById('mynetwork');
     var data = {
