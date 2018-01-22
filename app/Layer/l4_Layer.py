@@ -38,20 +38,20 @@ class l4_Layer(l3_Layer.l3_Layer):
     def calculate_control_flag(self, raw_control_flag):
         control_flag = []
         control_flag_list = {
-            1: "FIN",
-            2: "SYN",
-            4: "RST",
-            8: "PSH",
-            16: "ACK",
-            32: "URG",
-            64: "ECN",
-            128: "CWR",
-            256: "NON"
+            0x1: "FIN",
+            0x2: "SYN",
+            0x4: "RST",
+            0x8: "PSH",
+            0x10: "ACK",
+            0x20: "URG",
+            0x40: "ECN",
+            0x80: "CWR",
+            0x100: "NON"
         }
-        check_flag = 0x1
-        while check_flag < 257:
-            if control_flag_list.get(raw_control_flag & check_flag, False):
-                control_flag.append(control_flag_list.get(raw_control_flag & check_flag, False))
-                # print(raw_control_flag)
-            check_flag = check_flag << 0x1
+        flag_mask = 0x1
+        while flag_mask < 0x101:
+            flag = control_flag_list.get(raw_control_flag & flag_mask, False)
+            if flag:
+                control_flag.append(flag)
+            flag_mask = flag_mask << 0x1
         return control_flag

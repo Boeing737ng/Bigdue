@@ -10,8 +10,8 @@ def main(argv):
     csv_file = export_csv_file.export_csv_file()
     i = 0
     for timestamp, read_data in read_whole_packet:
-        retrieved_data = packet.retrieve_data(timestamp, read_data)
-        # retrieved_data = packet.wireshark(timestamp, read_data)
+        # retrieved_data = packet.retrieve_data(timestamp, read_data)
+        retrieved_data = packet.wireshark(timestamp, read_data)
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data):
