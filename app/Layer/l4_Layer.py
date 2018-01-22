@@ -44,9 +44,10 @@ class l4_Layer(l3_Layer.l3_Layer):
             128: "CWR",
             256: "NON"
         }
-        while raw_control_flag != 0:
-            if control_flag_list.get(raw_control_flag & 0x1, False):
-                control_flag.append(control_flag_list.get(raw_control_flag & 0x1, False))
+        check_flag = 0x1
+        while check_flag < 257:
+            if control_flag_list.get(raw_control_flag & check_flag, False):
+                control_flag.append(control_flag_list.get(raw_control_flag & check_flag, False))
                 print(raw_control_flag)
-                raw_control_flag = raw_control_flag >> 0x1
+            check_flag = check_flag << 0x1
         return control_flag
