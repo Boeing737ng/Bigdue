@@ -8,7 +8,7 @@ class l3_Layer(l2_Layer.l2_Layer):
 
     def __init__(self, packet):
         super().__init__(packet)
-        if self.check_type():
+        if self.check_type() == "IPv4":
             self.l3_header = struct.unpack('! B B H H H B B H 4s 4s', self.l2_payload[:20])
             l3_headersize = self.get_l3_headersize()
             self.l3_payload = self.l2_payload[l3_headersize:]
@@ -38,7 +38,7 @@ class l3_Layer(l2_Layer.l2_Layer):
 
     def check_protocol(self):
         protocol_list = {
-            0x06 : True,
-            0x11 : True
+            0x06 : "TCP",
+            0x11 : "UDP"
         }
         return protocol_list.get(self.get_protocol(), False)
