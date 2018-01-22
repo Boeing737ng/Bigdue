@@ -2,12 +2,12 @@
 /vis/csvTest/test.csv
 
 # python venv
-*/bin
-*/include
-*/lib
-*/lib64
-pip-selfcheck.json
-pyvenv.cfg
+**/bin
+**/include
+**/lib
+**/lib64
+**pip-selfcheck.json
+**pyvenv.cfg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
