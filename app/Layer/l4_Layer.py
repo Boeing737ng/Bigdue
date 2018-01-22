@@ -25,7 +25,7 @@ class l4_Layer(l3_Layer.l3_Layer):
     def get_control_flag(self):
         if not self.l4_header:
             return None
-        print("header->"+str(self.l4_header[4]))
+        # print("header->"+str(self.l4_header[4]))
         raw_control_flag = self.l4_header[4] & 0x1FF
         control_flag = self.calculate_control_flag(raw_control_flag)
         print("control flag->"+str(control_flag))
@@ -48,6 +48,6 @@ class l4_Layer(l3_Layer.l3_Layer):
         while check_flag < 257:
             if control_flag_list.get(raw_control_flag & check_flag, False):
                 control_flag.append(control_flag_list.get(raw_control_flag & check_flag, False))
-                print(raw_control_flag)
+                # print(raw_control_flag)
             check_flag = check_flag << 0x1
         return control_flag
