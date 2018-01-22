@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+import time
 
 # class 나누기
 class export_csv_file:
@@ -16,7 +17,7 @@ class export_csv_file:
         if self.file_name[-4:] != '.csv':
             self.file_name = self.file_name+".csv"
 
-    def write_csv_file(self, file_name):
+    def write_csv_file(self, file_name=str(time.time()).split('.')[0]):
         self.set_file_name(file_name)
 
         csv_file = open(self.file_name, 'w', newline='')

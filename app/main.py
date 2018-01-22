@@ -11,15 +11,16 @@ def main(argv):
     i = 0
     for timestamp, read_data in read_whole_packet:
         retrieved_data = packet.retrieve_data(timestamp, read_data)
+        i = i+1
         if not(None in retrieved_data):
-            print(retrieved_data)
+            print("No. "+str(i)+str(retrieved_data))
             csv_file.feed(retrieved_data)
         else:
             print("dst port or src port is None")
             
         if(csv_file.get_data_length() >= CONST_MAX_LEN):
             print("!!!!!!!write!!!!!!")
-            csv_file.write_csv_file("test"+str(i))
+            csv_file.write_csv_file()
             i = i+1
     return
 
