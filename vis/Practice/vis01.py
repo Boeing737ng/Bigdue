@@ -8,7 +8,7 @@ class Vis1(object):
     def __init__(self):
         self.data = list()
 
-    def feed(self, data):
+    def feed(self, data: object) -> object:
         self.data.append(data)
 
     def export_csv(self):
@@ -17,3 +17,6 @@ class Vis1(object):
             writer.writerow(['data'])
             for read_data in self.data:
                 writer.writerow([read_data])
+
+    def print_data(self):
+        print(self.data)
