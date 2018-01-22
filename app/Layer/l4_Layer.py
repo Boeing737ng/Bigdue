@@ -13,8 +13,8 @@ class l4_Layer(l3_Layer.l3_Layer):
                 self.l4_payload = self.l3_payload[20:]
                 print(self.get_control_flag())
             elif self.check_protocol() == "UDP":
-                self.l4_header = struct.unpack('! H H', self.l3_payload[:4])
-                self.l4_payload = self.l3_payload[4:]
+                self.l4_header = struct.unpack('! H H H H', self.l3_payload[:8])
+                self.l4_payload = self.l3_payload[8:]
 
 
     def get_src_port(self):
