@@ -18,13 +18,4 @@ def show_motion():
         entries.append("['Apples',  new Date (1989,6,1), 1200, 400, 'East'],")
         entries.append("['Oranges', new Date (1989,6,1), 750,  150, 'West'],")
         entries.append("['Bananas', new Date (1989,6,1), 788,  617, 'West']")
-#        for row in motionreader:
-#            entries.append(('['
-#                          + '"' + row['title'] + '"'
-#                          + ',' + row['date']
-#                          + ',' + row['sales']
-#                          + ',' + row['expenses']
-#                          + ',"' + row['location'] + '"'
-#                          + '],'))
-        print(entries)
     return render_template('motion_chart.html', entries = entries)
