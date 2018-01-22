@@ -32,5 +32,6 @@ class read_packet:
         dst_ipaddress = receive.get_dst_ipaddress()
         src_port = receive.get_src_port()
         dst_port = receive.get_dst_port()
+        receive.get_control_flag()
 
         return [timestamp, src_ipaddress, src_port, dst_ipaddress, dst_port]

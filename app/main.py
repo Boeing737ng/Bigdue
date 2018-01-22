@@ -13,7 +13,7 @@ def main(argv):
         retrieved_data = packet.retrieve_data(timestamp, read_data)
         i = i+1
         if not(None in retrieved_data):
-            print("No. "+str(i)+str(retrieved_data))
+            print("No. "+str(i)+" "+str(retrieved_data))
             csv_file.feed(retrieved_data)
         else:
             print("dst port or src port is None")
