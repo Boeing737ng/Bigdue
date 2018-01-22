@@ -38,7 +38,7 @@ class l3_Layer(l2_Layer.l2_Layer):
 
     def check_protocol(self):
         protocol_list = {
-            0x06 : "TCP"
-            # 0x11 : "UDP"
+            0x06 : "TCP",
+            0x11 : "UDP"
         }
         return protocol_list.get(self.get_protocol(), False)

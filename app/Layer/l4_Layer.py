@@ -8,9 +8,14 @@ class l4_Layer(l3_Layer.l3_Layer):
     def __init__(self, packet):
         super().__init__(packet)
         if self.l3_payload:
-            if self.check_protocol() == "TCP" or self.check_protocol() == "UDP":
+            if self.check_protocol() == "TCP":
                 self.l4_header = struct.unpack('! H H 4s 4s H H H H', self.l3_payload[:20])
+                self.l4_payload = self.l3_payload[20:]
+                print(self.get_control_flag())
+            elif self.check_protocol() == "UDP":
+                self.l4_header = struct.unpack('! H H', self.l3_payload[:4])
                 self.l4_payload = self.l3_payload[4:]
+
 
     def get_src_port(self):
         if not self.l4_header:
@@ -28,8 +33,7 @@ class l4_Layer(l3_Layer.l3_Layer):
         # print("header->"+str(self.l4_header[4]))
         raw_control_flag = self.l4_header[4] & 0x1FF
         control_flag = self.calculate_control_flag(raw_control_flag)
-        print("control flag->"+str(control_flag))
-        return None
+        return control_flag
 
     def calculate_control_flag(self, raw_control_flag):
         control_flag = []
