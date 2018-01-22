@@ -8,7 +8,7 @@ class l4_Layer(l3_Layer.l3_Layer):
     def __init__(self, packet):
         super().__init__(packet)
         if self.l3_payload:
-            if self.check_protocol():
+            if self.check_protocol() == "TCP" or self.check_protocol() == "UDP":
                 self.l4_header = struct.unpack('! H H', self.l3_payload[:4])
                 self.l4_payload = self.l3_payload[4:]
 

@@ -18,6 +18,6 @@ class l2_Layer:
 
     def check_type(self):
         type_list = {
-            0x0800 : True
+            0x0800 : "IPv4"
         }
         return type_list.get(self.get_type(), False)
