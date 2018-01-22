@@ -20,13 +20,19 @@ class l3_Layer(l2_Layer.l2_Layer):
         return l3_headersize
 
     def get_protocol(self):
+        if not self.l3_header:
+            return None
         return self.l3_header[6]
 
     def get_src_ipaddress(self):
+        if not self.l3_header:
+            return None
         src_ipaddress = self.l3_header[8]
         return str(ipaddress.IPv4Address(src_ipaddress))
 
     def get_dst_ipaddress(self):
+        if not self.l3_header:
+            return None
         src_ipaddress = self.l3_header[9]
         return str(ipaddress.IPv4Address(src_ipaddress))
 
