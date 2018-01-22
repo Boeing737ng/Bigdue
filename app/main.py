@@ -17,8 +17,8 @@ def main(argv):
         if not(None in retrieved_data):
             print("No. "+str(i)+" "+str(retrieved_data))
             csv_file.feed(retrieved_data)
-        else:
-            print("dst port or src port is None")
+        # else:
+            # print("dst port or src port is None")
             
         # if(csv_file.get_data_length() >= CONST_MAX_LEN):
         #     print("!!!!!!!write!!!!!!")
