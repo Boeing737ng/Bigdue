@@ -62,28 +62,21 @@ var options = {
 function readCSV() {
     $.ajax({
         type:'GET',
-        url: 'save_2.csv',
+        url: 'save_1.csv',
         dataType: 'text',
       }).done(parseCSV);
 }
 
-function readSrcCSV() {
+function readNodeCSV() {
     $.ajax({
         type:'GET',
         url: 'srcNode.csv',
+         async: false,
         dataType: 'text',
-      }).done(srcNodeAdd());
+      }).done(NodeAdd);
 }
 
-function readDstCSV() {
-    $.ajax({
-        type:'GET',
-        url: 'dstNode.csv',
-        dataType: 'text',
-      }).done(dstNodeAdd());
-}
-
-function srcNodeAdd(data){
+function NodeAdd(data){
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     for(var row = 1; row < csv.length; row++){
@@ -95,18 +88,6 @@ function srcNodeAdd(data){
     }
 }
 
-function dstNodeAdd(data){
-    var reg= /\r?\n|\r/;
-    var csv = data.split(reg);
-    for(var row = 1; row < csv.length; row++){
-        var parsed = csv[row].split(',');
-        var dstIp = parsed[0];
-        var weight = parsed[1];
-
-        nodes.push({id: dstIp, label: dstIp, group: 'internet', value: weight});
-    }
-}
-
 
 /**
  * CSV파일을 parsing하여 node와 edge를 push하는 함수입니다.
@@ -114,8 +95,7 @@ function dstNodeAdd(data){
  * @param {*} data
  */
 function parseCSV(data) {
-        readSrcCSV()
-        readDstCSV()
+        readNodeCSV()
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
 

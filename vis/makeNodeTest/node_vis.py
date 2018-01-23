@@ -14,8 +14,7 @@ class Node_vis(object):
     def export_csv(self, ip):
         data_process = {}
         # removeDup = list(set(self.data))
-        filename = ip + 'Node.csv'
-        with open(filename, 'w') as csvfile:
+        with open('Node.csv', 'w') as csvfile:
             writer = csv.writer(csvfile, quoting = csv.QUOTE_MINIMAL)
             writer.writerow([ip, 'weight'])
             # writer.writerow([removeDup])
