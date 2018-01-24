@@ -62,7 +62,7 @@ var options = {
 function readCSV() {
     $.ajax({
         type:'GET',
-        url: 'save_1.csv',
+        url: 'edge.csv',
         dataType: 'text',
       }).done(parseCSV);
 }
@@ -102,11 +102,12 @@ function parseCSV(data) {
     // Draw nodes
     for(var row = 1; row < csv.length; row++) {
         var parsed = csv[row].split(',');
-        var sip = parsed[1];
-        var dip = parsed[3];
+        var sip = parsed[0];
+        var dip = parsed[1];
+        var wid = parsed[2];
 
         edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY,
-                    fontColor: GRAY, width: WIDTH_SCALE});
+                    fontColor: GRAY, width: wid});
     }
     var container = document.getElementById('mynetwork');
     var data = {

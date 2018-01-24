@@ -4,7 +4,7 @@ import sys
 import csv
 
 
-class Node_vis(object):
+class Edge_vis(object):
     def __init__(self):
         self.data = list()
 
@@ -14,9 +14,9 @@ class Node_vis(object):
     def export_csv(self):
         data_process = {}
         # removeDup = list(set(self.data))
-        with open('Node.csv', 'w') as csvfile:
+        with open('edge.csv', 'w') as csvfile:
             writer = csv.writer(csvfile, quoting = csv.QUOTE_MINIMAL)
-            writer.writerow(['node', 'weight'])
+            writer.writerow(['edge', 'weight'])
             # writer.writerow([removeDup])
             # for read_data in removeDup:
             #     writer.writerow([read_data])
@@ -27,9 +27,19 @@ class Node_vis(object):
                     data_process[read_data] = 1
 
             for key, value in data_process.items():
-                writer.writerow([key,value])
-                # writer.writerow([key, value])
+                splited = key.split(',')
+                writer.writerow([splited[0],splited[1],value])
+
+    def print(self):
+        data_process = {}
+
+        for read_data in self.data:
+            try:
+                data_process[read_data] += 1
+            except:
+                data_process[read_data] = 1
+            for key, value in data_process.items():
+                print([key, value])
 
     def print_removeDup(self):
         print(list(set(self.data)))
-
