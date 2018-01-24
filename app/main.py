@@ -1,6 +1,7 @@
 import sys
 import read_packet
 import export_csv_file
+import tcp_flow
 
 CONST_MAX_LEN = 1000
 
@@ -12,6 +13,9 @@ def main(argv):
     for timestamp, read_data in read_whole_packet:
         # retrieved_data = packet.retrieve_data(timestamp, read_data)
         retrieved_data = packet.wireshark(timestamp, read_data)
+        packet_entry_key = \
+            tcp_flow.tcp_flow().create_key_for_packet_received(retrieved_data)
+
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data):
