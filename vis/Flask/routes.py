@@ -1,11 +1,11 @@
 from flask import Flask, render_template
-import test
+import csvFilter
 
 app = Flask(__name__)      
  
 @app.route('/')
 def home():
-  test.foo()
+  csvFilter.main()
   return render_template('home.html', title = 'Main')
 
 @app.route('/graph')
