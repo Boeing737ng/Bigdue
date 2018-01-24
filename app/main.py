@@ -16,9 +16,7 @@ def main(argv):
     for timestamp, read_data in read_whole_packet:
         # retrieved_data = packet.retrieve_data(timestamp, read_data)
         retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
-        packet_entry_key = \
-            tcp_flow.tcp_flow().create_key_for_packet_received(retrieved_data)
-
+        print(manipulated_packet.create_key(read_data))
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data):
