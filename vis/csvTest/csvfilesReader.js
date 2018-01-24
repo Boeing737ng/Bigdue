@@ -70,7 +70,7 @@ function readCSV() {
 function readNodeCSV() {
     $.ajax({
         type:'GET',
-        url: 'srcNode.csv',
+        url: 'Node.csv',
          async: false,
         dataType: 'text',
       }).done(NodeAdd);
@@ -83,7 +83,7 @@ function NodeAdd(data){
         var parsed = csv[row].split(',');
         var srcIp = parsed[0];
         var weight = parsed[1];
-
+        console.log(srcIp);
         nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
     }
 }

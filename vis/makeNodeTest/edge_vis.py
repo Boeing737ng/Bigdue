@@ -25,10 +25,12 @@ class Edge_vis(object):
                     data_process[read_data] += 1
                 except:
                     data_process[read_data] = 1
+            max_value = max(data_process.values())
 
             for key, value in data_process.items():
+                value_ratio = value/max_value * 10
                 splited = key.split(',')
-                writer.writerow([splited[0],splited[1],value])
+                writer.writerow([splited[0],splited[1],value_ratio])
 
     def print(self):
         data_process = {}
