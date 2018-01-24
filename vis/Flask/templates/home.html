@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>Bigdue<h2>
+    <form action="{{ url_for('graph') }}" method="POST" enctype="multipart/form-data">
+        <input type="submit" value="send">
+    </form>
+  </div>
+{% endblock %}
