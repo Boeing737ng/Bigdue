@@ -9,7 +9,7 @@ No packets
 length of data(bytes)
 """
 
-class tcp_flow:
+class TcpFlow:
     # def check_for_syn(self):
     def __init__(self):
         return

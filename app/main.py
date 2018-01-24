@@ -1,18 +1,21 @@
 import sys
-import read_packet
+import ReadPacket
 import export_csv_file
-import tcp_flow
+import TcpFlow
+import ManipulatePackets
 
 CONST_MAX_LEN = 1000
 
 def main(argv):
-    packet = read_packet.read_packet()
+    packet = ReadPacket.ReadPacket()
+    manipulated_packet = ManipulatePackets.ManipulatePackets()
+
     read_whole_packet = packet.get_whole_packet()
     csv_file = export_csv_file.export_csv_file()
     i = 0
     for timestamp, read_data in read_whole_packet:
         # retrieved_data = packet.retrieve_data(timestamp, read_data)
-        retrieved_data = packet.wireshark(timestamp, read_data)
+        retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
         packet_entry_key = \
             tcp_flow.tcp_flow().create_key_for_packet_received(retrieved_data)
 
