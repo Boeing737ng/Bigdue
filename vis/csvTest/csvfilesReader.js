@@ -62,48 +62,29 @@ var options = {
 function readCSV() {
     $.ajax({
         type:'GET',
-        url: 'save_2.csv',
+        url: 'edge.csv',
         dataType: 'text',
       }).done(parseCSV);
 }
 
-function readSrcCSV() {
+function readNodeCSV() {
     $.ajax({
         type:'GET',
-        url: 'srcNode.csv',
+        url: 'Node.csv',
+         async: false,
         dataType: 'text',
-      }).done(srcNodeAdd());
+      }).done(NodeAdd);
 }
 
-function readDstCSV() {
-    $.ajax({
-        type:'GET',
-        url: 'dstNode.csv',
-        dataType: 'text',
-      }).done(dstNodeAdd());
-}
-
-function srcNodeAdd(data){
+function NodeAdd(data){
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     for(var row = 1; row < csv.length; row++){
         var parsed = csv[row].split(',');
         var srcIp = parsed[0];
         var weight = parsed[1];
-
+        console.log(srcIp);
         nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
-    }
-}
-
-function dstNodeAdd(data){
-    var reg= /\r?\n|\r/;
-    var csv = data.split(reg);
-    for(var row = 1; row < csv.length; row++){
-        var parsed = csv[row].split(',');
-        var dstIp = parsed[0];
-        var weight = parsed[1];
-
-        nodes.push({id: dstIp, label: dstIp, group: 'internet', value: weight});
     }
 }
 
@@ -114,19 +95,19 @@ function dstNodeAdd(data){
  * @param {*} data
  */
 function parseCSV(data) {
-        readSrcCSV()
-        readDstCSV()
+        readNodeCSV()
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
 
     // Draw nodes
     for(var row = 1; row < csv.length; row++) {
         var parsed = csv[row].split(',');
-        var sip = parsed[1];
-        var dip = parsed[3];
+        var sip = parsed[0];
+        var dip = parsed[1];
+        var wid = parsed[2];
 
         edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY,
-                    fontColor: GRAY, width: WIDTH_SCALE});
+                    fontColor: GRAY, width: wid});
     }
     var container = document.getElementById('mynetwork');
     var data = {
