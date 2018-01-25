@@ -96,7 +96,7 @@ function add_node(data){
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     // Push all the nodes.
-    for(var row = 1; row < csv.length; row++){
+    for(var row = 1; row < csv.length - 1; row++){
         var parsed = csv[row].split(',');
         var srcIp = parsed[0];
         var weight = parsed[1];
@@ -115,7 +115,7 @@ function add_edge(data) {
     var csv = data.split(reg);
 
     // Create edges
-    for(var row = 1; row < csv.length; row++) {
+    for(var row = 1; row < csv.length - 1; row++) {
         var parsed = csv[row].split(',');
         var sip = parsed[0];
         var dip = parsed[1];
