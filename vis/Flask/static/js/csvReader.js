@@ -67,6 +67,12 @@ function readNodeCSV() {
         type:'GET',
         url: 'static/data/node.csv',
         dataType: 'text',
+        success: function (response) {
+          console.log("Nodes exptracted")
+        },
+        error: function (error) {
+          console.log(error)
+        }
       }).done(add_node);
 }
 
@@ -77,6 +83,12 @@ function readEdgeCSV() {
       url: 'static/data/edge.csv',
       //async: false,
       dataType: 'text',
+      success: function (response) {
+        console.log("Edges exptracted")
+      },
+      error: function (error) {
+        console.log(error)
+      }
     }).done(add_edge);
 }
 
