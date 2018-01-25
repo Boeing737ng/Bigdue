@@ -2,6 +2,7 @@
 
 import sys
 import csv
+import os
 
 
 class Edge_vis(object):
@@ -11,10 +12,19 @@ class Edge_vis(object):
     def feed(self, data: object) -> object:
         self.data.append(data)
 
+    def setRootPath():
+        APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+        target = os.path.join(APP_ROOT, 'static/data/')
+        if not os.path.isdir(target):
+            os.mkdir(target)
+        return target
+
     def export_csv(self):
+        root_path = Edge_vis.setRootPath()
         data_process = {}
+        filename = "edge.csv"
         # removeDup = list(set(self.data))
-        with open('edge.csv', 'w') as csvfile:
+        with open(root_path + filename, 'w') as csvfile:
             writer = csv.writer(csvfile, quoting = csv.QUOTE_MINIMAL)
             writer.writerow(['edge', 'weight'])
             # writer.writerow([removeDup])
