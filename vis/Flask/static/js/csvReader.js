@@ -104,7 +104,6 @@ function add_node(data){
     }
     readEdgeCSV();
 }
-
 /**
  * Append nodes and edges after parsing the CSV files.
  * @author ryan
@@ -124,7 +123,6 @@ function add_edge(data) {
                     fontColor: GRAY, width: wid});
     }
     var container = document.getElementById('mynetwork');
-    container.innerHTML="yessss";
     var data = {
       nodes: nodes,
       edges: edges

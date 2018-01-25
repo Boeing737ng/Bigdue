@@ -4,7 +4,6 @@ import sys
 import csv
 import os
 
-
 class Edge_vis(object):
     def __init__(self):
         self.data = list()
