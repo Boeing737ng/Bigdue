@@ -94,3 +94,12 @@ h3 {
   color: #999;
   text-decoration: none;
 }
+
+.menu li a:hover{
+  cursor: pointer;
+  color: white;
+}
+
+.menu li a:active{
+  color: white;
+}
