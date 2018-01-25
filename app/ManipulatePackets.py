@@ -15,6 +15,7 @@ class ManipulatePackets:
         self.dst_port = receive.get_dst_port()
         self.packet_len = receive.get_byte_length()
         self.packet_protocol = receive.check_protocol()
+        self.timestamp = str(timestamp).split(".")[0]
         # receive.get_control_flag()
 
         return [str(timestamp).split(".")[0], src_ipaddress, src_port,
@@ -32,7 +33,7 @@ class ManipulatePackets:
         return [str(timestamp).split(".")[0], src_ipaddress, src_port,
                 dst_ipaddress, dst_port, packet_type, packet_protocol,
                 len(packet_data)]
-                
+
     def get_src_dst_key(self):
         packet_entry_key = str(self.src_ipaddress) + ":" \
                            + str(self.src_port) + " "\
@@ -47,12 +48,10 @@ class ManipulatePackets:
                            + str(self.src_port)
         return packet_entry_key
 
-    def compare_key(self, key):
-        if self.get_src_dst_key == key:
-            return True
-        if self.get_dst_src_key == key:
-            return True
-        return False
+    def get_value(self, key):
+        # start_time, end_time, protocol, packets, bytes
+        return [self.timestamp, self.timestamp, self.packet_protocol, 1, self.packet_len]
+        
 
     # def create_key(self, packet_data):
     #     receive = l4_Layer.l4_Layer(packet_data)
