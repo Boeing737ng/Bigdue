@@ -16,7 +16,8 @@ def main(argv):
     for timestamp, read_data in read_whole_packet:
         # retrieved_data = packet.retrieve_data(timestamp, read_data)
         retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
-        print(manipulated_packet.create_key(read_data))
+        print(manipulated_packet.get_src_dst_key(read_data))
+        print(manipulated_packet.get_dst_src_key(read_data))
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data):

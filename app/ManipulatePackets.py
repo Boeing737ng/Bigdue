@@ -31,18 +31,20 @@ class ManipulatePackets:
                 dst_ipaddress, dst_port, packet_type, packet_protocol,
                 len(packet_data)]
 
-    def get_src_dst_key(self):
-        packet_entry_key = str(receive.get_src_ipaddress()) \
-                           + str(receive.get_src_port()) \
-                           + str(receive.get_dst_ipaddress()) \
+    def get_src_dst_key(self, packet_data):
+        receive = l4_Layer.l4_Layer(packet_data)
+        packet_entry_key = str(receive.get_src_ipaddress()) +":"\
+                           + str(receive.get_src_port()) +" "\
+                           + str(receive.get_dst_ipaddress()) +":"\
                            + str(receive.get_dst_port())
         return packet_entry_key
 
 
-    def get_dst_src_key(self):
-        packet_entry_key = str(receive.get_dst_ipaddress()) \
-                           + str(receive.get_dst_port()) \
-                           + str(receive.get_src_ipaddress()) \
+    def get_dst_src_key(self,packet_data):
+        receive = l4_Layer.l4_Layer(packet_data)
+        packet_entry_key = str(receive.get_dst_ipaddress()) +":"\
+                           + str(receive.get_dst_port()) +" "\
+                           + str(receive.get_src_ipaddress()) +":"\
                            + str(receive.get_src_port())
         return packet_entry_key
 
