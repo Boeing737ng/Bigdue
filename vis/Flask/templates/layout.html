@@ -10,15 +10,16 @@
       <div class="container">
         <h1 class="logo">Network Packet data</h1>
       </div>
+      <strong><nav>
+        <ul class="menu">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('graph') }}">graph</a></li>
+        </ul>
+      </nav></strong>
     </header>
      
     <div class="container">
-        <strong><nav>
-            <ul class="menu">
-              <li><a href="{{ url_for('home') }}">Home</a></li>
-              <li><a href="{{ url_for('graph') }}">graph</a></li>
-            </ul>
-          </nav></strong>
+        
         {% block content %}
         {% endblock %}
     </div>
