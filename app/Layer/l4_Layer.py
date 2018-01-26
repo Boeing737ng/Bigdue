@@ -35,6 +35,9 @@ class l4_Layer(l3_Layer.l3_Layer):
         control_flag = self.calculate_control_flag(raw_control_flag)
         return control_flag
 
+    def get_byte_length(self):
+        return len(self.l4_payload)
+    
     def calculate_control_flag(self, raw_control_flag):
         control_flag = []
         control_flag_list = {
@@ -54,4 +57,5 @@ class l4_Layer(l3_Layer.l3_Layer):
             if flag:
                 control_flag.append(flag)
             flag_mask = flag_mask << 0x1
+
         return control_flag

@@ -44,6 +44,7 @@ class read_packet:
         dst_port = receive.get_dst_port()
         packet_type = receive.check_type()
         packet_protocol = receive.check_protocol()
+        byte_length = receive.get_byte_length()
 
 
-        return [str(timestamp).split(".")[0], src_ipaddress, src_port, dst_ipaddress, dst_port, packet_type, packet_protocol, len(packet_data)]
+        return [str(timestamp).split(".")[0], src_ipaddress, src_port, dst_ipaddress, dst_port, packet_type, packet_protocol, len(packet_data), byte_length]

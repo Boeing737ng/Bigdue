@@ -1,6 +1,3 @@
-/**
- * Created by jinhyeok on 2018. 1. 22..
- */
 var nodes = [];
 var edges = [];
 var network = null;
@@ -58,49 +55,66 @@ var options = {
       }
     }
   };
-// get edge
-function readEdgeCSV() {
-    $.ajax({
-        type:'GET',
-        url: 'edge.csv',
-        dataType: 'text',
-      }).done(add_edge);
-}
+
+$(document).ready(function() {
+  if (window.location.pathname == '/graph') {
+      readNodeCSV();
+  }
+});
 // get node
 function readNodeCSV() {
     $.ajax({
         type:'GET',
-        url: 'node.csv',
-         async: false,
+        url: 'static/data/node.csv',
         dataType: 'text',
+        success: function (response) {
+          console.log("Nodes exptracted")
+        },
+        error: function (error) {
+          console.log(error)
+        }
       }).done(add_node);
+}
+
+// get edge
+function readEdgeCSV() {
+  $.ajax({
+      type:'GET',
+      url: 'static/data/edge.csv',
+      //async: false,
+      dataType: 'text',
+      success: function (response) {
+        console.log("Edges exptracted")
+      },
+      error: function (error) {
+        console.log(error)
+      }
+    }).done(add_edge);
 }
 
 function add_node(data){
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     // Push all the nodes.
-    for(var row = 1; row < csv.length; row++){
+    for(var row = 1; row < csv.length - 1; row++){
         var parsed = csv[row].split(',');
         var srcIp = parsed[0];
         var weight = parsed[1];
-        console.log(srcIp);
         nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
     }
+    readEdgeCSV();
 }
-
 /**
  * Append nodes and edges after parsing the CSV files.
  * @author ryan
  * @param {*} data
  */
 function add_edge(data) {
-    this.readNodeCSV() // Create nodes
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
 
     // Create edges
-    for(var row = 1; row < csv.length; row++) {
+    for(var row = 1; row < csv.length - 1; row++) {
         var parsed = csv[row].split(',');
         var sip = parsed[0];
         var dip = parsed[1];
