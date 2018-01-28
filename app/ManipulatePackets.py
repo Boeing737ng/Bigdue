@@ -16,7 +16,11 @@ class ManipulatePackets:
         self.packet_len = receive.get_byte_length()
         self.packet_protocol = receive.check_protocol()
         self.timestamp = str(timestamp).split(".")[0]
-        # receive.get_control_flag()
+
+        if self.packet_protocol == "TCP":
+            self.control_flag = receive.get_control_flag()
+            return [self.timestamp, self.src_ipaddress, self.src_port,
+                    self.dst_ipaddress, self.dst_port, self.packet_len, self.packet_protocol, self.control_flag]
 
         return [self.timestamp, self.src_ipaddress, self.src_port,
                 self.dst_ipaddress, self.dst_port, self.packet_len, self.packet_protocol]

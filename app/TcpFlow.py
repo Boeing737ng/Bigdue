@@ -10,18 +10,14 @@ length of data(bytes)
 """
 
 class tcpFlow:
-    tcp_flow_list = {}
     # def check_for_syn(self):
     def __init__(self):
-        self.start = 0
-        self.end = 0
-        self.src_ip = ""
-        self.src_port = 0
-        self.dst_ip = ""
-        self.dst_port = 0
-        self.packet_num = 0
-        self.data_length = 0
+        self.tcp_flow_list = {}
+        self.udp_flow_list = {}
 
     def add_tcp_flow(self, tcp_flow_key, tcp_flow_value):
-        tcp_flow_key[tcp_flow_key] = tcp_flow_value
+        self.tcp_flow_list[tcp_flow_key] = tcp_flow_value
+
+    def add_udp_flow(self, udp_flow_key, udp_flow_value):
+        self.udp_flow_list[udp_flow_key] = udp_flow_value
 
