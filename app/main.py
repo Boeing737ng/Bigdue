@@ -9,7 +9,7 @@ CONST_MAX_LEN = 1000
 def main(argv):
     packet = ReadPacket.ReadPacket()
     manipulated_packet = ManipulatePackets.ManipulatePackets()
-
+    tcpFlow = TcpFlow.tcpFlow()
     read_whole_packet = packet.get_whole_packet()
     csv_file = export_csv_file.export_csv_file()
     i = 0
@@ -19,7 +19,8 @@ def main(argv):
         
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
-        if not(None in retrieved_data):
+        if not(None in retrieved_data.values()):
+            # print(tcpFlow.add_packet(retrieved_data))
             print(manipulated_packet.get_src_dst_key())
             print(manipulated_packet.get_dst_src_key())
             print("No. "+str(i)+" "+str(retrieved_data))

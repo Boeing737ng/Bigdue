@@ -15,6 +15,9 @@ class tcpFlow:
         self.tcp_flow_list = {}
         self.udp_flow_list = {}
 
+    def add_packet(self, retrieved_data):
+        return retrieved_data[6]
+
     def add_tcp_flow(self, tcp_flow_key, tcp_flow_value):
         self.tcp_flow_list[tcp_flow_key] = tcp_flow_value
 
