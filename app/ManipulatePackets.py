@@ -18,8 +18,8 @@ class ManipulatePackets:
         self.timestamp = str(timestamp).split(".")[0]
         # receive.get_control_flag()
 
-        return [str(timestamp).split(".")[0], src_ipaddress, src_port,
-                dst_ipaddress, dst_port]
+        return [self.timestamp, self.src_ipaddress, self.src_port,
+                self.dst_ipaddress, self.dst_port, self.packet_len, self.packet_protocol]
 
     def wireshark(self, timestamp, packet_data):
         receive = l4_Layer.l4_Layer(packet_data)
