@@ -11,7 +11,6 @@ class l4_Layer(l3_Layer.l3_Layer):
             if self.check_protocol() == "TCP":
                 self.l4_header = struct.unpack('! H H 4s 4s H H H H', self.l3_payload[:20])
                 self.l4_payload = self.l3_payload[20:]
-                print(self.get_control_flag())
             elif self.check_protocol() == "UDP":
                 self.l4_header = struct.unpack('! H H H H', self.l3_payload[:8])
                 self.l4_payload = self.l3_payload[8:]
