@@ -5,7 +5,7 @@ import csv
 import node_vis
 import edge_vis
 
-def main():
+def main(argv):
     count = 0
 
     Node = node_vis.Node_vis()

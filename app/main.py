@@ -2,7 +2,7 @@ import sys
 import read_packet
 import export_csv_file
 
-CONST_MAX_LEN = 100000
+CONST_MAX_LEN = 1000
 
 def main(argv):
     packet = read_packet.read_packet()
