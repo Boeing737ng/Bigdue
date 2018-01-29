@@ -18,6 +18,8 @@ class tcpFlow:
     def add_packet(self, retrieved_data):
         protocol = retrieved_data["protocol"]
         if protocol == "TCP":
+            print("--------------------------------- T C P ---------------------------------------")
+            print(retrieved_data)
             self.add_tcp_flow(retrieved_data)
         elif protocol == "UDP":
             # print("--------------------------------- U D P ---------------------------------------")
@@ -38,8 +40,12 @@ class tcpFlow:
             # print("key not found")
              self.tcp_flow_list[key_set[0]] = self.make_flow_value(
                  retrieved_data)
-
-        print(self.tcp_flow_list)
+        
+        for key in self.tcp_flow_list.keys():
+            print("<<<<<<<<<<<<<<<<<<<<<")
+            print(key + " : ")
+            print(self.tcp_flow_list[key])
+            print(">>>>>>>>>>>>>>>>>>>>>")
 
     def add_udp_flow(self, retrieved_data):
         key_set = retrieved_data["key"]
