@@ -20,6 +20,8 @@ class tcpFlow:
         if protocol == "TCP":
             self.add_tcp_flow(retrieved_data)
         elif protocol == "UDP":
+            # print("--------------------------------- U D P ---------------------------------------")
+            # print(retrieved_data)
             self.add_udp_flow(retrieved_data)
 
     def add_tcp_flow(self, retrieved_data):
@@ -37,7 +39,11 @@ class tcpFlow:
         else:
             self.udp_flow_list[key_set[0]] = self.make_flow_value(retrieved_data)
         
-        print(self.udp_flow_list)
+        # for key in self.udp_flow_list.keys():
+        #     print("<<<<<<<<<<<<<<<<<<<<<")
+        #     print(key + " : ")
+        #     print(self.udp_flow_list[key])
+        #     print(">>>>>>>>>>>>>>>>>>>>>")
 
     def make_flow_value(self, retrieved_data):
         # start timestamp
