@@ -20,11 +20,11 @@ def main(argv):
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data.values()):
-            print(tcpFlow.add_packet(retrieved_data))
-            print(manipulated_packet.get_src_dst_key())
-            print(manipulated_packet.get_dst_src_key())
-            print("No. "+str(i)+" "+str(retrieved_data))
-            csv_file.feed(retrieved_data)
+            tcpFlow.add_packet(retrieved_data)
+            # print(manipulated_packet.get_src_dst_key())
+            # print(manipulated_packet.get_dst_src_key())
+            # print("No. "+str(i)+" "+str(retrieved_data))
+            # csv_file.feed(retrieved_data)
         # else:
             # print("dst port or src port is None")
             

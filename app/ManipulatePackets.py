@@ -8,6 +8,7 @@ dst_port
 packet_len
 packet_protocol
 timestamp
+key [src_dst_key, dst_src_key]
 """
 
 class ManipulatePackets:
@@ -78,12 +79,7 @@ class ManipulatePackets:
                            + str(self.packet_data["dst_port"]) + " " \
                            + self.packet_data["src_ipaddress"] + ":" \
                            + str(self.packet_data["src_port"])
-        return packet_entry_key
-
-    def get_value(self, key):
-        # start_time, end_time, protocol, packets, bytes
-        return [self.timestamp, self.timestamp, self.packet_protocol, 1, self.packet_len]
-        
+        return packet_entry_key        
 
     # def create_key(self, packet_data):
     #     receive = l4_Layer.l4_Layer(packet_data)
