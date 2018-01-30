@@ -29,6 +29,11 @@ class tcpFlow:
     def add_tcp_flow(self, retrieved_data):
         key_set = retrieved_data["key"]
         tcp_key_set = self.tcp_flow_list.keys()
+        control_flag = retrieved_data["control_flag"]
+        if "SYN" in control_flag:
+            print("Have SYN control_flag")
+        elif "FIN" in control_flag:
+            print("Have FIN control_flag")
 
         if key_set[0] in tcp_key_set:
             # print("key found")
@@ -41,11 +46,11 @@ class tcpFlow:
              self.tcp_flow_list[key_set[0]] = self.make_flow_value(
                  retrieved_data)
         
-        for key in self.tcp_flow_list.keys():
-            print("<<<<<<<<<<<<<<<<<<<<<")
-            print(key + " : ")
-            print(self.tcp_flow_list[key])
-            print(">>>>>>>>>>>>>>>>>>>>>")
+        # for key in self.tcp_flow_list.keys():
+        #     print("<<<<<<<<<<<<<<<<<<<<<")
+        #     print(key + " : ")
+        #     print(self.tcp_flow_list[key])
+        #     print(">>>>>>>>>>>>>>>>>>>>>")
 
     def add_udp_flow(self, retrieved_data):
         key_set = retrieved_data["key"]
