@@ -29,11 +29,6 @@ class tcpFlow:
     def add_tcp_flow(self, retrieved_data):
         key_set = retrieved_data["key"]
         tcp_key_set = self.tcp_flow_list.keys()
-        control_flag = retrieved_data["control_flag"]
-        if "SYN" in control_flag:
-            print("Have SYN control_flag")
-        elif "FIN" in control_flag:
-            print("Have FIN control_flag")
 
         if key_set[0] in tcp_key_set:
             # print("key found")
@@ -43,7 +38,7 @@ class tcpFlow:
             self.merge_tcp_flow_value(retrieved_data, key_set[1])
         else:
             # print("key not found")
-             self.tcp_flow_list[key_set[0]] = self.make_flow_value(
+            self.tcp_flow_list[key_set[0]] = self.make_flow_value(
                  retrieved_data)
         
         # for key in self.tcp_flow_list.keys():
@@ -61,7 +56,8 @@ class tcpFlow:
         elif key_set[1] in udp_key_set:
             self.merge_udp_flow_value(retrieved_data, key_set[1])
         else:
-            self.udp_flow_list[key_set[0]] = self.make_flow_value(retrieved_data)
+            self.udp_flow_list[key_set[0]] = self.make_flow_value(
+                retrieved_data)
         
         # for key in self.udp_flow_list.keys():
         #     print("<<<<<<<<<<<<<<<<<<<<<")
@@ -87,6 +83,7 @@ class tcpFlow:
         flow_value["dst_port"] = retrieved_data["dst_port"]
         flow_value["no_packets"] = 1
         flow_value["bytes"] = retrieved_data["bytes"]
+        flow_value["fin_num"] = 0
 
         return flow_value
     
@@ -98,10 +95,22 @@ class tcpFlow:
         self.udp_flow_list[key_set] = udp_flow
 
     def merge_tcp_flow_value(self, retrieved_data, key_set):
+        control_flag = retrieved_data["control_flag"]
+
         tcp_flow = self.tcp_flow_list[key_set]
         tcp_flow["e_time"] = retrieved_data["timestamp"]
         tcp_flow["no_packets"] = tcp_flow ["no_packets"]+1
         tcp_flow["bytes"] = tcp_flow ["bytes"] + retrieved_data["bytes"]
+        if tcp_flow["fin_num"] == 2:
+            print("------------------------------ TCP flow END ------------------------------")
+            # TODO : flow exit
+            return
+
+        if "SYN" in control_flag:
+            print("Have SYN control_flag")
+        elif "FIN" in control_flag:
+            print("Have FIN control_flag")
+            tcp_flow["fin_num"] = tcp_flow["fin_num"]+1
         self.tcp_flow_list[key_set] = tcp_flow
 
 
