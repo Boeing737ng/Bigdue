@@ -1,15 +1,21 @@
 from flask import Flask, render_template
-import csvFilter
+import sys
+import os
+#Root = os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))))
+
+import main
+from csvFilter import csvFilter
 
 app = Flask(__name__)      
- 
+
 @app.route('/')
 def home():
   return render_template('home.html', title = 'Main')
 
 @app.route('/graph')
 def graph():
-  csvFilter.main()
+  main.main(1)
+  csvFilter.main(1)
   return render_template('graph.html', title = 'graph')
  
 if __name__ == '__main__':
