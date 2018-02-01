@@ -15,7 +15,7 @@ def home():
 @app.route('/graph')
 def graph():
   #main.main(1)
-  csvFilter.main(1)
+  #csvFilter.main(1)
   return render_template('graph.html', title = 'Graph')
  
 @app.route('/map')

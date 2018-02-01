@@ -20,8 +20,9 @@ function add_line() {
   var line = new AmCharts.MapLine();
   line.latitudes = [ 51.500, 50.4422 ];
   line.longitudes = [ -0.1262, 30.5367 ];
+  line.thickness = 4; // Maximum value: 10
+  line.arrowSize = (line.thickness * 1.7);
   line.chart = map;
-  line.thickness = 10;
   map.dataProvider.lines.push(line);
   line.validate();
 }
@@ -198,7 +199,8 @@ var map = AmCharts.makeChart( "chartdiv", {
     "color": "#CC0000",
     "alpha": 0.4,
     "arrowAlpha": 1,
-    "arrowSize": 4
+    "arrowSize": 4,
+    "bringForwardOnHover": true
   },
   "zoomControl": {
     "gridHeight": 100,
