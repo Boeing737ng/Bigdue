@@ -14,9 +14,12 @@ def home():
 
 @app.route('/graph')
 def graph():
-  main.main(1)
+  #main.main(1)
   csvFilter.main(1)
-  return render_template('graph.html', title = 'graph')
+  return render_template('graph.html', title = 'Graph')
  
+@app.route('/map')
+def map():
+  return render_template('map.html', title = 'Map')
 if __name__ == '__main__':
   app.run(debug=True)
