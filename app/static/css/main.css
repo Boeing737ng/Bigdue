@@ -20,7 +20,6 @@ header {
   height: 32px;
   width: 100%;
   opacity: .9;
-  margin-bottom: 10px;
 }
   
 header h1.logo {
@@ -53,7 +52,7 @@ div.jumbo {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  margin: auto;
+  margin: 10px auto 0px;
 }
   
 h2 {

@@ -5,6 +5,8 @@
     <title>{{title}}</title>    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link href="../static/css/vis-network.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../static/css/map.css">
   </head>
   <body>
     <header>
@@ -26,6 +28,11 @@
     </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script type="text/javascript" src="../static/js/map.js"></script>
     <script type="text/javascript" src="../static/js/csvReader.js"></script>
     <!-- <script type="text/javascript" src="../static/js/main.js"></script> -->
   </body>
