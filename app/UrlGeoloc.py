@@ -9,10 +9,14 @@ class urlGeoloc:
     def get_url_geoloc(self, ipaddress):
         url_geoloc = urlopen(self.response_url+ipaddress).read()
         response_json = json.loads(url_geoloc)
-
-        # 공유기 사용시 (192.168.) 공인ip 확인
-        # checkip = urlopen('http://checkip.dyndns.org').read()
-        # print(self.get_public_ipaddr(checkip))
+        
+        if response_json['country_code'] == "":
+            print("-------------------in if")
+            # 공유기 사용시 (192.168.) 공인ip 확인
+            checkip = urlopen('http://checkip.dyndns.org').read()
+            ipaddress = self.get_public_ipaddr(checkip)
+            url_geoloc = urlopen(self.response_url+ipaddress).read()
+            response_json = json.loads(url_geoloc)
         
         return response_json
 
@@ -21,3 +25,5 @@ class urlGeoloc:
 
 # test = urlGeoloc()
 # print(test.get_url_geoloc('192.168.1.5'))
+# print(test.get_url_geoloc('66.253.158.34'))
+# print(test.get_url_geoloc('23.35.201.168'))
