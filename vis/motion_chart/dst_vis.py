@@ -16,14 +16,14 @@ class Dst_vis(object):
             writer.writeheader()
 
             for read_data in self.data:
-                ipaddress = read_data[1]
+                ipaddress = read_data[3]
                 date = read_data[0]
 
                 temp_data = data_process.get(ipaddress + date,
                                     {'ipaddress': '"' + read_data[3] + '"',
                                      'date': read_data[0],
                                      'time': read_data[0],
-                                     'data size': read_data[4],
+                                     'data size': read_data[5],
                                      'count': 1
                                      })
                 temp_data['count'] += 1

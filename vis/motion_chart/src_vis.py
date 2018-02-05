@@ -23,7 +23,7 @@ class Src_vis(object):
                                     {'ipaddress': '"' + read_data[1] + '"',
                                      'date': read_data[0],
                                      'time': read_data[0],
-                                     'data size': read_data[4],
+                                     'data size': read_data[5],
                                      'count': 1
                                      })
                 temp_data['count'] += 1
