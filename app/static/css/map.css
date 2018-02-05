@@ -21,3 +21,10 @@ html, body{
 #add_node:hover{
     cursor: pointer;
 }
+.reloaded_time{
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    margin: auto;
+
+}

@@ -68,7 +68,7 @@ function readNodeCSV() {
         url: 'static/data/node.csv',
         dataType: 'text',
         success: function (response) {
-          console.log("Nodes exptracted")
+          console.log("Nodes extracted")
         },
         error: function (error) {
           console.log(error)
@@ -84,7 +84,7 @@ function readEdgeCSV() {
       //async: false,
       dataType: 'text',
       success: function (response) {
-        console.log("Edges exptracted")
+        console.log("Edges extracted")
       },
       error: function (error) {
         console.log(error)
