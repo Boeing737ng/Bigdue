@@ -11,7 +11,6 @@ class l4_Layer(l3_Layer.l3_Layer):
             if self.check_protocol() == "TCP":
                 self.l4_header = struct.unpack('! H H 4s 4s H H H H', self.l3_payload[:20])
                 self.l4_payload = self.l3_payload[20:]
-                print(self.get_control_flag())
             elif self.check_protocol() == "UDP":
                 self.l4_header = struct.unpack('! H H H H', self.l3_payload[:8])
                 self.l4_payload = self.l3_payload[8:]
@@ -35,6 +34,9 @@ class l4_Layer(l3_Layer.l3_Layer):
         control_flag = self.calculate_control_flag(raw_control_flag)
         return control_flag
 
+    def get_byte_length(self):
+        return len(self.l4_payload)
+    
     def calculate_control_flag(self, raw_control_flag):
         control_flag = []
         control_flag_list = {
@@ -54,4 +56,5 @@ class l4_Layer(l3_Layer.l3_Layer):
             if flag:
                 control_flag.append(flag)
             flag_mask = flag_mask << 0x1
+
         return control_flag

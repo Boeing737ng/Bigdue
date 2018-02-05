@@ -86,6 +86,8 @@ Session.vim
 # OS generate files
 .DS_Store
 .DS_Store?
+__pycache__/
+*.pyc
 *.csv
 *.vscode
 
