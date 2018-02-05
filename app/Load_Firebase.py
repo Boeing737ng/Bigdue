@@ -4,10 +4,10 @@ class loadFirebase:
     
     def __init__(self):
         config = {
-            "apiKey": "AIzaSyBOjYLwqnQYNlyhi1lCRRPiLC46uSq5G-8", 
-            "authDomain": "intellidio-b2c85.firebaseapp.com",
-            "databaseURL": "https://intellidio-b2c85.firebaseio.com",
-            "storageBucket": "intellidio-b2c85.appspot.com"
+            "apiKey": "api-key", 
+            "authDomain": "authdomain",
+            "databaseURL": "dburl",
+            "storageBucket": "filedb"
             }
 
         self.firebase = pyrebase.initialize_app(config)
