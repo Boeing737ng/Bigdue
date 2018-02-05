@@ -1,0 +1,34 @@
+{% block header %}
+    <html>
+        <head>
+            <script type="text/javascript" src="http://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load('current', {packages:["motionchart"]})
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart(){
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'ipaddress');
+                    data.addColumn('date', 'date');
+                    data.addColumn('number', 'time');
+                    data.addColumn('number', 'data size');
+                    data.addColumn('number', 'count');
+                    data.addRows([
+                    {% for entry in entries %}
+                        [{{ entry[0]|safe }}, new Date ({{ entry[1]|safe }}), {{ entry[2]|safe }}, {{ entry[3]|safe }}, {{ entry[4]|safe }}],
+                    {% endfor %}
+                ]);
+
+                var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
+
+                chart.draw(data, {width: 600, height: 300});
+                }
+            </script>
+        </head>
+        {% endblock %}
+        {% block body %}
+        <body>
+        <div id="chart_div" style="width: 600px; height: 300px"></div>
+        </body>
+    </html>
+    {% endblock %}
