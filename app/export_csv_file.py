@@ -22,14 +22,15 @@ class export_csv_file:
             file_name = str(time.time()).split('.')[0]
         self.set_file_name(file_name)
 
-        csv_file = open(self.file_name, 'w', newline='')
-        writer = csv.writer(csv_file)
-        # writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port'])
-        writer.writerow(['timestamp', 'src_lat', 'src_lng', 'src_contry', 'dst_lat', 'dst_lng', 'dst_contry', 'weight'])
-        for row in self.data:
-            writer.writerow(row)
-        csv_file.close()
-        self.data = list()
+        self.edge_vis()
+        # csv_file = open(self.file_name, 'w', newline='')
+        # writer = csv.writer(csv_file)
+        # # writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port'])
+        # writer.writerow(['timestamp', 'src_lat', 'src_lng', 'src_contry', 'dst_lat', 'dst_lng', 'dst_contry', 'weight'])
+        # for row in self.data:
+        #     writer.writerow(row)
+        # csv_file.close()
+        # self.data = list()
 
     def set_file_name(self, file_name):
         self.file_name = file_name
@@ -37,3 +38,19 @@ class export_csv_file:
     
     def get_data_length(self):
         return len(self.data)
+
+    def edge_vis(self):
+        data_process = {}
+        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< read_data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        for read_data in self.data:
+            print("------------------------------ read_data ------------------------------")
+            print(read_data)
+            # try:
+            #     data_process[read_data] += 1
+            # except:
+            #     data_process[read_data] = 1
+        
+        # print(data_process)
+
+
+    # def node_vis(self):

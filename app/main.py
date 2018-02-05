@@ -4,7 +4,7 @@ import export_csv_file
 import TcpFlow
 import ManipulatePackets
 
-CONST_MAX_LEN = 1000
+CONST_MAX_LEN = 10
 
 def main(argv):
     packet = ReadPacket.ReadPacket()
@@ -14,15 +14,15 @@ def main(argv):
     csv_file = export_csv_file.export_csv_file()
     i = 0
     for timestamp, read_data in read_whole_packet:
-        # retrieved_data = packet.retrieve_data(timestamp, read_data)
-        retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
+        retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
+        # retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
         i = i+1
         # print("No. "+str(i)+str(retrieved_data))
-        if not(None in retrieved_data.values()):
-            tcpFlow.add_packet(retrieved_data)
+        if not(None in retrieved_data):
+            # tcpFlow.add_packet(retrieved_data)
             # print(manipulated_packet.get_src_dst_key())
             # print(manipulated_packet.get_dst_src_key())
-            # print("No. "+str(i)+" "+str(retrieved_data))
+            print("No. "+str(i)+" "+str(retrieved_data))
             # csv_file.feed(retrieved_data)
         # else:
             # print("dst port or src port is None")
