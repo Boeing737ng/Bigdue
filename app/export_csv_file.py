@@ -24,7 +24,8 @@ class export_csv_file:
 
         csv_file = open(self.file_name, 'w', newline='')
         writer = csv.writer(csv_file)
-        writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port'])
+        # writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port'])
+        writer.writerow(['timestamp', 'src_lat', 'src_lng', 'src_contry', 'dst_lat', 'dst_lng', 'dst_contry', 'weight'])
         for row in self.data:
             writer.writerow(row)
         csv_file.close()
