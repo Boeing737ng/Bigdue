@@ -4,7 +4,7 @@ import export_csv_file
 import TcpFlow
 import ManipulatePackets
 
-CONST_MAX_LEN = 10
+CONST_MAX_LEN = 30
 
 def main(argv):
     packet = ReadPacket.ReadPacket()
@@ -22,7 +22,7 @@ def main(argv):
             # tcpFlow.add_packet(retrieved_data)
             # print(manipulated_packet.get_src_dst_key())
             # print(manipulated_packet.get_dst_src_key())
-            # print("No. "+str(i)+" "+str(retrieved_data))
+            print("No. "+str(i)+" "+str(retrieved_data))
             csv_file.feed(retrieved_data)
         # else:
             # print("dst port or src port is None")

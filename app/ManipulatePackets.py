@@ -48,14 +48,14 @@ class ManipulatePackets:
         receive = l4_Layer.l4_Layer(packet_data)
         src_ipaddress = receive.get_src_ipaddress()
         dst_ipaddress = receive.get_dst_ipaddress()
-        # src_port = receive.get_src_port()
-        # dst_port = receive.get_dst_port()
+        src_port = receive.get_src_port()
+        dst_port = receive.get_dst_port()
         # packet_type = receive.check_type()
         # packet_protocol = receive.check_protocol()
-        packey_size = receive.get_byte_length()
+        packet_size = receive.get_byte_length()
 
-        return [str(timestamp).split(".")[0], src_ipaddress,
-                dst_ipaddress, packey_size]
+        return [str(timestamp).split(".")[0], src_ipaddress, src_port,
+                dst_ipaddress, dst_port, packet_size]
 
     def set_key_value(self):
         self.packet_data["key"] = [self.get_src_dst_key(), self.get_dst_src_key()]
