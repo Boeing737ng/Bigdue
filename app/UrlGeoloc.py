@@ -7,7 +7,7 @@ class urlGeoloc:
         self.response_url = "http://freegeoip.net/json/"
 
     def get_url_geoloc(self, ipaddress):
-        url_geoloc = urlopen(self.response_url+ipaddress).read()
+        url_geoloc = urlopen(self.response_url+ipaddress).read().decode('utf-8')
         response_json = json.loads(url_geoloc)
         
         if response_json['country_code'] == "":
@@ -15,7 +15,7 @@ class urlGeoloc:
             # 공유기 사용시 (192.168.) 공인ip 확인
             checkip = urlopen('http://checkip.dyndns.org').read()
             ipaddress = self.get_public_ipaddr(checkip)
-            url_geoloc = urlopen(self.response_url+ipaddress).read()
+            url_geoloc = urlopen(self.response_url+ipaddress).read().decode('utf-8')
             response_json = json.loads(url_geoloc)
         
         return [response_json['latitude'], response_json['longitude'], response_json['country_code']]
