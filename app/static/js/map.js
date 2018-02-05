@@ -17,9 +17,9 @@ function getCurrentTime() {
   var date = new Date(); 
   var current_time = 
     "Last Reload: " 
-    + date.getFullYear() + "년 " 
-    + (date.getMonth()+1)  + "월 " 
-    + date.getDate() + "일 "
+    + date.getFullYear() + "/ " 
+    + (date.getMonth()+1)  + "/ " 
+    + date.getDate() + "/ "
     + date.getHours() + ":"  
     + date.getMinutes() + ":" 
     + date.getSeconds();
