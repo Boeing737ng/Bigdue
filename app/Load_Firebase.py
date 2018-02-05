@@ -12,6 +12,6 @@ class loadFirebase:
 
         self.firebase = pyrebase.initialize_app(config)
 
-    def get_data(self, loaded_folder_name, loaded_file_name, load_file_name):
+    def storage_file(self, loaded_folder_name, loaded_file_name, load_file_name):
         storage = self.firebase.storage()
         storage.child(load_file_name+"/"+load_file_name).put(load_file_name)
