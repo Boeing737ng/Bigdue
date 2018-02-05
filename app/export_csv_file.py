@@ -67,9 +67,12 @@ class export_csv_file:
         
         writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_size'])
 
+        max_value = max(duplicate.values())
+
         for key, value in duplicate.items():
+            value_ratio = value/max_value * 10
             splited = key.split(',')
-            writer.writerow([splited[0], splited[1], value])
+            writer.writerow([splited[0], splited[1], value_ratio])
 
         csv_file.close()
 
