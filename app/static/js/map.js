@@ -14,21 +14,29 @@ window.onload = function () {
 }
 
 function getCurrentTime() {
-  var date = new Date(); 
-  var current_time = 
-    "Last Reload: " 
-    + date.getFullYear() + "/ " 
-    + (date.getMonth()+1)  + "/ " 
-    + date.getDate() + "/ "
-    + date.getHours() + ":"  
-    + date.getMinutes() + ":" 
-    + date.getSeconds();
-  return current_time;
+  var date = new Date();
+  var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+  var am_pm = date.getHours() >= 12 ? "pm" : "am";
+  hours = hours < 10 ? "0" + hours : hours;
+  var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+  time = hours + ":" + minutes + am_pm;
+  return time;
+}
+
+function getCurrentDate() {
+  var current_Date = new Date();
+  var year = current_Date.getFullYear();
+  var month = current_Date.getMonth();
+  var date = current_Date.getDate();
+  date = date < 10 ? "0" + date: date;
+  month = month < 10 ? "0" + month: month;
+  var today = year + "/ " + month + "/ " + date;
+  return today;
 }
 
 function setReloadTime() {
   var time = document.getElementById('time');
-  time.innerHTML = this.getCurrentTime();
+  time.innerHTML = this.getCurrentDate() + "/ - " + this.getCurrentTime();
 }
 
 // PARAMETER REQUIRED: latitude, longitude, country name, scale
