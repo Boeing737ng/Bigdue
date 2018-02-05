@@ -4,9 +4,9 @@ import export_csv_file
 import TcpFlow
 import ManipulatePackets
 
-CONST_MAX_LEN = 30
+CONST_MAX_LEN = 100
 
-def main(argv):
+def main():
     packet = ReadPacket.ReadPacket()
     manipulated_packet = ManipulatePackets.ManipulatePackets()
     tcpFlow = TcpFlow.tcpFlow()
@@ -35,4 +35,4 @@ def main(argv):
     return
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+    sys.exit(main())

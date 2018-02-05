@@ -8,11 +8,12 @@ import UrlGeoloc
 # class 나누기
 class export_csv_file:
 
+    time_list = list()
     def __init__(self):
         self.data = list()
         self.urlGeoloc = UrlGeoloc.urlGeoloc()
         self.file_name = ""
-    
+
     def feed(self, data):
         self.data.append(data)
 
@@ -29,7 +30,9 @@ class export_csv_file:
         os.mkdir(self.file_name+"/packet")
         os.mkdir(self.file_name+"/graph")
         os.mkdir(self.file_name+"/map")
-        
+
+        self.time_list.append(self.file_name)
+
         print("packet write")
         csv_file = open(self.file_name+"/packet/packet.csv", 'w', newline='')
         writer = csv.writer(csv_file)

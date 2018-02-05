@@ -55,6 +55,7 @@ var options = {
       }
     }
   };
+//var root = '../../{{ access }}' + '/graph/'; 
 
 $(document).ready(function() {
   if (window.location.pathname == '/graph') {
@@ -66,6 +67,7 @@ function readNodeCSV() {
     $.ajax({
         type:'GET',
         url: 'static/data/node.csv',
+        //url: root + 'node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -81,6 +83,7 @@ function readEdgeCSV() {
   $.ajax({
       type:'GET',
       url: 'static/data/edge.csv',
+      //url: root + 'edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
