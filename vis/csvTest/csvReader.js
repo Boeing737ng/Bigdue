@@ -63,6 +63,7 @@ function readEdgeCSV() {
     $.ajax({
         type:'GET',
         url: 'edge.csv',
+        async: false,
         dataType: 'text',
       }).done(add_edge);
 }
@@ -71,7 +72,7 @@ function readNodeCSV() {
     $.ajax({
         type:'GET',
         url: 'node.csv',
-         async: false,
+        async: false,
         dataType: 'text',
       }).done(add_node);
 }
@@ -95,7 +96,7 @@ function add_node(data){
  * @param {*} data
  */
 function add_edge(data) {
-    this.readNodeCSV() // Create nodes
+    readNodeCSV() // Create nodes
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
 
@@ -105,6 +106,7 @@ function add_edge(data) {
         var sip = parsed[0];
         var dip = parsed[1];
         var wid = parsed[2];
+        console.log(wid);
         edges.push({from: sip, to: dip, length: LENGTH_SUB, color: GRAY,
                     fontColor: GRAY, width: wid});
     }

@@ -21,7 +21,7 @@ class Edge_vis(object):
     def export_csv(self):
         root_path = Edge_vis.setRootPath()
         data_process = {}
-        filename = "edge.csv"
+        filename = "edge1.csv"
         # removeDup = list(set(self.data))
         with open(root_path + filename, 'w') as csvfile:
             writer = csv.writer(csvfile, quoting = csv.QUOTE_MINIMAL)

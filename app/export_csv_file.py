@@ -65,14 +65,17 @@ class export_csv_file:
             except:
                 duplicate[dup_key] = read_data[5]
         
-        csv_file = open(self.file_name+"/graph/edge.csv", 'w', newline='')
+        csv_file = open(self.file_name+"/graph/edge1.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_size'])
 
+        max_value = max(duplicate.values())
+
         for key, value in duplicate.items():
+            value_ratio = value/max_value * 10
             splited = key.split(',')
-            writer.writerow([splited[0], splited[1], value])
+            writer.writerow([splited[0], splited[1], value_ratio])
 
         csv_file.close()
 
