@@ -14,14 +14,83 @@
                     data.addColumn('number', 'data size');
                     data.addColumn('number', 'count');
                     data.addRows([
-                    {% for entry in entries %}
-                        [{{ entry[0]|safe }}, new Date ({{ entry[1]|safe }}), {{ entry[2]|safe }}, {{ entry[3]|safe }}, {{ entry[4]|safe }}],
+                    {% for entry in src_entries %}
+                        [
+                            {{ entry[0]|safe }},
+                            new Date ({{ entry[1]|safe }} * 10 **3),
+                            {{ entry[2]|safe }},
+                            {{ entry[3]|safe }},
+                            {{ entry[4]|safe }}
+                        ],
                     {% endfor %}
                 ]);
 
                 var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
 
-                chart.draw(data, {width: 600, height: 300});
+                var options = {};
+                options['state'] =
+                '{"sizeOption":"3","orderedByX":false,"xAxisOption":"2",'+
+                '"yZoomedDataMax":1527,"time":"2018-02-04","xZoomedIn":false,'+
+                '"xZoomedDataMax":1517784012,"xLambda":1,'+
+                '"colorOption":"_UNIQUE_COLOR","uniColorForNonSelected":false,'+
+                '"duration":{"multiplier":1,"timeUnit":"D"},'+
+                '"iconKeySettings":[],"yZoomedDataMin":2,"orderedByY":false,'+
+                '"showTrails":true,"dimensions":{"iconDimensions":["dim0"]},'+
+                '"playDuration":15000,"iconType":"BUBBLE","yAxisOption":"4",'+
+                '"nonSelectedAlpha":0.4,"xZoomedDataMin":1517783956,'+
+                '"yLambda":1,"yZoomedIn":false}';
+
+                options['width'] = 800;
+                options['height'] = 300;
+                chart.draw(data, options);
+                }
+            </script>
+
+            <script type="text/javascript">
+                google.charts.load('current', {packages:["motionchart"]})
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart(){
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'ipaddress');
+                    data.addColumn('date', 'date');
+                    data.addColumn('number', 'time');
+                    data.addColumn('number', 'data size');
+                    data.addColumn('number', 'count');
+                    data.addRows([
+                    {% for entry in dst_entries %}
+                        [
+                            {{ entry[0]|safe }},
+                            new Date ({{ entry[1]|safe }} * 10 **3),
+                            {{ entry[2]|safe }},
+                            {{ entry[3]|safe }},
+                            {{ entry[4]|safe }}
+                        ],
+                    {% endfor %}
+                ]);
+
+                var chart =
+                new google.visualization.MotionChart(document.getElementById('chart_div2'));
+
+                var options = {};
+                options['state'] =
+                    '{"sizeOption":"3","xZoomedDataMax":1517784012,'+
+                    '"orderedByX":false,"xZoomedIn":false,'+
+                    '"yZoomedDataMax":1542,"time":"2018-02-04",'+
+                    '"orderedByY":false,"nonSelectedAlpha":0.4,"xLambda":1,'+
+                    '"colorOption":"_UNIQUE_COLOR","xAxisOption":"2",'+
+                    '"duration":{"multiplier":1,"timeUnit":"D"},'+
+                    '"iconKeySettings":[],"yZoomedDataMin":2,"yLambda":1,'+
+                    '"showTrails":true,'+
+                    '"dimensions":{"iconDimensions":["dim0"]},'+
+                    '"playDuration":15000,"iconType":"BUBBLE",'+
+                    '"uniColorForNonSelected":false,'+
+                    '"xZoomedDataMin":1517783956,"yZoomedIn":false,'+
+                    '"yAxisOption":"4"}';
+
+                options['width'] = 800;
+                options['height'] = 300;
+                chart.draw(data, options);
                 }
             </script>
         </head>
@@ -29,6 +98,7 @@
         {% block body %}
         <body>
         <div id="chart_div" style="width: 600px; height: 300px"></div>
+        <div id="chart_div2" style="width: 600px; height: 300px"></div>
         </body>
     </html>
     {% endblock %}

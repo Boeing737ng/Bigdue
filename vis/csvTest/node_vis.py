@@ -32,4 +32,3 @@ class Node_vis(object):
 
     def print_removeDup(self):
         print(list(set(self.data)))
-

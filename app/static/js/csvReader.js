@@ -80,7 +80,7 @@ function readNodeCSV() {
 function readEdgeCSV() {
   $.ajax({
       type:'GET',
-      url: 'static/data/edge.csv',
+      url: 'static/data/edge1.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
