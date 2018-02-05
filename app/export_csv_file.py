@@ -117,7 +117,7 @@ class export_csv_file:
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
             map_edge.append([geoloc[0], geoloc[1], geoloc2[0], geoloc2[1], value])
         
-        csv_file = open(self.file_name+"/map/edge1.csv", 'w', newline='')
+        csv_file = open(self.file_name+"/map/edge.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'packet_size'])
