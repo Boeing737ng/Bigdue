@@ -6,6 +6,7 @@ html, body{
 }
 
 #chartdiv {
+    position: absolute;
     width: 100%;
     height: calc(100% - 32px);
 }
@@ -20,4 +21,11 @@ html, body{
 }
 #add_node:hover{
     cursor: pointer;
+}
+.reloaded_time{
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    margin: auto;
+
 }
