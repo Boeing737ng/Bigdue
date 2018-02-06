@@ -61,9 +61,9 @@ class export_csv_file:
             dup_key = read_data[1]+","+read_data[3]
 
             try:
-                duplicate[dup_key] += read_data[5] 
+                duplicate[dup_key] += 1
             except:
-                duplicate[dup_key] = read_data[5]
+                duplicate[dup_key] = 1
         
         csv_file = open(self.file_name+"/graph/edge1.csv", 'w', newline='')
         writer = csv.writer(csv_file)
