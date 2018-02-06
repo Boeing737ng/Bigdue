@@ -66,7 +66,7 @@ function getCurrentTime() {
 function getCurrentDate() {
   var current_Date = new Date();
   var year = current_Date.getFullYear();
-  var month = current_Date.getMonth();
+  var month = current_Date.getMonth() + 1; // getMonth() starts from 0
   var date = current_Date.getDate();
   date = date < 10 ? "0" + date: date;
   month = month < 10 ? "0" + month: month;
