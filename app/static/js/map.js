@@ -24,7 +24,6 @@ $(document).ready(function() {
 function readMapNodeCSV() {
     $.ajax({
         type:'GET',
-        //url: 'static/data/' + directory + '/map/node.csv',
         url: 'static/data/1517900990/map/node.csv',
         dataType: 'text',
         success: function (response) {
@@ -40,7 +39,6 @@ function readMapNodeCSV() {
 function readMapEdgeCSV() {
   $.ajax({
       type:'GET',
-      //url: 'static/data/' + directory + '/map/edge.csv',
       url: 'static/data/1517900990/map/edge.csv',
       //async: false,
       dataType: 'text',

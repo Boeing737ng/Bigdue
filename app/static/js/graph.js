@@ -62,15 +62,6 @@ var options = {
       }
     }
   };
-// $(document).ready(function() {
-//   var timestamp = getTimestamp();
-//   if (window.location.pathname == '/graph') {
-//     for(var i = 0; i < 2; i++) {
-//       readNodeCSV(timestamp[i]);
-//       readEdgeCSV(timestamp[i]);
-//     }
-//   }
-// });
 
 $(document).ready(function() {
   if (window.location.pathname == '/graph') {
@@ -83,7 +74,6 @@ $(document).ready(function() {
 function readNodeCSV() {
     $.ajax({
         type:'GET',
-        //url: 'static/data/' + directory + '/graph/node.csv',
         url: 'static/data/1517900990/graph/node.csv',
         dataType: 'text',
         success: function (response) {
@@ -99,7 +89,6 @@ function readNodeCSV() {
 function readEdgeCSV() {
   $.ajax({
       type:'GET',
-      //url: 'static/data/' + directory + '/graph/edge1.csv',
       url: 'static/data/1517900990/graph/edge1.csv',
       //async: false,
       dataType: 'text',
@@ -123,7 +112,6 @@ function add_node(data){
         check_node.push(srcIp);
         nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
     }
-    //readEdgeCSV();
 }
 /**
  * Append nodes and edges after parsing the CSV files.
@@ -158,17 +146,3 @@ function add_edge(data) {
       });
     }
 }
-
-// function remove_duplicate(new_data, array) {
-//   console.log(new_data)
-//   for(var i = 1; i < new_data.length - 1; i++){
-//     var parsed = new_data[i].split(',');
-//     var new_ip = parsed[0];
-//     if(array.includes(new_ip)){
-//       //console.log(new_ip)
-//       new_data.splice(i, 1);
-//     }
-//   }
-//   console.log(new_data);
-//   return new_data;
-// }
