@@ -38,8 +38,8 @@ class export_csv_file:
         print("packet write")
         csv_file = open(self.file_name+"/packet/packet.csv", 'w', newline='')
         writer = csv.writer(csv_file)
-        writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port', 'packet_size'])
-        # writer.writerow(['timestamp', 'src_lat', 'src_lng', 'src_contry', 'dst_lat', 'dst_lng', 'dst_contry', 'weight'])
+        writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port', 'packet_size'])\
+
         for row in self.data:
             writer.writerow(row)
         csv_file.close()
@@ -116,7 +116,6 @@ class export_csv_file:
         print("map_edge write")
         graph_edge = self.graph_edge_vis()
 
-        # map_edge = []
         duplicate = {}
         for key, value in graph_edge.items():
             splited = key.split(',')
@@ -136,18 +135,13 @@ class export_csv_file:
         for key, value in duplicate.items():
             splited = key.split(',')
             writer.writerow([splited[0], splited[1], splited[2], splited[3], value])
-        # for map_data in map_edge:
-        #     writer.writerow(map_data)
 
         csv_file.close()
-
-        # return map_edge
 
     def map_node_vis(self):
         print("mpa_node write")
         graph_node = self.graph_node_vis()
 
-        # map_node = []
         duplicate = {}
         for key, value in graph_node.items():
             geoloc = self.urlGeoloc.get_url_geoloc(key)
@@ -166,9 +160,4 @@ class export_csv_file:
             splited = key.split(',')
             writer.writerow([splited[0], splited[1], value])
 
-        # for map_data in map_node:
-        #     writer.writerow(map_data)
-
         csv_file.close()
-
-        # return map_node
