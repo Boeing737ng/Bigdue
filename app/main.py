@@ -16,9 +16,9 @@ def main():
     for timestamp, read_data in read_whole_packet:
         retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
         # retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
-        i = i+1
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data):
+            i = i+1
             # tcpFlow.add_packet(retrieved_data)
             # print(manipulated_packet.get_src_dst_key())
             # print(manipulated_packet.get_dst_src_key())
