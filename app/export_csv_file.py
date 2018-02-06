@@ -22,6 +22,7 @@ class export_csv_file:
             self.file_name = self.file_name+".csv"
 
     def write_csv_file(self, file_name=None):
+        print("make packet, graph, map file")
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
@@ -139,7 +140,7 @@ class export_csv_file:
         csv_file.close()
 
     def map_node_vis(self):
-        print("mpa_node write")
+        print("map_node write")
         graph_node = self.graph_node_vis()
 
         duplicate = {}
