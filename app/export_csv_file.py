@@ -68,7 +68,7 @@ class export_csv_file:
         csv_file = open(self.file_name+"/graph/edge1.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
-        writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_size'])
+        writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_num'])
 
         max_value = max(duplicate.values())
 
