@@ -14,8 +14,9 @@ def home():
 
 @app.route('/graph')
 def graph():
-
-  return render_template('graph.html', title = 'Graph')
+  timestamp = export_csv_file.export_csv_file()
+  timestamp_array = timestamp.time_list
+  return render_template('graph.html', accessRoot = timestamp_array)
  
 @app.route('/map')
 def map():
