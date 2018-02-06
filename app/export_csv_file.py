@@ -148,9 +148,9 @@ class export_csv_file:
             geoloc = self.urlGeoloc.get_url_geoloc(key)
             dup_key = str(geoloc[0])+','+str(geoloc[1])
             try:
-                duplicate[dup_key] = value
+                duplicate[dup_key] = geoloc[2]
             except:
-                duplicate[dup_key] = value
+                duplicate[dup_key] = geoloc[2]
 
         csv_file = open(self.file_name+"/map/node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
