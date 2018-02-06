@@ -13,6 +13,46 @@ window.onload = function () {
   }
 }
 
+$(document).ready(function() {
+  if (window.location.pathname == '/map') {
+    readMapNodeCSV();
+    readMapEdgeCSV();
+  }
+});
+
+// get node
+function readMapNodeCSV() {
+    $.ajax({
+        type:'GET',
+        //url: 'static/data/' + directory + '/map/node.csv',
+        url: 'static/data/1517892001/map/node.csv',
+        dataType: 'text',
+        success: function (response) {
+          console.log("Nodes extracted")
+        },
+        error: function (error) {
+          console.log(error)
+        }
+      }).done(add_country);
+}
+
+// get edge
+function readMapEdgeCSV() {
+  $.ajax({
+      type:'GET',
+      //url: 'static/data/' + directory + '/map/edge.csv',
+      url: 'static/data/1517892001/map/edge.csv',
+      //async: false,
+      dataType: 'text',
+      success: function (response) {
+        console.log("Edges extracted")
+      },
+      error: function (error) {
+        console.log(error)
+      }
+    }).done(add_line);
+}
+
 function getCurrentTime() {
   var date = new Date();
   var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
@@ -40,28 +80,51 @@ function setReloadTime() {
 }
 
 // PARAMETER REQUIRED: latitude, longitude, country name, scale
-function add_country() {
-  var city = new AmCharts.MapImage();
-  city.title = "Vienna";
-  city.latitude = 48.2092;
-  city.longitude = 16.3728;
-  city.type = "circle";
-  city.chart = map;
-  city.scale = 0.5;
-  map.dataProvider.images.push(city);
-  city.validate();
+function add_country(data) {
+  var reg= /\r?\n|\r/;
+  var csv = data.split(reg);
+  for(var row = 1; row < csv.length - 1; row++){
+    var parsed = csv[row].split(',');
+    var latitude = parsed[0];
+    var longitude = parsed[1];
+    var country = parsed[2];
+    var city = new AmCharts.MapImage();
+
+    city.title = country;
+    city.latitude = latitude;
+    city.longitude = longitude;
+    city.type = "circle";
+    city.chart = map;
+    city.scale = 0.5;
+    map.dataProvider.images.push(city);
+    city.validate();
+
+  }
 }
 
 // PARAMETER REQUIRED: src[lattitude,longitude], dst[lattitude,longitude], weight
-function add_line() {
-  var line = new AmCharts.MapLine();
-  line.latitudes = [ 51.500, 50.4422 ];
-  line.longitudes = [ -0.1262, 30.5367 ];
-  line.thickness = 4; // Maximum value: 10
-  line.arrowSize = (line.thickness * 1.7);
-  line.chart = map;
-  map.dataProvider.lines.push(line);
-  line.validate();
+function add_line(data) {
+  var reg= /\r?\n|\r/;
+  var csv = data.split(reg);
+  for(var row = 1; row < csv.length; row++){
+    var parsed = csv[row].split(',');
+    var src_lat = parsed[0];
+    var src_lng = parsed[1];
+    var dst_lat = parsed[2];
+    var dst_lng = parsed[3];
+    var line_size = parseInt(parsed[4]);
+    var log_value = parseInt(Math.log10(line_size));
+    console.log(log_value)
+    var line = new AmCharts.MapLine();
+
+    line.latitudes = [ src_lat, dst_lat ];
+    line.longitudes = [ src_lng, dst_lng ];
+    line.thickness = log_value; // Maximum value: 10
+    line.arrowSize = (line.thickness * 1.7);
+    line.chart = map;
+    map.dataProvider.lines.push(line);
+    line.validate();
+  }
 }
 
 var map = AmCharts.makeChart( "chartdiv", {
@@ -69,154 +132,12 @@ var map = AmCharts.makeChart( "chartdiv", {
   "theme": "light",
   "dataProvider": {
     "map": "worldLow",
-    "zoomLevel": 3.5,
-    "zoomLongitude": -20.1341,
-    "zoomLatitude": 49.1712,
+    "zoomLevel": 2.5,
+    "zoomLongitude": -86.9571,
+    "zoomLatitude": 40.4763,
 
-    "lines": [ {
-      "latitudes": [ 51.5002, 46.9480 ],
-      "longitudes": [ -0.1262, 7.4481 ]
-    }, {
-      "latitudes": [ 51.5002, 59.3328 ],
-      "longitudes": [ -0.1262, 18.0645 ]
-    }, {
-      "latitudes": [ 51.5002, 40.4167 ],
-      "longitudes": [ -0.1262, -3.7033 ]
-    }, {
-      "latitudes": [ 51.5002, 46.0514 ],
-      "longitudes": [ -0.1262, 14.5060 ]
-    }, {
-      "latitudes": [ 51.5002, 48.2116 ],
-      "longitudes": [ -0.1262, 17.1547 ]
-    }, {
-      "latitudes": [ 51.5002, 44.8048 ],
-      "longitudes": [ -0.1262, 20.4781 ]
-    }, {
-      "latitudes": [ 51.5002, 55.7558 ],
-      "longitudes": [ -0.1262, 37.6176 ]
-    }, {
-      "latitudes": [ 51.5002, 38.7072 ],
-      "longitudes": [ -0.1262, -9.1355 ]
-    }, {
-      "latitudes": [ 51.5002, 54.6896 ],
-      "longitudes": [ -0.1262, 25.2799 ]
-    }, {
-      "latitudes": [ 51.5002, 64.1353 ],
-      "longitudes": [ -0.1262, -21.8952 ]
-    }, {
-      "latitudes": [ 51.5002, 40.4300 ],
-      "longitudes": [ -0.1262, -74.0000 ]
-    } ],
-    "images": [ {
-      "id": "london",
-      "svgPath": targetSVG,
-      "title": "London",
-      "latitude": 51.5002,
-      "longitude": -0.1262,
-      "scale": 1
-    }, {
-      "svgPath": targetSVG,
-      "title": "Brussels",
-      "latitude": 50.8371,
-      "longitude": 4.3676,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Prague",
-      "latitude": 50.0878,
-      "longitude": 14.4205,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Athens",
-      "latitude": 37.9792,
-      "longitude": 23.7166,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Reykjavik",
-      "latitude": 64.1353,
-      "longitude": -21.8952,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Dublin",
-      "latitude": 53.3441,
-      "longitude": -6.2675,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Oslo",
-      "latitude": 59.9138,
-      "longitude": 10.7387,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Lisbon",
-      "latitude": 38.7072,
-      "longitude": -9.1355,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Moscow",
-      "latitude": 55.7558,
-      "longitude": 37.6176,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Belgrade",
-      "latitude": 44.8048,
-      "longitude": 20.4781,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Bratislava",
-      "latitude": 48.2116,
-      "longitude": 17.1547,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Ljubljana",
-      "latitude": 46.0514,
-      "longitude": 14.5060,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Madrid",
-      "latitude": 40.4167,
-      "longitude": -3.7033,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Stockholm",
-      "latitude": 59.3328,
-      "longitude": 18.0645,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Bern",
-      "latitude": 46.9480,
-      "longitude": 7.4481,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Kiev",
-      "latitude": 50.4422,
-      "longitude": 30.5367,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "Paris",
-      "latitude": 48.8567,
-      "longitude": 2.3510,
-      "scale": 0.5
-    }, {
-      "svgPath": targetSVG,
-      "title": "New York",
-      "latitude": 40.43,
-      "longitude": -74,
-      "scale": 0.5
-    } ]
+    "lines": [],
+    "images": []
   },
 
   "areasSettings": {

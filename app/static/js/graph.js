@@ -69,7 +69,6 @@ var options = {
 // });
 
 $(document).ready(function() {
-  var timestamp = getTimestamp();
   if (window.location.pathname == '/graph') {
     readNodeCSV();
     readEdgeCSV();
@@ -77,11 +76,11 @@ $(document).ready(function() {
 });
 
 // get node
-function readNodeCSV(directory) {
+function readNodeCSV() {
     $.ajax({
         type:'GET',
-        url: 'static/data/' + directory + '/graph/node.csv',
-        //url: root + 'node.csv',
+        //url: 'static/data/' + directory + '/graph/node.csv',
+        url: 'static/data/1517892001/graph/node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -93,11 +92,11 @@ function readNodeCSV(directory) {
 }
 
 // get edge
-function readEdgeCSV(directory) {
+function readEdgeCSV() {
   $.ajax({
       type:'GET',
-      url: 'static/data/' + directory + '/graph/edge1.csv',
-      //url: root + 'edge.csv',
+      //url: 'static/data/' + directory + '/graph/edge1.csv',
+      url: 'static/data/1517892001/graph/edge1.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
@@ -130,7 +129,6 @@ function add_node(data){
 function add_edge(data) {
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
-
     // Create edges
     for(var row = 1; row < csv.length - 1; row++) {
         var parsed = csv[row].split(',');
@@ -146,13 +144,17 @@ function add_edge(data) {
       edges: edges
     };
     // Pushes all created data to Chart Library
-    network = new vis.Network(container, data, options);
-    network.on("stabilizationIterationsDone", function () {
-      network.setOptions({
-          nodes: {physics: false},
-          edges: {physics: false},
+    console.log(container)
+    if(container){
+      console.log("asdfasdf")
+      network = new vis.Network(container, data, options);
+      network.on("stabilizationIterationsDone", function () {
+        network.setOptions({
+            nodes: {physics: false},
+            edges: {physics: false},
+        });
       });
-  });
+    }
 }
 
 // function remove_duplicate(new_data, array) {
