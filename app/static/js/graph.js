@@ -1,5 +1,8 @@
 var nodes = [];
 var edges = [];
+
+var check_node = [];
+var check_edge = [];
 var network = null;
 
 var LENGTH_MAIN = 1000,
@@ -55,18 +58,29 @@ var options = {
       }
     }
   };
-//var root = '../../{{ access }}' + '/graph/'; 
+// $(document).ready(function() {
+//   var timestamp = getTimestamp();
+//   if (window.location.pathname == '/graph') {
+//     for(var i = 0; i < 2; i++) {
+//       readNodeCSV(timestamp[i]);
+//       readEdgeCSV(timestamp[i]);
+//     }
+//   }
+// });
 
 $(document).ready(function() {
+  var timestamp = getTimestamp();
   if (window.location.pathname == '/graph') {
-      readNodeCSV();
+    readNodeCSV();
+    readEdgeCSV();
   }
 });
+
 // get node
-function readNodeCSV() {
+function readNodeCSV(directory) {
     $.ajax({
         type:'GET',
-        url: 'static/data/node.csv',
+        url: 'static/data/' + directory + '/graph/node.csv',
         //url: root + 'node.csv',
         dataType: 'text',
         success: function (response) {
@@ -79,10 +93,10 @@ function readNodeCSV() {
 }
 
 // get edge
-function readEdgeCSV() {
+function readEdgeCSV(directory) {
   $.ajax({
       type:'GET',
-      url: 'static/data/edge.csv',
+      url: 'static/data/' + directory + '/graph/edge1.csv',
       //url: root + 'edge.csv',
       //async: false,
       dataType: 'text',
@@ -103,9 +117,10 @@ function add_node(data){
         var parsed = csv[row].split(',');
         var srcIp = parsed[0];
         var weight = parsed[1];
+        check_node.push(srcIp);
         nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
     }
-    readEdgeCSV();
+    //readEdgeCSV();
 }
 /**
  * Append nodes and edges after parsing the CSV files.
@@ -139,3 +154,17 @@ function add_edge(data) {
       });
   });
 }
+
+// function remove_duplicate(new_data, array) {
+//   console.log(new_data)
+//   for(var i = 1; i < new_data.length - 1; i++){
+//     var parsed = new_data[i].split(',');
+//     var new_ip = parsed[0];
+//     if(array.includes(new_ip)){
+//       //console.log(new_ip)
+//       new_data.splice(i, 1);
+//     }
+//   }
+//   console.log(new_data);
+//   return new_data;
+// }
