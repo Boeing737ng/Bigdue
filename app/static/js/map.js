@@ -9,7 +9,7 @@ window.onload = function () {
     this.setReloadTime();
     setInterval(function () {
       this.setReloadTime();
-    }, 1000);
+    }, 60000);
   }
 }
 
