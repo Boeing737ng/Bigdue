@@ -25,7 +25,7 @@ function readMapNodeCSV() {
     $.ajax({
         type:'GET',
         //url: 'static/data/' + directory + '/map/node.csv',
-        url: 'static/data/1517892001/map/node.csv',
+        url: 'static/data/1517900990/map/node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -41,7 +41,7 @@ function readMapEdgeCSV() {
   $.ajax({
       type:'GET',
       //url: 'static/data/' + directory + '/map/edge.csv',
-      url: 'static/data/1517892001/map/edge.csv',
+      url: 'static/data/1517900990/map/edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
@@ -114,7 +114,6 @@ function add_line(data) {
     var dst_lng = parsed[3];
     var line_size = parseInt(parsed[4]);
     var log_value = parseInt(Math.log10(line_size));
-    console.log(log_value)
     var line = new AmCharts.MapLine();
 
     line.latitudes = [ src_lat, dst_lat ];
