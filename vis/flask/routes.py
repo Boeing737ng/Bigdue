@@ -20,12 +20,17 @@ def graph():
 @app.route('/map')
 def map():
   return render_template('map.html', title = 'Map')
+
+@app.route('/bubble')
+def bubble():
+  return render_template('bubble.html', title = 'Buuble')
+
 if __name__ == '__main__':
-  t1 = Thread(target = main.main)
+  #t1 = Thread(target = main.main)
   t2 = Thread(target = app.run)
-  t1.setDaemon(True)
+  #t1.setDaemon(True)
   t2.setDaemon(True)
-  t1.start()
+  #t1.start()
   t2.start()
   while True:
       pass

@@ -32,7 +32,7 @@ function readMapNodeCSV() {
         error: function (error) {
           console.log(error)
         }
-      }).done(add_country);
+      }).done(addCountry);
 }
 
 // get edge
@@ -48,7 +48,7 @@ function readMapEdgeCSV() {
       error: function (error) {
         console.log(error)
       }
-    }).done(add_line);
+    }).done(addLine);
 }
 
 function getCurrentTime() {
@@ -78,7 +78,7 @@ function setReloadTime() {
 }
 
 // PARAMETER REQUIRED: latitude, longitude, country name, scale
-function add_country(data) {
+function addCountry(data) {
   var reg= /\r?\n|\r/;
   var csv = data.split(reg);
   for(var row = 1; row < csv.length - 1; row++){
@@ -101,7 +101,7 @@ function add_country(data) {
 }
 
 // PARAMETER REQUIRED: src[lattitude,longitude], dst[lattitude,longitude], weight
-function add_line(data) {
+function addLine(data) {
   var reg= /\r?\n|\r/;
   var csv = data.split(reg);
   for(var row = 1; row < csv.length; row++){
