@@ -13,7 +13,6 @@ class ReadPacket:
 
         print("My Network Card Names : ", nic_devs)
         self.set_nic_name(nic_devs[0])
-        #nic_name = input('Input the Network Card Names : ')
 
         
 
