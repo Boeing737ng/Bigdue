@@ -9,7 +9,7 @@ window.onload = function () {
     this.setReloadTime();
     setInterval(function () {
       this.setReloadTime();
-    }, 1000);
+    }, 60000);
   }
 }
 
@@ -24,8 +24,7 @@ $(document).ready(function() {
 function readMapNodeCSV() {
     $.ajax({
         type:'GET',
-        //url: 'static/data/' + directory + '/map/node.csv',
-        url: 'static/data/1517892001/map/node.csv',
+        url: 'static/data/1517900990/map/node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -40,8 +39,7 @@ function readMapNodeCSV() {
 function readMapEdgeCSV() {
   $.ajax({
       type:'GET',
-      //url: 'static/data/' + directory + '/map/edge.csv',
-      url: 'static/data/1517892001/map/edge.csv',
+      url: 'static/data/1517900990/map/edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
@@ -66,7 +64,7 @@ function getCurrentTime() {
 function getCurrentDate() {
   var current_Date = new Date();
   var year = current_Date.getFullYear();
-  var month = current_Date.getMonth();
+  var month = current_Date.getMonth() + 1; // getMonth() starts from 0
   var date = current_Date.getDate();
   date = date < 10 ? "0" + date: date;
   month = month < 10 ? "0" + month: month;
@@ -114,7 +112,6 @@ function add_line(data) {
     var dst_lng = parsed[3];
     var line_size = parseInt(parsed[4]);
     var log_value = parseInt(Math.log10(line_size));
-    console.log(log_value)
     var line = new AmCharts.MapLine();
 
     line.latitudes = [ src_lat, dst_lat ];

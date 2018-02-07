@@ -16,6 +16,9 @@ var LENGTH_MAIN = 1000,
     BLACK = '#2B1B17';
 
 var options = {
+    layout: {
+      improvedLayout: true
+    },
     nodes: {
       scaling: {
         min: 16,
@@ -33,7 +36,8 @@ var options = {
     },
     physics:{
       barnesHut:{gravitationalConstant:-30000},
-      stabilization: {iterations:2500}
+      stabilization: {iterations:2500},
+      enabled: false
     },
     groups: {
       'switch': {
@@ -58,15 +62,6 @@ var options = {
       }
     }
   };
-// $(document).ready(function() {
-//   var timestamp = getTimestamp();
-//   if (window.location.pathname == '/graph') {
-//     for(var i = 0; i < 2; i++) {
-//       readNodeCSV(timestamp[i]);
-//       readEdgeCSV(timestamp[i]);
-//     }
-//   }
-// });
 
 $(document).ready(function() {
   if (window.location.pathname == '/graph') {
@@ -79,8 +74,7 @@ $(document).ready(function() {
 function readNodeCSV() {
     $.ajax({
         type:'GET',
-        //url: 'static/data/' + directory + '/graph/node.csv',
-        url: 'static/data/1517892001/graph/node.csv',
+        url: 'static/data/1517900990/graph/node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -95,8 +89,7 @@ function readNodeCSV() {
 function readEdgeCSV() {
   $.ajax({
       type:'GET',
-      //url: 'static/data/' + directory + '/graph/edge1.csv',
-      url: 'static/data/1517892001/graph/edge1.csv',
+      url: 'static/data/1517900990/graph/edge1.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
@@ -115,11 +108,10 @@ function add_node(data){
     for(var row = 1; row < csv.length - 1; row++){
         var parsed = csv[row].split(',');
         var srcIp = parsed[0];
-        var weight = parsed[1];
+        var weight = parseInt(parsed[1]) / 1000;
         check_node.push(srcIp);
         nodes.push({id: srcIp, label: srcIp, group: 'internet', value: weight});
     }
-    //readEdgeCSV();
 }
 /**
  * Append nodes and edges after parsing the CSV files.
@@ -144,9 +136,7 @@ function add_edge(data) {
       edges: edges
     };
     // Pushes all created data to Chart Library
-    console.log(container)
     if(container){
-      console.log("asdfasdf")
       network = new vis.Network(container, data, options);
       network.on("stabilizationIterationsDone", function () {
         network.setOptions({
@@ -156,17 +146,3 @@ function add_edge(data) {
       });
     }
 }
-
-// function remove_duplicate(new_data, array) {
-//   console.log(new_data)
-//   for(var i = 1; i < new_data.length - 1; i++){
-//     var parsed = new_data[i].split(',');
-//     var new_ip = parsed[0];
-//     if(array.includes(new_ip)){
-//       //console.log(new_ip)
-//       new_data.splice(i, 1);
-//     }
-//   }
-//   console.log(new_data);
-//   return new_data;
-// }

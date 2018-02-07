@@ -4,7 +4,7 @@ import export_csv_file
 import TcpFlow
 import ManipulatePackets
 
-CONST_MAX_LEN = 10000
+CONST_MAX_LEN = 1000000
 
 def main():
     packet = ReadPacket.ReadPacket()

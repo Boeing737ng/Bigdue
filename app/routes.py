@@ -4,7 +4,6 @@ import sys
 import os
 import main
 import export_csv_file
-import html.parser as htmlparser
 
 app = Flask(__name__)      
 
