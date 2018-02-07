@@ -1,7 +1,7 @@
 import sys
 import ReadPacket
 import export_csv_file
-import TcpFlow
+# import TcpFlow
 import ManipulatePackets
 
 CONST_MAX_LEN = 1000000
@@ -9,7 +9,7 @@ CONST_MAX_LEN = 1000000
 def main():
     packet = ReadPacket.ReadPacket()
     manipulated_packet = ManipulatePackets.ManipulatePackets()
-    tcpFlow = TcpFlow.tcpFlow()
+    # tcpFlow = TcpFlow.tcpFlow()
     read_whole_packet = packet.get_whole_packet()
     csv_file = export_csv_file.export_csv_file()
     i = 0
