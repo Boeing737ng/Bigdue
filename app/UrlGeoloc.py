@@ -17,7 +17,7 @@ class urlGeoloc:
         except:
             response = self.reader.city(self.public_ip)
             
-        return [response.location.latitude, response.location.longitude, response.country.iso_code]
+        return [response.location.latitude, response.location.longitude, response.country.name, response.subdivisions.most_specific.name, response.city.name]
 
     def calculate_distance_btw_two_geoloc(self, src_ip_geoloc, dst_ip_geoloc):
 
