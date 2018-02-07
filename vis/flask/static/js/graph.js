@@ -82,7 +82,7 @@ function readNodeCSV() {
         error: function (error) {
           console.log(error)
         }
-      }).done(add_node);
+      }).done(addNode);
 }
 
 // get edge
@@ -98,10 +98,10 @@ function readEdgeCSV() {
       error: function (error) {
         console.log(error)
       }
-    }).done(add_edge);
+    }).done(addEdge);
 }
 
-function add_node(data){
+function addNode(data){
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     // Push all the nodes.
@@ -118,7 +118,7 @@ function add_node(data){
  * @author ryan
  * @param {*} data
  */
-function add_edge(data) {
+function addEdge(data) {
     var reg= /\r?\n|\r/;
     var csv = data.split(reg);
     // Create edges
