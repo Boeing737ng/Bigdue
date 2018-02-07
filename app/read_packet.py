@@ -13,7 +13,6 @@ class read_packet:
 
         print("My Network Card Names : ", nic_devs)
         self.set_nic_name(nic_devs[0])
-        #nic_name = input('Input the Network Card Names : ')
 
         
 
@@ -32,7 +31,6 @@ class read_packet:
         dst_ipaddress = receive.get_dst_ipaddress()
         src_port = receive.get_src_port()
         dst_port = receive.get_dst_port()
-        # receive.get_control_flag()
 
         return [str(timestamp).split(".")[0], src_ipaddress, src_port, dst_ipaddress, dst_port]
 
