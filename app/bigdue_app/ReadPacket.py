@@ -5,15 +5,24 @@ class ReadPacket:
     nic_name = ""
 
     def __init__(self):
-        # nic_devs = pcap.findalldevs()
-        print(pcap.lookupdev())
-        if len(nic_devs) < 1:
-            print("no network card")
-            return
+        try:
+            nic_dev = pcap.lookupdev()
+        except:
+            nic_devs = pcap.findalldevs()
+            
+            if len(nic_devs) < 1:
+                print("no network card")
+                return
+            
+            print("My Network Card List")
+            for i in range(len(nic_devs)):
+                print(i, ":", nic_devs[i])
 
-        # print("My Network Card Names : ", nic_devs)
-        self.set_nic_name(pcap.lookupdev())
-
+            my_dev_index = int(input("Select Your Network Card : \n"))
+            nic_dev = nic_devs[my_dev_index]
+        
+        print("My Network Card Names : ", nic_dev)
+        self.set_nic_name(nic_dev)
         
 
     def set_nic_name(self, nic_name):
