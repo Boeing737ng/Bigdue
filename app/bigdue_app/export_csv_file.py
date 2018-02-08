@@ -41,6 +41,7 @@ class export_csv_file:
         os.mkdir(self.file_name+"/packet")
         os.mkdir(self.file_name+"/graph")
         os.mkdir(self.file_name+"/map")
+        os.mkdir(self.file_name+"/distance")
 
     def write_packet(self):
         print("write packet")
@@ -60,6 +61,7 @@ class export_csv_file:
         self.write_packet()
         self.write_map_edge()
         self.write_map_node()
+        self.write_map_edge_distance()
 
         self.data = list()
 
@@ -92,36 +94,6 @@ class export_csv_file:
         csv_file.close()
 
         return duplicate
-
-    def check_duplicate_of_map_edge(self):
-        graph_edge = self.write_graph_edge()
-
-        duplicate = {}
-        for key, value in graph_edge.items():
-            splited = key.split(',')
-            geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
-            geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
-            dup_key = str(geoloc[0])+','+str(geoloc[1])+','+str(geoloc2[0])+','+str(geoloc2[1])
-            try:
-                duplicate[dup_key] += value
-            except:
-                duplicate[dup_key] = value
-        return duplicate
-
-    def write_map_edge(self):
-        print("write map_edge")
-        csv_file = open(self.file_name+"/map/edge.csv", 'w', newline='')
-        writer = csv.writer(csv_file)
-
-        writer.writerow(['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'packet_size'])
-        
-        duplicate = self.check_duplicate_of_map_edge()
-
-        for key, value in duplicate.items():
-            splited = key.split(',')
-            writer.writerow([splited[0], splited[1], splited[2], splited[3], value])
-
-        csv_file.close()
 
     def check_duplicate_of_graph_node(self):
         duplicate = {}
@@ -183,5 +155,56 @@ class export_csv_file:
         for key, value in duplicate.items():
             splited = key.split(',')
             writer.writerow([splited[0], splited[1], value[0], value[1], value[2]])
+
+        csv_file.close()
+
+    def check_duplicate_of_map_edge(self):
+        graph_edge = self.write_graph_edge()
+
+        duplicate = {}
+        for key, value in graph_edge.items():
+            splited = key.split(',')
+            geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
+            geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
+            dup_key = str(geoloc[0]) + ',' + str(geoloc[1]) + ',' + str(
+                geoloc2[0]) + ',' + str(geoloc2[1])
+            try:
+                duplicate[dup_key] += value
+            except:
+                duplicate[dup_key] = value
+        return duplicate
+
+    def write_map_edge(self):
+        print("write map_edge")
+        csv_file = open(self.file_name + "/map/edge.csv", 'w', newline='')
+        writer = csv.writer(csv_file)
+
+        writer.writerow(
+            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'packet_size'])
+
+        duplicate = self.check_duplicate_of_map_edge()
+
+        for key, value in duplicate.items():
+            splited = key.split(',')
+            writer.writerow(
+                [splited[0], splited[1], splited[2], splited[3], value])
+
+        csv_file.close()
+
+    def write_map_edge_distance(self):
+        print("write map edge distance")
+        csv_file = open(self.file_name + "/distance/edge_distance.csv", 'w', newline='')
+        writer = csv.writer(csv_file)
+
+        writer.writerow(
+            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'packet_size', 'distance'])
+
+        duplicate = self.check_duplicate_of_map_edge()
+
+        for key, value in duplicate.items():
+            splited = key.split(',')
+            distance = self.urlGeoloc.calculate_distance_btw_two_geoloc([splited[0], splited[1]], [splited[2], splited[3]])
+            writer.writerow(
+                [splited[0], splited[1], splited[2], splited[3], value, distance])
 
         csv_file.close()

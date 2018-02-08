@@ -19,14 +19,14 @@ class urlGeoloc:
             
         return [response.location.latitude, response.location.longitude, response.country.name, response.subdivisions.most_specific.name, response.city.name]
 
-    def calculate_distance_btw_two_geoloc(self,src_ip_geoloc,dst_ip_geoloc):
+    def calculate_distance_btw_two_geoloc(self, src_ip_geoloc, dst_ip_geoloc):
         # approximate radius of earth in km
         R = 6373.0
 
-        src_latitude = radians(src_ip_geoloc[0])
-        src_longitude = radians(src_ip_geoloc[1])
-        dst_latitude = radians(dst_ip_geoloc[0])
-        dst_longitude = radians(dst_ip_geoloc[1])
+        src_latitude = radians(float(src_ip_geoloc[0]))
+        src_longitude = radians(float(src_ip_geoloc[1]))
+        dst_latitude = radians(float(dst_ip_geoloc[0]))
+        dst_longitude = radians(float(dst_ip_geoloc[1]))
 
         dlon = dst_longitude - src_longitude
         dlat = dst_latitude - src_latitude
@@ -39,5 +39,5 @@ class urlGeoloc:
 
         print("Result:", distance)
         print("Should be:", 278.546, "km")
-        return
+        return distance
 
