@@ -124,7 +124,7 @@ function addLine(data) {
   }
 }
 
-var map = AmCharts.makeChart( "chartdiv", {
+var map = AmCharts.makeChart( "map", {
   "type": "map",
   "theme": "light",
   "dataProvider": {
