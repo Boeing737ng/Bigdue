@@ -87,7 +87,7 @@ class export_csv_file:
     def check_duplicate_of_graph_edge(self):
         duplicate = {}
         for read_data in self.data:
-            dup_key = read_data[1]+","+read_data[3]
+            dup_key = read_data['src_ipaddress']+","+read_data['dst_ipaddress']
 
             try:
                 duplicate[dup_key] += 1
@@ -117,14 +117,14 @@ class export_csv_file:
     def check_duplicate_of_graph_node(self):
         duplicate = {}
         for read_data in self.data:
-            dup_key = read_data[1]
+            dup_key = read_data['src_ipaddress']
 
             try:
                 duplicate[dup_key] += 1
             except:
                 duplicate[dup_key] = 1
 
-            dup_key = read_data[3]
+            dup_key = read_data['dst_ipaddress']
             try:
                 duplicate[dup_key] += 1
             except:
@@ -155,11 +155,11 @@ class export_csv_file:
         duplicate = {}
         for key, value in graph_node.items():
             geoloc = self.urlGeoloc.get_url_geoloc(key)
-            dup_key = str(geoloc[0])+','+str(geoloc[1])
+            dup_key = str(geoloc['lat'])+','+str(geoloc['lng'])
             try:
-                duplicate[dup_key] = [geoloc[2], geoloc[3], geoloc[4]]
+                duplicate[dup_key] = [geoloc['country'], geoloc['state'], geoloc['city']]
             except:
-                duplicate[dup_key] = [geoloc[2], geoloc[3], geoloc[4]]
+                duplicate[dup_key] = [geoloc['country'], geoloc['state'], geoloc['city']]
         return duplicate
 
     def write_map_node(self):
@@ -187,8 +187,8 @@ class export_csv_file:
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
-            dup_key = str(geoloc[0]) + ',' + str(geoloc[1]) + ',' + str(
-                geoloc2[0]) + ',' + str(geoloc2[1])
+            dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
+                geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
                 duplicate[dup_key] += value
             except:
@@ -233,12 +233,12 @@ class export_csv_file:
     def check_duplicate_of_graph_edge_size(self):
         duplicate = {}
         for read_data in self.data:
-            dup_key = read_data[1]+","+read_data[3]
+            dup_key = read_data['src_ipaddress']+","+read_data['dst_ipaddress']
 
             try:
-                duplicate[dup_key] += read_data[5]
+                duplicate[dup_key] += read_data['bytes']
             except:
-                duplicate[dup_key] = read_data[5]
+                duplicate[dup_key] = read_data['bytes']
         return duplicate
 
     def check_duplicate_of_map_edge_size(self):
@@ -249,8 +249,8 @@ class export_csv_file:
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
-            dup_key = str(geoloc[0]) + ',' + str(geoloc[1]) + ',' + str(
-                geoloc2[0]) + ',' + str(geoloc2[1])
+            dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
+                geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
                 duplicate[dup_key] += value
             except:

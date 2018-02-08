@@ -14,8 +14,16 @@ class urlGeoloc:
             response = self.reader.city(ipaddress)
         except:
             response = self.reader.city(self.get_public_ipaddress())
-            
-        return [response.location.latitude, response.location.longitude, response.country.name, response.subdivisions.most_specific.name, response.city.name]
+        
+        geoloc_dup = {
+            'lat' : response.location.latitude,
+            'lng' : response.location.longitude,
+            'country' : response.country.name,
+            'state' : response.subdivisions.most_specific.name,
+            'city' : response.city.name
+        }
+        # [response.location.latitude, response.location.longitude, response.country.name, response.subdivisions.most_specific.name, response.city.name]
+        return geoloc_dup
 
     def set_public_ipaddress(self, ipaddress=None):
         if ipaddress is None:
