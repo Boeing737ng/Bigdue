@@ -28,7 +28,7 @@ class export_csv_file:
     def get_data_length(self):
         return len(self.data)
     
-    def create_folder(self, file_name):
+    def create_folder(self, file_name=None):
         if not(os.path.isdir("csv")):
             print("create csv folder")
             os.mkdir("csv")
@@ -50,10 +50,22 @@ class export_csv_file:
         print("write packet")
         csv_file = open(self.file_name+"/packet/packet.csv", 'w', newline='')
         writer = csv.writer(csv_file)
-        writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port', 'packet_size'])\
+        writer.writerow(
+            ['timestamp',
+            'src_ipaddress',
+            'src_port',
+            'dst_ipaddress',
+            'dst_port',
+            'packet_size'])
 
         for row in self.data:
-            writer.writerow(row)
+            writer.writerow(
+                [row['timestamp'],
+                row['src_ipaddress'],
+                row['src_port'],
+                row['dst_ipaddress'],
+                row['dst_port'],
+                row['bytes']])
 
         csv_file.close()
 
