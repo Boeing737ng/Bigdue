@@ -1,7 +1,7 @@
 import json
 from urllib.request import urlopen
 import geoip2.database
-
+from math import sin, cos, sqrt, atan2, radians
 
 class urlGeoloc:
 
@@ -20,19 +20,19 @@ class urlGeoloc:
         return [response.location.latitude, response.location.longitude, response.country.iso_code]
 
 
-    # def get_url_geoloc(self, ipaddress):
-    #     url_geoloc = urlopen(self.response_url+ipaddress).read().decode('utf-8')
-    #     response_json = json.loads(url_geoloc)
+    def get_url_geoloc(self, ipaddress):
+        url_geoloc = urlopen(self.response_url+ipaddress).read().decode('utf-8')
+        response_json = json.loads(url_geoloc)
         
-    #     if response_json['country_code'] == "":
-    #         # print("-------------------in if")
-    #         # 공유기 사용시 (192.168.) 공인ip 확인
-    #         checkip = urlopen('http://checkip.dyndns.org').read()
-    #         ipaddress = self.get_public_ipaddr(checkip)
-    #         url_geoloc = urlopen(self.response_url+ipaddress).read().decode('utf-8')
-    #         response_json = json.loads(url_geoloc)
-    #     print(response_json)
-    #     return [response_json['latitude'], response_json['longitude'], response_json['country_code']]
+        if response_json['country_code'] == "":
+            # print("-------------------in if")
+            # 공유기 사용시 (192.168.) 공인ip 확인
+            checkip = urlopen('http://checkip.dyndns.org').read()
+            ipaddress = self.get_public_ipaddr(checkip)
+            url_geoloc = urlopen(self.response_url+ipaddress).read().decode('utf-8')
+            response_json = json.loads(url_geoloc)
+        print(response_json)
+        return [response_json['latitude'], response_json['longitude'], response_json['country_code']]
 
 
 # test = urlGeoloc()
