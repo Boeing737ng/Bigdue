@@ -90,6 +90,7 @@ __pycache__/
 *.pyc
 *.csv
 *.vscode
+*.pylintrc
 
 #dependencies
 /node_modules
