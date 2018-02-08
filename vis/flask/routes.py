@@ -25,6 +25,10 @@ def map():
 def bubble():
   return render_template('bubble.html', title = 'Buuble')
 
+@app.route('/timeGraph')
+def timeGraph():
+  return render_template('timeGraph.html', title = 'Time - Graph')
+
 if __name__ == '__main__':
   #t1 = Thread(target = main.main)
   t2 = Thread(target = app.run)

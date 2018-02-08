@@ -5,12 +5,12 @@ html, body{
     margin: 0;
 }
 
-#chartdiv {
+#map {
     position: absolute;
     width: 100%;
     height: calc(100% - 32px);
 }
-#chartdiv a{
+#map a{
     display: none !important;
 }					
 #add_node{

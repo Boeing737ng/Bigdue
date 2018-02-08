@@ -5,8 +5,10 @@
     <title>Bigdue</title>    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link href="../static/css/vis-network.css" rel="stylesheet" type="text/css" />
+    <!-- AmCharts CSS -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <link rel="stylesheet" href="../static/css/map.css">
+    <link rel="stylesheet" href="../static/css/timeGraph.css">
   </head>
   <body>
     <header>
@@ -19,6 +21,7 @@
           <li><a href="{{ url_for('graph') }}">Graph</a></li>
           <li><a href="{{ url_for('map') }}">Map</a></li>
           <li><a href="{{ url_for('bubble') }}">Bubble</a></li>
+          <li><a href="{{ url_for('timeGraph') }}">Time-Graph</a></li>
         </ul>
       </nav></strong>
     </header>
@@ -29,14 +32,22 @@
     </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+
+    <!-- AmCharts JS -->
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/ammap.js"></script>
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     <script type="text/javascript" src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/xy.js"></script>
+
+    <!-- d3 Graph JS -->
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Customized JS -->
     <script type="text/javascript" src="../static/js/map.js"></script>
     <script type="text/javascript" src="../static/js/graph.js"></script>
-    <!-- Bubble chart -->
-    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="../static/js/bubble.js"></script>
+    <script type="text/javascript" src="../static/js/timeGraph.js"></script>
   </body>
 </html>
