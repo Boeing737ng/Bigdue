@@ -6,9 +6,9 @@ class ReadPacket:
 
     def __init__(self):
         try:
-            nic_dev = pcap.lookupdev()
+            nic_dev = self.find_main_nic_dev()
         except:
-            nic_devs = pcap.findalldevs()
+            nic_devs = self.find_all_nic_devs()
             
             if len(nic_devs) < 1:
                 print("no network card")
@@ -33,3 +33,9 @@ class ReadPacket:
 
     def get_nic_name(self):
         return self.nic_name
+
+    def find_all_nic_devs(self):
+        return pcap.findalldevs()
+
+    def find_main_nic_dev(self):
+        return pcap.lookupdev()
