@@ -17,3 +17,20 @@
   5. deactivate virtual environments
     - (Linux/OSX) deactivate
     - (Windows) \Script\deactivate
+
+## Installation
+
+### Windows
+  1. Install python3, WinPcap
+  2. Create virtual environments
+    - python -m venv ./
+  3. Download and copy WinPcap Devs files to venv
+    - Copy WinPcap Devs files to venv Lib, Include
+  4. Activate virtual environments
+    - cd Scripts
+    - activate.bat
+  5. Install PyPcap, MaxMindAPI
+    - git clone each repository
+    - python setup.py install
+  6. pip install -r requirements.txt
+  7. Enjoy
