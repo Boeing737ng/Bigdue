@@ -29,7 +29,11 @@ class export_csv_file:
         return len(self.data)
     
     def create_folder(self, file_name):
-        print("make packet, graph, map file")
+        if not(os.path.isdir("csv")):
+            print("create csv folder")
+            os.mkdir("csv")
+        
+        print("create packet, graph, map folder & file (in csv/timestamp folder)")
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
