@@ -1,6 +1,9 @@
 # temporary files
 /vis/csvTest/test.csv
 
+# MaxmindDB
+*.mmdb
+
 # python venv
 **/bin
 **/include
