@@ -5,14 +5,14 @@ class ReadPacket:
     nic_name = ""
 
     def __init__(self):
-        nic_devs = pcap.findalldevs()
-
+        # nic_devs = pcap.findalldevs()
+        print(pcap.lookupdev())
         if len(nic_devs) < 1:
             print("no network card")
             return
 
-        print("My Network Card Names : ", nic_devs)
-        self.set_nic_name(nic_devs[0])
+        # print("My Network Card Names : ", nic_devs)
+        self.set_nic_name(pcap.lookupdev())
 
         
 
