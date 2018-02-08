@@ -37,7 +37,7 @@ class urlGeoloc:
 
         distance = R * c
 
-        print("Result:", distance)
-        print("Should be:", 278.546, "km")
+        # print("Result:", distance)
+        # print("Should be:", 278.546, "km")
         return distance
 
