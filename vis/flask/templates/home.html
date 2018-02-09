@@ -2,5 +2,9 @@
 {% block content %}
   <div class="jumbo">
     <h2>Bigdue<h2>
+        <form action="{{ url_for('getTimeValue') }}" method="POST">
+          <input name="value" type="number" value="">
+          <input id="choose_value" type="submit" value="입력">
+        </form>
   </div>
 {% endblock %}

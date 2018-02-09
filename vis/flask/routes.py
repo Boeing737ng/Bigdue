@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from threading import Thread
 import sys
 import os
@@ -29,13 +29,22 @@ def bubble():
 def timeGraph():
   return render_template('timeGraph.html', title = 'Time - Graph')
 
+@app.route('/sendValue', methods=['POST'])
+def getTimeValue():
+  print('yes')
+  time = request.form.get('value')
+  #time = request.args.get('value') # For 'GET' method
+  print(time)
+  return 'done'
+
 if __name__ == '__main__':
   #t1 = Thread(target = main.main)
-  t2 = Thread(target = app.run)
   #t1.setDaemon(True)
-  t2.setDaemon(True)
   #t1.start()
-  t2.start()
-  while True:
-      pass
-  #app.run(debug=True)
+
+  #t2 = Thread(target = app.run)
+  #t2.setDaemon(True)
+  #t2.start()
+  #while True:
+  #    pass
+  app.run(debug=True)
