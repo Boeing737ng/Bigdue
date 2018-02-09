@@ -9,6 +9,6 @@ setup(
     url              = 'https://github.com/Boeing737ng/Bigdue',
     download_url     = 'https://github.com/Boeing737ng/Bigdue.git',
     install_requires = ['pypcap', 'geoip2'],
-    packages         = ['bigdue_app'],
+    packages         = ['bigdue_app', 'bigdue_app/Layer', 'bigdue_app/geolite'],
     python_requires  = '>=3.6'
 )

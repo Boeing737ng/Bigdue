@@ -14,10 +14,10 @@ def main():
     csv_file = export_csv_file.export_csv_file()
     i = 0
     for timestamp, read_data in read_whole_packet:
-        retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
-        # retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
+        # retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
+        retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
         # print("No. "+str(i)+str(retrieved_data))
-        if not(None in retrieved_data):
+        if not(None in retrieved_data.values()):
             i = i+1
             # tcpFlow.add_packet(retrieved_data)
             # print(manipulated_packet.get_src_dst_key())
