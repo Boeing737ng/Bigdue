@@ -187,8 +187,10 @@ class export_csv_file:
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
-            dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
-                geoloc2['lat']) + ',' + str(geoloc2['lng'])
+            dup_key = str(geoloc['lat'])+','\
+                    + str(geoloc['lng'])+','\
+                    + str(geoloc2['lat'])+','\
+                    + str(geoloc2['lng'])
             try:
                 duplicate[dup_key] += value
             except:

@@ -1,12 +1,14 @@
 import json
 from urllib.request import urlopen
 import geoip2.database
+import os
 from math import sin, cos, sqrt, atan2, radians
 
 class urlGeoloc:
 
     def __init__(self):
-        self.reader = geoip2.database.Reader('geolite/GeoLite2-City.mmdb')
+        current_path = os.path.dirname(os.path.realpath(__file__))
+        self.reader = geoip2.database.Reader(current_path+'/geolite/GeoLite2-City.mmdb')
         self.set_public_ipaddress()
 
     def get_url_geoloc(self, ipaddress):
