@@ -1,6 +1,6 @@
 import sys
 import ReadPacket
-import export_csv_file
+import Export_csv_file
 # import TcpFlow
 import ManipulatePackets
 
@@ -11,7 +11,7 @@ def main():
     manipulated_packet = ManipulatePackets.ManipulatePackets()
     # tcpFlow = TcpFlow.tcpFlow()
     read_whole_packet = packet.get_whole_packet()
-    csv_file = export_csv_file.export_csv_file()
+    csv_file = Export_csv_file.Export_csv_file()
     i = 0
     for timestamp, read_data in read_whole_packet:
         # retrieved_data = manipulated_packet.wireshark(timestamp, read_data)

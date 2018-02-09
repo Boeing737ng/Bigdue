@@ -14,7 +14,7 @@ class Export_csv_file:
     # time_list = list()
     def __init__(self):
         self.data = list()
-        self.urlGeoloc = UrlGeoloc.urlGeoloc()
+        self.urlGeoloc = UrlGeoloc.UrlGeoloc()
         self.file_name = ""
 
         self.write_packet = Write_packet.Write_packet()

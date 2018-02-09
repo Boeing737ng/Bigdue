@@ -4,7 +4,7 @@ import geoip2.database
 import os
 from math import sin, cos, sqrt, atan2, radians
 
-class urlGeoloc:
+class UrlGeoloc:
 
     def __init__(self):
         current_path = os.path.dirname(os.path.realpath(__file__))
