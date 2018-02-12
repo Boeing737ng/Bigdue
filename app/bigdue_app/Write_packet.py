@@ -6,7 +6,8 @@ class Write_packet:
 
     def write_packet(self, file_name, data):
             print("write packet")
-            csv_file = open(file_name+"/packet/packet.csv", 'w', newline='')
+            # csv_file = open(file_name+"/packet/packet.csv", 'w', newline='')
+            csv_file = open("static/data/packet/" + file_name + ".csv", 'w', newline='')
             writer = csv.writer(csv_file)
             writer.writerow(
                 ['timestamp',

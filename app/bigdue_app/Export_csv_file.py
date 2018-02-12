@@ -47,43 +47,50 @@ class Export_csv_file:
     def get_data_length(self):
         return len(self.data)
     
-    def create_folder(self, file_name=None):
-        if not(os.path.isdir("static/")):
-            #print("create csv folder")
-            os.mkdir("static/")
+    def create_folder(self, file_name=None):                                                                                                            
+        data_root = "static/data/"
 
-        if not(os.path.isdir("static/data/")):
-            #print("create csv folder")
-            os.mkdir("static/data/")
-        
+        if not(os.path.isdir("static/")):
+            os.mkdir("static/")
+        if not(os.path.isdir(data_root)):
+            os.mkdir(data_root)
+        if not(os.path.isdir(data_root + "packet/")):
+            os.mkdir(data_root + "packet/")
+        if not(os.path.isdir(data_root+ "graph/")):
+            os.mkdir(data_root + "graph/")
+        if not(os.path.isdir(data_root + "distance/")):
+            os.mkdir(data_root + "distance/")
+        if not(os.path.isdir(data_root + "/map")):
+            os.mkdir(data_root + "map/")
+
         print("create packet, graph, map folder & file (in static/data/timestamp folder)")
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
 
-        self.file_name = "static/data/"+self.file_name
+        # self.file_name = "static/data/"+self.file_name
         # self.set_file_name(file_name)
 
-        os.mkdir(self.file_name)
-        os.mkdir(self.file_name+"/packet")
-        os.mkdir(self.file_name+"/graph")
-        os.mkdir(self.file_name+"/map")
-        os.mkdir(self.file_name+"/distance")
+        # os.mkdir(self.file_name)
+        # os.mkdir(self.file_name+"/packet")
+        # os.mkdir(self.file_name+"/graph")
+        # os.mkdir(self.file_name+"/map")
+        # os.mkdir(self.file_name+"/distance")
 
     def write_csv_file(self, file_name=None):
             self.create_folder(file_name)
             
             self.write_packet.write_packet(self.file_name, self.data)
 
-            graph_node = self.write_graph.write_graph_node(self.file_name, self.data)
-            graph_edge = self.write_graph.write_graph_edge(self.file_name, self.data)
+            # graph_node = self.write_graph.write_graph_node(self.file_name, self.data)
+            # graph_edge = self.write_graph.write_graph_edge(self.file_name, self.data)
             
-            self.write_map.write_map_node(self.file_name, graph_node)
-            self.write_map.write_map_edge(self.file_name, graph_edge)
+            # self.write_map.write_map_node(self.file_name, graph_node)
+            # self.write_map.write_map_edge(self.file_name, graph_edge)
             
-            duplicate_map_edge = self.write_map.check_duplicate_of_map_edge(graph_edge)
+            # duplicate_map_edge = self.write_map.check_duplicate_of_map_edge(graph_edge)
             
-            self.write_distance.write_map_edge_distance_count(self.file_name, duplicate_map_edge)
-            self.write_distance.write_map_edge_distance_size(self.file_name, self.data)
+            # self.write_distance.write_map_edge_distance_count(self.file_name, duplicate_map_edge)
+            # self.write_distance.write_map_edge_distance_size(self.file_name, self.data)
 
             self.data = list()
