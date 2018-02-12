@@ -25,7 +25,8 @@ class ManipulatePackets:
         self.packet_data["dst_port"] = receive.get_dst_port()
         self.packet_data["bytes"] = receive.get_byte_length()
         self.packet_data["protocol"] = receive.check_protocol()
-        self.packet_data["timestamp"] = str(timestamp).split(".")[0]
+        # self.packet_data["timestamp"] = str(timestamp).split(".")[0]\
+        self.packet_data["timestamp"] = timestamp
 
         if self.packet_data["protocol"] == "TCP":
             self.packet_data["control_flag"] = receive.get_control_flag()

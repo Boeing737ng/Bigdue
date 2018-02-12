@@ -4,7 +4,7 @@ import Export_csv_file
 # import TcpFlow
 import ManipulatePackets
 
-CONST_MAX_LEN = 100
+CONST_MAX_LEN = 30
 
 def main():
     packet = ReadPacket.ReadPacket()
@@ -32,6 +32,7 @@ def main():
             csv_file.write_csv_file()
             print("!!!!!!!write end!!!!!!!")
             i = 0
+            return
     return
 
 if __name__ == '__main__':
