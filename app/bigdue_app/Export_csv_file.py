@@ -23,7 +23,7 @@ except ImportError:
 # class 나누기
 class Export_csv_file:
     
-    # time_list = list()
+    time_list = list()
     def __init__(self):
         self.data = list()
         self.file_name = ""
@@ -67,7 +67,9 @@ class Export_csv_file:
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
-
+        if not self.file_name in self.time_list:
+            self.time_list.append(self.file_name)
+            print(self.time_list)
         # self.file_name = "static/data/"+self.file_name
         # self.set_file_name(file_name)
 

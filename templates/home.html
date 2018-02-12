@@ -7,4 +7,11 @@
           <input id="choose_value" type="submit" value="입력">
         </form>
   </div>
+  <script>
+      var array = "{{ accessRoot | safe }}";
+      function getTimestamp(){
+        return array;
+      }
+      console.log(getTimestamp())
+  </script>
 {% endblock %}

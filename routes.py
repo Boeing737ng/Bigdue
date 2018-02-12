@@ -7,15 +7,15 @@ from app.bigdue_app import Export_csv_file
 
 app = Flask(__name__)      
 
-# def getTimestamp():
-#   timestamp = export_csv_file.export_csv_file()
-#   timestamp_array = timestamp.time_list
-#   return timestamp_array
+def getTimestamp():
+  timestamp = Export_csv_file.Export_csv_file()
+  timestamp_array = timestamp.time_list
+  return timestamp_array
 
 @app.route('/')
 def home():
-  # time = getTimestamp()
-  return render_template('home.html', title = 'Main', accessRoot = 'time')
+  time = getTimestamp()
+  return render_template('home.html', title = 'Main', accessRoot = time)
 
 @app.route('/graph')
 def graph():
@@ -23,7 +23,6 @@ def graph():
 
 @app.route('/map')
 def map():
-  # time = getTimestamp()
   return render_template('map.html', title = 'Map', accessRoot = 'time')
 
 @app.route('/bubble')
