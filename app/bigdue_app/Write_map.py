@@ -44,7 +44,7 @@ class Write_map:
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
-            dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
+            dup_key = str(splited[0]) + ',' + str(splited[1]) + ',' + str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
                 duplicate[dup_key] += value
@@ -58,13 +58,13 @@ class Write_map:
         writer = csv.writer(csv_file)
 
         writer.writerow(
-            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count'])
+            ['src_ip', 'dst_ip', 'src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count'])
 
         duplicate = self.check_duplicate_of_map_edge(graph_edge)
 
         for key, value in duplicate.items():
             splited = key.split(',')
             writer.writerow(
-                [splited[0], splited[1], splited[2], splited[3], value])
+                [splited[0], splited[1], splited[2], splited[3], splited[4], splited[5], value])
 
         csv_file.close()

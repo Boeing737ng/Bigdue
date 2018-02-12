@@ -68,7 +68,7 @@ class Export_csv_file:
             self.write_map.write_map_edge(self.file_name, graph_edge)
             
             duplicate_map_edge = self.write_map.check_duplicate_of_map_edge(graph_edge)
-
+            
             self.write_distance.write_map_edge_distance_count(self.file_name, duplicate_map_edge)
             self.write_distance.write_map_edge_distance_size(self.file_name, self.data)
 
