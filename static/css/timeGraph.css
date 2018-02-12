@@ -1,0 +1,6 @@
+#src_time_graph, #dst_time_graph{
+    position: relative;
+    width: 100%;
+    /* height: calc(100% - 32px); */
+    height: 400px;
+}

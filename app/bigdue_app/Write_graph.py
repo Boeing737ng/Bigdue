@@ -40,9 +40,6 @@ class Write_graph:
 
         return duplicate
 
-
-
-
     def check_duplicate_of_graph_edge(self, data):
         duplicate = {}
         for read_data in data:

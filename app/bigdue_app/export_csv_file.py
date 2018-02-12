@@ -36,16 +36,16 @@ class Export_csv_file:
         return len(self.data)
     
     def create_folder(self, file_name=None):
-        if not(os.path.isdir("csv")):
-            print("create csv folder")
-            os.mkdir("csv")
+        if not(os.path.isdir("static/data/")):
+            #print("create csv folder")
+            os.mkdir("static/data/")
         
-        print("create packet, graph, map folder & file (in csv/timestamp folder)")
+        print("create packet, graph, map folder & file (in static/data/timestamp folder)")
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
 
-        self.file_name = "csv/"+self.file_name
+        self.file_name = "static/data/"+self.file_name
         # self.set_file_name(file_name)
 
         os.mkdir(self.file_name)
@@ -54,10 +54,8 @@ class Export_csv_file:
         os.mkdir(self.file_name+"/map")
         os.mkdir(self.file_name+"/distance")
 
-
     def write_csv_file(self, file_name=None):
             self.create_folder(file_name)
-            # self.time_list.append(self.file_name)
             
             self.write_packet.write_packet(self.file_name, self.data)
 

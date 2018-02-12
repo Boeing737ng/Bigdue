@@ -34,8 +34,6 @@ class Write_map:
 
         csv_file.close()
 
-
-
     def check_duplicate_of_map_edge(self, graph_edge):
         # graph_edge = self.write_graph_edge()
 
