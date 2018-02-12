@@ -301,7 +301,10 @@ class Ping(object):
 		"""
 		try: # One could use UDP here, but it's obscure
 			if self.udp:
-				current_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.getprotobyname("icmp"))
+				try:
+					current_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.getprotobyname("icmp"))
+				except OSError:
+					current_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.getprotobyname("icmp"))
 			else:
 				current_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.getprotobyname("icmp"))
 
