@@ -1,4 +1,4 @@
-import pyping
+import core
 
 class Ping:
 
@@ -6,13 +6,16 @@ class Ping:
          pass
         
     def get_avg_rtt(self, ipaddress):
-        r = pyping.ping(ipaddress, udp = True)
+        r = core.ping(ipaddress, udp = True)
         return r.avg_rtt
 
     def get_max_rtt(self, ipaddress):
-        r = pyping.ping(ipaddress, udp = True)
+        r = core.ping(ipaddress, udp = True)
         return r.max_rtt
 
     def get_min_rtt(self, ipaddress):
-        r = pyping.ping(ipaddress, udp = True)
+        r = core.ping(ipaddress, udp = True)
         return r.min_rtt
+
+s = Ping()
+print(s.get_avg_rtt("www.naver.com"))
