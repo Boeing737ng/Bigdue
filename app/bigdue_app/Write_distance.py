@@ -1,14 +1,14 @@
 import csv
 import UrlGeoloc
 import Calulate_distance
-import Ping
+# import Ping
 
 class Write_distance:
     
     def __init__(self):
         self.urlGeoloc = UrlGeoloc.UrlGeoloc()
         self.calculate_distance = Calulate_distance.Calculate_distance()
-        self.ping = Ping.Ping()
+        # self.ping = Ping.Ping()
         pass
 
     def write_map_edge_distance_count(self, file_name, duplicate_map_edge):
