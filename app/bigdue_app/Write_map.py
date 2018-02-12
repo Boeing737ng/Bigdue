@@ -51,6 +51,10 @@ class Write_map:
                     'packet_num' : value['packet_num'],
                     'timestamp' : value['timestamp']
                     }
+
+        for key, value in duplicate.items():
+            duplicate[key]['timestamp'] /= duplicate[key]['packet_num']
+
         return duplicate
 
     def write_map_edge(self, file_name, graph_edge):
@@ -62,10 +66,16 @@ class Write_map:
             ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count', 'timestamp'])
 
         duplicate = self.check_duplicate_of_map_edge(graph_edge)
-        print(duplicate)
+        
         for key, value in duplicate.items():
             splited = key.split(',')
-            writer.writerow(
-                [splited[0], splited[1], splited[2], splited[3], value['packet_num'], value['timestamp']/value['packet_num']])
+            writer.writerow([
+                splited[0],
+                splited[1],
+                splited[2],
+                splited[3],
+                value['packet_num'],
+                value['timestamp']
+                ])
 
         csv_file.close()
