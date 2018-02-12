@@ -120,7 +120,7 @@ class Write_distance:
         writer = csv.writer(csv_file)
 
         writer.writerow(
-            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'size', 'distance', 'src_rtt', 'dst_rtt'])
+            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'size', 'distance', 'rtt'])
 
         duplicate = self.check_duplicate_of_map_edge_size(data)
         timestamp_list = {}
