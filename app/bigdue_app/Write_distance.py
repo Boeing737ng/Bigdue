@@ -1,13 +1,15 @@
 import csv
 import UrlGeoloc
 import Calulate_distance
+import Ping
 
 class Write_distance:
     
     def __init__(self):
         self.urlGeoloc = UrlGeoloc.UrlGeoloc()
         self.calculate_distance = Calulate_distance.Calculate_distance()
-        return
+        self.ping = Ping.Ping()
+        pass
 
     def write_map_edge_distance_count(self, file_name, duplicate_map_edge):
         print("write map edge distance")
@@ -15,15 +17,17 @@ class Write_distance:
         writer = csv.writer(csv_file)
 
         writer.writerow(
-            ['src_ip', 'dst_ip', 'src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count', 'distance'])
+            ['src_ip', 'dst_ip', 'src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count', 'distance', 'src_rtt', 'dst_rtt'])
 
         duplicate = duplicate_map_edge
 
         for key, value in duplicate.items():
             splited = key.split(',')
             distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[2], splited[3]], [splited[4], splited[5]])
+            src_rtt = self.ping.get_avg_rtt(splited[0])
+            dst_rtt = self.ping.get_avg_rtt(splited[1])
             writer.writerow(
-                [splited[0], splited[1], splited[2], splited[3], splited[4], splited[5], value, distance])
+                [splited[0], splited[1], splited[2], splited[3], splited[4], splited[5], value, distance, src_rtt, dst_rtt])
 
         csv_file.close()
 
@@ -62,14 +66,16 @@ class Write_distance:
         writer = csv.writer(csv_file)
 
         writer.writerow(
-            ['src_ip', 'dst_ip', 'src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'size', 'distance'])
+            ['src_ip', 'dst_ip', 'src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'size', 'distance', 'src_rtt', 'dst_rtt'])
 
         duplicate = self.check_duplicate_of_map_edge_size(data)
 
         for key, value in duplicate.items():
             splited = key.split(',')
             distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[2], splited[3]], [splited[4], splited[5]])
+            src_rtt = self.ping.get_avg_rtt(splited[0])
+            dst_rtt = self.ping.get_avg_rtt(splited[1])
             writer.writerow(
-                [splited[0], splited[1], splited[2], splited[3], splited[3], splited[5], value, distance])
+                [splited[0], splited[1], splited[2], splited[3], splited[3], splited[5], value, distance, src_rtt, dst_rtt])
 
         csv_file.close()

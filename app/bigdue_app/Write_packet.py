@@ -2,7 +2,7 @@ import csv
 
 class Write_packet:
     def __init__(self):
-        return
+        pass
 
     def write_packet(self, file_name, data):
             print("write packet")

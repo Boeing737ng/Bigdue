@@ -182,7 +182,7 @@ class Ping(object):
 		else:
 			from_info = "%s (%s)" % (self.destination, ip)
 
-			msg = "%d bytes from %s: icmp_seq=%d ttl=%d time=%.1f ms" % (packet_size, from_info, icmp_header["seq_number"], ip_header["ttl"], delay)
+		msg = "%d bytes from %s: icmp_seq=%d ttl=%d time=%.1f ms" % (packet_size, from_info, icmp_header["seq_number"], ip_header["ttl"], delay)
 
 		if self.quiet_output:
 			self.response.output.append(msg)

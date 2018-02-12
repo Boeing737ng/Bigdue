@@ -2,7 +2,7 @@ from math import sin, cos, sqrt, atan2, radians
 
 class Calculate_distance:
     def __init__(self):
-        return
+        pass
 
     def calculate_distance_btw_two_geoloc(self, src_ip_geoloc, dst_ip_geoloc):
         # approximate radius of earth in km

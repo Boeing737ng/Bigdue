@@ -3,7 +3,7 @@ import csv
 class Write_graph:
     
     def __init__(self):
-        return
+        pass
 
     def check_duplicate_of_graph_node(self, data):
         duplicate = {}
