@@ -1,5 +1,8 @@
 import csv
-import UrlGeoloc
+try:
+    import UrlGeoloc
+except ImportError:
+    from app.bigdue_app import UrlGeoloc
 
 class Write_map:
     
@@ -24,7 +27,7 @@ class Write_map:
         csv_file = open(file_name+"/map/node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
-        writer.writerow(['node_lat', 'node_lng', 'contry', 'state', 'city'])
+        writer.writerow(['node_lat', 'node_lng', 'country', 'state', 'city'])
 
         duplicate = self.check_duplicate_of_map_node(graph_node)
         

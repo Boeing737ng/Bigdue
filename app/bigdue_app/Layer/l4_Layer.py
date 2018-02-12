@@ -1,5 +1,8 @@
 import struct
-from Layer import l3_Layer
+try:
+    from Layer import l3_Layer
+except ImportError:
+    from app.bigdue_app.Layer import l3_Layer
 
 class l4_Layer(l3_Layer.l3_Layer):
     l4_header = []

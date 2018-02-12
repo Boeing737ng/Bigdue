@@ -1,8 +1,19 @@
 import sys
-import ReadPacket
-import Export_csv_file
+try:
+    import ReadPacket
+except ImportError:
+    from app.bigdue_app import ReadPacket
+
+try:
+    import Export_csv_file
+except ImportError:
+    from app.bigdue_app import Export_csv_file
 # import TcpFlow
-import ManipulatePackets
+
+try:
+    import ManipulatePackets
+except:
+    from app.bigdue_app import ManipulatePackets
 
 CONST_MAX_LEN = 100
 
@@ -32,7 +43,7 @@ def main():
             csv_file.write_csv_file()
             print("!!!!!!!write end!!!!!!!")
             i = 0
-            return
+            #return
     return
 
 if __name__ == '__main__':
