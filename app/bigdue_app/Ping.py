@@ -3,21 +3,22 @@ import core
 class Ping:
 
     def __init__(self):
-         pass
+        pass
         
     def get_avg_rtt(self, ipaddress):
         r = core.ping(ipaddress, udp = True)
-        # print(r.destination_ip)
+        if r.avg_rtt == None:
+            return 0
         return r.avg_rtt
 
     def get_max_rtt(self, ipaddress):
         r = core.ping(ipaddress, udp = True)
+        if r.max_rtt == None:
+            return 0
         return r.max_rtt
 
     def get_min_rtt(self, ipaddress):
         r = core.ping(ipaddress, udp = True)
+        if r.min_rtt == None:
+            return 0
         return r.min_rtt
-
-# s = Ping()
-# print(s.get_avg_rtt('172.226.93.134'))
-#  src_ip, dst_ip, src_lat, src_lng, dst_lat, dst_lng, distance, rrt

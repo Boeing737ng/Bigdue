@@ -26,8 +26,17 @@ class Write_distance:
             distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[2], splited[3]], [splited[4], splited[5]])
             src_rtt = self.ping.get_avg_rtt(splited[0])
             dst_rtt = self.ping.get_avg_rtt(splited[1])
-            writer.writerow(
-                [splited[0], splited[1], splited[2], splited[3], splited[4], splited[5], value, distance, src_rtt, dst_rtt])
+            writer.writerow([
+                splited[0],
+                splited[1],
+                splited[2],
+                splited[3],
+                splited[4],
+                splited[5],
+                value,
+                distance,
+                src_rtt,
+                dst_rtt])
 
         csv_file.close()
 

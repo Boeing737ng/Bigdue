@@ -324,6 +324,7 @@ class Ping(object):
 
 		send_time = self.send_one_ping(current_socket)
 		if send_time == None:
+			self.send_count = 1
 			return
 		self.send_count += 1
 
