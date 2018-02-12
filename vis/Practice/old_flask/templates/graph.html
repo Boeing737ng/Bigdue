@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div id="mynetwork"></div>
+  <script>
+    var array = "{{ accessRoot | safe }}";
+    function getTimestamp(){
+      return this.array;
+    }
+  </script>
+{% endblock %}

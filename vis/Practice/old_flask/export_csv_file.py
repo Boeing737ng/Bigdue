@@ -23,24 +23,21 @@ class export_csv_file:
 
     def write_csv_file(self, file_name=None):
         print("make packet, graph, map file")
-        file_root = "static/data/"
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
 
-        if not os.path.isdir(file_root):
-            os.mkdir(file_root)
-
-        if not self.file_name in self.time_list:
-            self.time_list.append(self.file_name)
-
+        self.file_name = "static/data/"+self.file_name
         # self.set_file_name(file_name)
-        # os.mkdir(self.file_name+"/packet")
-        # os.mkdir(self.file_name+"/graph")
-        # os.mkdir(self.file_name+"/map")
+        os.mkdir(self.file_name)
+        os.mkdir(self.file_name+"/packet")
+        os.mkdir(self.file_name+"/graph")
+        os.mkdir(self.file_name+"/map")
+
+        self.time_list.append(self.file_name)
 
         print("packet write")
-        csv_file = open(file_root + self.file_name + ".csv", 'w', newline='')
+        csv_file = open(self.file_name+"/packet/packet.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         writer.writerow(['timestamp', 'src_ipaddress', 'src_port', 'dst_ipaddress', 'dst_port', 'packet_size'])\
 
@@ -48,8 +45,8 @@ class export_csv_file:
             writer.writerow(row)
         csv_file.close()
 
-        # self.map_edge_vis()
-        # self.map_node_vis()
+        self.map_edge_vis()
+        self.map_node_vis()
 
         self.data = list()
 
