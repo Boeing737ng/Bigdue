@@ -13,7 +13,6 @@ key [src_dst_key, dst_src_key]
 
 class ManipulatePackets:
     
-
     def __init__(self):
         self.packet_data = {}
 
