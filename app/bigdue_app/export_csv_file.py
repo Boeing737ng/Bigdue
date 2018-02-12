@@ -36,6 +36,10 @@ class Export_csv_file:
         return len(self.data)
     
     def create_folder(self, file_name=None):
+        if not(os.path.isdir("static/")):
+            #print("create csv folder")
+            os.mkdir("static/")
+
         if not(os.path.isdir("static/data/")):
             #print("create csv folder")
             os.mkdir("static/data/")

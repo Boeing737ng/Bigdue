@@ -36,18 +36,21 @@ class Write_map:
 
     def check_duplicate_of_map_edge(self, graph_edge):
         # graph_edge = self.write_graph_edge()
-
         duplicate = {}
         for key, value in graph_edge.items():
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
-            dup_key = str(splited[0]) + ',' + str(splited[1]) + ',' + str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
+            dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
-                duplicate[dup_key] += value
+                duplicate[dup_key]['packet_num'] += value['packet_num']
+                duplicate[dup_key]['timestamp'] += value['timestamp']
             except:
-                duplicate[dup_key] = value
+                duplicate[dup_key] = {
+                    'packet_num' : value['packet_num'],
+                    'timestamp' : value['timestamp']
+                    }
         return duplicate
 
     def write_map_edge(self, file_name, graph_edge):
@@ -56,13 +59,13 @@ class Write_map:
         writer = csv.writer(csv_file)
 
         writer.writerow(
-            ['src_ip', 'dst_ip', 'src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count'])
+            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count', 'timestamp'])
 
         duplicate = self.check_duplicate_of_map_edge(graph_edge)
-
+        print(duplicate)
         for key, value in duplicate.items():
             splited = key.split(',')
             writer.writerow(
-                [splited[0], splited[1], splited[2], splited[3], splited[4], splited[5], value])
+                [splited[0], splited[1], splited[2], splited[3], value['packet_num'], value['timestamp']/value['packet_num']])
 
         csv_file.close()
