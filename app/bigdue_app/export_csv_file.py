@@ -51,7 +51,7 @@ class Export_csv_file:
 
         self.file_name = "static/data/"+self.file_name
         # self.set_file_name(file_name)
-
+        print(self.file_name)
         os.mkdir(self.file_name)
         os.mkdir(self.file_name+"/packet")
         os.mkdir(self.file_name+"/graph")

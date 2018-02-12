@@ -7,7 +7,8 @@ class UrlGeoloc:
 
     def __init__(self):
         current_path = os.path.dirname(os.path.realpath(__file__))
-        self.reader = geoip2.database.Reader(current_path+'/geolite/GeoLite2-City.mmdb')
+        print(os.getcwd())
+        self.reader = geoip2.database.Reader(os.getcwd()+'/geolite/GeoLite2-City.mmdb')
         self.set_public_ipaddress()
 
     def get_url_geoloc(self, ipaddress):
