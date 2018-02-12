@@ -2,20 +2,20 @@ from flask import Flask, render_template, request
 from threading import Thread
 import sys
 import os
-import main
-import export_csv_file
+from app.bigdue_app import main
+from app.bigdue_app import Export_csv_file
 
 app = Flask(__name__)      
 
-def getTimestamp():
-  timestamp = export_csv_file.export_csv_file()
-  timestamp_array = timestamp.time_list
-  return timestamp_array
+# def getTimestamp():
+#   timestamp = export_csv_file.export_csv_file()
+#   timestamp_array = timestamp.time_list
+#   return timestamp_array
 
 @app.route('/')
 def home():
-  time = getTimestamp()
-  return render_template('home.html', title = 'Main', accessRoot = time)
+  # time = getTimestamp()
+  return render_template('home.html', title = 'Main', accessRoot = 'time')
 
 @app.route('/graph')
 def graph():
@@ -23,8 +23,8 @@ def graph():
 
 @app.route('/map')
 def map():
-  time = getTimestamp()
-  return render_template('map.html', title = 'Map', accessRoot = time)
+  # time = getTimestamp()
+  return render_template('map.html', title = 'Map', accessRoot = 'time')
 
 @app.route('/bubble')
 def bubble():
