@@ -1,6 +1,12 @@
 import csv
-import UrlGeoloc
-import Calulate_distance
+try:
+    import UrlGeoloc
+except ImportError:
+    from app.bigdue_app import UrlGeoloc
+try:
+    import Calulate_distance
+except ImportError:
+    from app.bigdue_app import Calulate_distance
 # import Ping
 
 class Write_distance:

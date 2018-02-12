@@ -1,6 +1,9 @@
 import struct
 import ipaddress
-from Layer import l2_Layer
+try:
+    from Layer import l2_Layer
+except ImportError:
+    from app.bigdue_app.Layer import l2_Layer
 
 class l3_Layer(l2_Layer.l2_Layer):
     l3_header = []

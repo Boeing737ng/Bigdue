@@ -3,10 +3,22 @@
 import csv
 import time
 import os
-import Write_packet
-import Write_graph
-import Write_map
-import Write_distance
+try:
+    import Write_packet
+except ImportError:
+    from app.bigdue_app import Write_packet
+try:
+    import Write_graph
+except ImportError:
+    from app.bigdue_app import Write_graph
+try:
+    import Write_map
+except ImportError:
+    from app.bigdue_app import Write_map
+try:
+    import Write_distance
+except ImportError:
+    from app.bigdue_app import Write_distance
 
 # class 나누기
 class Export_csv_file:

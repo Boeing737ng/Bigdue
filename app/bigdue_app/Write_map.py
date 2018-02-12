@@ -1,5 +1,8 @@
 import csv
-import UrlGeoloc
+try:
+    import UrlGeoloc
+except ImportError:
+    from app.bigdue_app import UrlGeoloc
 
 class Write_map:
     
