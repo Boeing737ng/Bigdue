@@ -8,7 +8,11 @@ class UrlGeoloc:
     def __init__(self):
         current_path = os.path.dirname(os.path.realpath(__file__))
         print(os.getcwd())
-        self.reader = geoip2.database.Reader(os.getcwd()+'/geolite/GeoLite2-City.mmdb')
+        try:
+            self.reader = geoip2.database.Reader(os.getcwd()+'/geolite/GeoLite2-City.mmdb')
+        except FileNotFoundError:
+            self.reader = geoip2.database.Reader(os.getcwd()+'/app/bigdue_app/geolite/GeoLite2-City.mmdb')
+
         self.set_public_ipaddress()
 
     def get_url_geoloc(self, ipaddress):
