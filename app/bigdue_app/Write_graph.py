@@ -53,7 +53,7 @@ class Write_graph:
             #     duplicate[dup_key] = 1
             try:
                 duplicate[dup_key]['packet_num'] += 1
-                duplicate[dup_key]['timestamp'] += read_data['timestamp']
+                # duplicate[dup_key]['timestamp'] += read_data['timestamp']
             except:
                 duplicate[dup_key] = {
                     'packet_num' : 1,
@@ -77,7 +77,7 @@ class Write_graph:
         for key, value in duplicate.items():
             value_ratio = value['packet_num']/max_value * 10
             splited = key.split(',')
-            writer.writerow([splited[0], splited[1], value_ratio, value['timestamp']/value['packet_num']])
+            writer.writerow([splited[0], splited[1], value_ratio, value['timestamp']])
 
         csv_file.close()
 
