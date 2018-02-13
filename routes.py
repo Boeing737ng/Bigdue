@@ -36,7 +36,6 @@ def timeGraph():
 
 @app.route('/sendValue')
 def getTimeValue():
-  print('flask run')
   #time = request.form.get('value') # For 'POST method
   js_time = request.args.get('data') # For 'GET' method
   selected_time = json.loads(js_time)

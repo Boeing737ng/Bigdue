@@ -21,7 +21,6 @@ function convertTimestamp(){
 $(function() {
     $('#show_data').bind('click', function() {
         var timestamp = getTimestamp();
-        alert(timestamp);
         var script_root = getScriptRoot();
         $.getJSON(script_root + '/sendValue', {
             data: JSON.stringify(timestamp),
