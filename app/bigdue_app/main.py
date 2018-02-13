@@ -12,7 +12,7 @@ except ImportError:
 
 try:
     import ManipulatePackets
-except:
+except ImportError:
     from app.bigdue_app import ManipulatePackets
 
 CONST_MAX_LEN = 100
