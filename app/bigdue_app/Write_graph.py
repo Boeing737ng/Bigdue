@@ -26,7 +26,8 @@ class Write_graph:
     def write_graph_node(self, file_name, data):
         print("write graph_node")
         
-        csv_file = open(file_name+"/graph/node.csv", 'w', newline='')
+        # csv_file = open(file_name+"/graph/node.csv", 'w', newline='')
+        csv_file = open("static/data/graph/"+file_name, 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['node', 'weight'])
@@ -62,7 +63,8 @@ class Write_graph:
 
     def write_graph_edge(self, file_name, data):
         print("write graph_edge")
-        csv_file = open(file_name+"/graph/edge.csv", 'w', newline='')
+        # csv_file = open(file_name+"/graph/edge.csv", 'w', newline='')
+        csv_file = open("static/data/graph/"+file_name, 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_num', 'timestamp'])

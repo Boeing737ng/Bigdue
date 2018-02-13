@@ -19,7 +19,8 @@ class Write_distance:
 
     def write_map_edge_distance_count(self, file_name, duplicate_map_edge):
         print("write map edge distance")
-        csv_file = open(file_name + "/distance/edge_distance_count.csv", 'w', newline='')
+        # csv_file = open(file_name + "/distance/edge_distance_count.csv", 'w', newline='')
+        csv_file = open("static/data/distance/"+file_name, 'w', newline='')
         writer = csv.writer(csv_file)
 
         writer.writerow(
@@ -82,12 +83,12 @@ class Write_distance:
             #     duplicate[dup_key] = read_data['bytes']
 
             try:
-                duplicate[dup_key]['packet_num'] += 1
-                duplicate[dup_key]['timestamp'] += read_data['timestamp']
+                # duplicate[dup_key]['packet_num'] += 1
+                # duplicate[dup_key]['timestamp'] += read_data['timestamp']
                 duplicate[dup_key]['bytes'] += read_data['bytes']
             except:
                 duplicate[dup_key] = {
-                    'packet_num' : 1,
+                    # 'packet_num' : 1,
                     'timestamp' : read_data['timestamp'],
                     'bytes' : read_data['bytes']
                     }
@@ -105,24 +106,25 @@ class Write_distance:
             dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
-                duplicate[dup_key]['packet_num'] += value['packet_num']
-                duplicate[dup_key]['timestamp'] += value['timestamp']
+                # duplicate[dup_key]['packet_num'] += value['packet_num']
+                # duplicate[dup_key]['timestamp'] += value['timestamp']
                 duplicate[dup_key]['bytes'] += value['bytes']
             except:
                 duplicate[dup_key] = {
-                    'packet_num' : value['packet_num'],
+                    # 'packet_num' : value['packet_num'],
                     'timestamp' : value['timestamp'],
                     'bytes' : value['bytes']
                 }
         
-        for key, value in duplicate.items():
-            duplicate[key]['timestamp'] /= duplicate[key]['packet_num']
+        # for key, value in duplicate.items():
+        #     duplicate[key]['timestamp'] /= duplicate[key]['packet_num']
 
         return duplicate
 
     def write_map_edge_distance_size(self, file_name, data):
         print("write map edge distance")
-        csv_file = open(file_name + "/distance/edge_distance_size.csv", 'w', newline='')
+        # csv_file = open(file_name + "/distance/edge_distance_size.csv", 'w', newline='')
+        csv_file = open("static/data/distance/"+file_name, 'w', newline='')
         writer = csv.writer(csv_file)
 
         writer.writerow(

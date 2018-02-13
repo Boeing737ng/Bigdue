@@ -24,7 +24,8 @@ class Write_map:
 
     def write_map_node(self, file_name, graph_node):
         print("write map_node")
-        csv_file = open(file_name+"/map/node.csv", 'w', newline='')
+        # csv_file = open(file_name+"/map/node.csv", 'w', newline='')
+        csv_file = open("static/data/map/"+file_name, 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['node_lat', 'node_lng', 'country', 'state', 'city'])
@@ -48,21 +49,22 @@ class Write_map:
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
                 duplicate[dup_key]['packet_num'] += value['packet_num']
-                duplicate[dup_key]['timestamp'] += value['timestamp']
+                # duplicate[dup_key]['timestamp'] += value['timestamp']
             except:
                 duplicate[dup_key] = {
                     'packet_num' : value['packet_num'],
                     'timestamp' : value['timestamp']
                     }
 
-        for key, value in duplicate.items():
-            duplicate[key]['timestamp'] /= duplicate[key]['packet_num']
+        # for key, value in duplicate.items():
+        #     duplicate[key]['timestamp'] /= duplicate[key]['packet_num']
 
         return duplicate
 
     def write_map_edge(self, file_name, graph_edge):
         print("write map_edge")
-        csv_file = open(file_name + "/map/edge.csv", 'w', newline='')
+        # csv_file = open(file_name + "/map/edge.csv", 'w', newline='')
+        csv_file = open("static/data/map/"+file_name, 'w', newline='')
         writer = csv.writer(csv_file)
 
         writer.writerow(
