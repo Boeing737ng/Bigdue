@@ -8,7 +8,9 @@
   <script type=text/javascript>
       var array = "{{ accessRoot | safe }}";
       function getTimestamp(){
-        return array;
+        var converted_array =  array.replace(/'/g, '"');
+        console.log(JSON.parse(converted_array));
+        return JSON.parse(converted_array);
       }
 
       function getScriptRoot() {
