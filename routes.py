@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
-from threading import Thread
 import sys
 import os
+import json
+from flask import Flask, render_template, request
+from threading import Thread
 from app.bigdue_app import main
 from app.bigdue_app import Export_csv_file
 
@@ -33,13 +34,12 @@ def bubble():
 def timeGraph():
   return render_template('timeGraph.html', title = 'Time - Graph')
 
-@app.route('/sendValue', methods=['POST'])
+@app.route('/sendValue')
 def getTimeValue():
-  print('yes')
-  time = request.form.get('value')
-  #time = request.args.get('value') # For 'GET' method
-  #main.main(time)
-  print(time)
+  #time = request.form.get('value') # For 'POST method
+  js_time = request.args.get('data') # For 'GET' method
+  selected_time = json.loads(js_time)
+  print(selected_time)
   return 'done'
 
 if __name__ == '__main__':

@@ -2,15 +2,18 @@
 {% block content %}
   <div class="jumbo">
     <h2>Bigdue<h2>
-        <form action="{{ url_for('getTimeValue') }}" method="POST">
-          <input id="choose_time" type="submit" name="choose_time" value="시간 선택">
-          <input id="show_data" type="submit" name="show_data" value="데이터 확인">
-        </form>
+      <input id="choose_time" type="submit" name="choose_time" value="시간 선택">
+      <input id="show_data" type="submit" name="show_data" value="데이터 확인">
   </div>
-  <script>
+  <script type=text/javascript>
       var array = "{{ accessRoot | safe }}";
       function getTimestamp(){
         return array;
+      }
+
+      function getScriptRoot() {
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        return $SCRIPT_ROOT;
       }
       console.log(getTimestamp())
   </script>
