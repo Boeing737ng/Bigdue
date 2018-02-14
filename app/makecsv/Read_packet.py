@@ -4,24 +4,25 @@ import os
 class Read_packet:
     
     def __init__(self):
-        self.dirpath = '../bigdue_app/static/data/packet/'
+        # self.dirpath = '../bigdue_app/static/data/packet/'
         self.packet_list = []
-        print(os.getcwd())
+        # print(os.getcwd())
         self.create_folder()
-        self.csvlist = os.listdir(self.dirpath)
+        # self.csvlist = os.listdir(self.dirpath)
 
-        for index, csvs in enumerate(self.csvlist):
-            print(str(index)+' : '+csvs)
+        # for index, csvs in enumerate(self.csvlist):
+        #     print(str(index)+' : '+csvs)
         
-        start = int(input("Enter a start csv file num : "))
-        end = int(input("Enter a end csv file num : "))+1
+        # start = int(input("Enter a start csv file num : "))
+        # end = int(input("Enter a end csv file num : "))+1
 
-        self.csvlist = self.csvlist[start:end]
+        # self.csvlist = self.csvlist[start:end]
+        pass
 
 
-    def read_packet(self):
+    def read_packet(self, start, end):
             print("write packet")
-            for csvs in self.csvlist:
+            for csvs in self.csvlist[int(start):int(end)+1]:
                 with open(self.dirpath+csvs, newline='') as csvfile:
                     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
                     for row in list(spamreader)[1:]:
@@ -52,3 +53,8 @@ class Read_packet:
             os.mkdir(data_root + "map/")
 
         print("create packet, graph, map folder & file (in static/data/timestamp folder)")
+
+    def get_csv_file_list(self):
+        file_path = os.getcwd()+'/static/data/packet/'
+        self.csvlist = os.listdir(file_path)
+        return self.csvlist

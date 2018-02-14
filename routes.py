@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, jsonify
 from threading import Thread
 from app.bigdue_app import main
 from app.bigdue_app import Export_csv_file
+from app.makecsv import main as maincsv
 
 app = Flask(__name__)      
 
@@ -15,11 +16,11 @@ def getTimestamp():
 
 @app.route('/')
 def home():
-  time = getTimestamp()
+  #time = getTimestamp()
   first = request.args.get('first')
   last = request.args.get('last')
+  time = os.listdir(os.getcwd()+'/static/data/packet/')
   isExist = 'true' #For javascript
-
   if not first == None:
     isExist = 'false'
     print(first + ", " + last)
