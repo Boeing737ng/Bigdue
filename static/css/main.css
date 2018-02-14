@@ -104,3 +104,7 @@ h3 {
 .menu li a:active{
   color: white;
 }
+
+.time_button:hover{
+  cursor: pointer;
+}
