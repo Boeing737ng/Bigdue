@@ -51,7 +51,8 @@ class Write_distance:
             distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[0], splited[1]], [splited[2], splited[3]])
             rtt = value['rtt']
             count = value['packet_num']
-            writer.writerow([splited[0], splited[1], splited[2], splited[3], count, distance, rtt])
+            if rtt < 10000:
+                writer.writerow([splited[0], splited[1], splited[2], splited[3], count, distance, rtt])
         # for key, value in duplicate.items():
         #     splited = key.split(',')
         #     distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[2], splited[3]], [splited[4], splited[5]])
