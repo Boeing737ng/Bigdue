@@ -73,6 +73,15 @@ function convertTimestamp(timestamp){
 }
 
 function getSelectedData() {
+    var timeStampInS = getCurrentTimestamp();
+    var timestamp = getTimestamp();
+    var selected_time =  slider.noUiSlider.get();
+    var first_file = findClosestValue(parseInt(selected_time[0]), timestamp);
+    var second_file = findClosestValue(parseInt(selected_time[1]), timestamp);
+    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file),timeStampInS);
+}
+
+function getCurrentTimestamp() {
     var timeStampInMs = window.performance 
         && window.performance.now 
         && window.performance.timing 
@@ -80,11 +89,7 @@ function getSelectedData() {
         ? window.performance.now()  
         + window.performance.timing.navigationStart : Date.now();
     var timeStampInS = Math.ceil(timeStampInMs);
-    var timestamp = getTimestamp();
-    var selected_time =  slider.noUiSlider.get();
-    var first_file = findClosestValue(parseInt(selected_time[0]), timestamp);
-    var second_file = findClosestValue(parseInt(selected_time[1]), timestamp);
-    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file),timeStampInS);
+    return timeStampInS;
 }
 
 function findClosestValue (num, array) {
@@ -101,9 +106,10 @@ function findClosestValue (num, array) {
 }
 
 function onSelectAllData() {
+    var timeStampInS = getCurrentTimestamp();
     var timestamp = getTimestamp();
     console.log(timestamp);
-    sendDataToServer(0,timestamp.length);
+    sendDataToServer(0,timestamp.length,timeStampInS);
 }
 
 function getIndexOfElement(element) {
