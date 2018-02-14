@@ -9,6 +9,9 @@ $(document).ready(function() {
 });
 
 function sendDataToServer(first_value, last_value) {
+    if(first_value < 0){
+        first_value = 0;
+    }
     var script_root = getScriptRoot();
     $.getJSON(script_root + '/', {
         first: first_value,
