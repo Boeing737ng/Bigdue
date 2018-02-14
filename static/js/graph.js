@@ -74,7 +74,7 @@ $(document).ready(function() {
 function readNodeCSV() {
     $.ajax({
         type:'GET',
-        url: 'static/data/1517900990/graph/node.csv',
+        url: 'static/data/graph/node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -89,7 +89,7 @@ function readNodeCSV() {
 function readEdgeCSV() {
   $.ajax({
       type:'GET',
-      url: 'static/data/1517900990/graph/edge1.csv',
+      url: 'static/data/graph/edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {

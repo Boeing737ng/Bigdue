@@ -24,7 +24,7 @@ $(document).ready(function() {
 function readMapNodeCSV() {
     $.ajax({
         type:'GET',
-        url: 'static/data/1517900990/map/node.csv',
+        url: 'static/data/map/node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -39,7 +39,7 @@ function readMapNodeCSV() {
 function readMapEdgeCSV() {
   $.ajax({
       type:'GET',
-      url: 'static/data/1517900990/map/edge.csv',
+      url: 'static/data/map/edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {

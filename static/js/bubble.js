@@ -6,7 +6,7 @@ var format = d3.format(",d");
 
 var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
-var file_root = 'static/data/1517900990/graph/';
+var file_root = 'static/data/graph/';
 var pack = d3.pack()
     .size([width, height])
     .padding(1.5);
