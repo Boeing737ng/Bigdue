@@ -65,6 +65,7 @@ var options = {
 
 $(document).ready(function() {
   if (window.location.pathname == '/graph') {
+    hideLoading();
     var timeStamp = localStorage.getItem('current_timestamp');
     console.log("graph:" + timeStamp);
     readNodeCSV(timeStamp);

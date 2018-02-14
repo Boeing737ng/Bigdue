@@ -15,6 +15,7 @@ window.onload = function () {
 
 $(document).ready(function() {
   if (window.location.pathname == '/map') {
+    hideLoading();
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
     var timeStamp = localStorage.getItem('current_timestamp');
