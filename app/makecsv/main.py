@@ -24,12 +24,13 @@ def main(argv):
     read_packet = Read_packet.Read_packet()
     print("------")
     print(argv[0])
+    print(argv[1])
     print("------")
     # write_graph = Write_graph.Write_graph()
     # write_map = Write_map.Write_map()
     # write_distance = Write_distance.Write_distance()
 
-    # data = write_packet.read_packet()
+    # data = read_packet.read_packet(argv[0], argv[1])
 
     # graph_node = write_graph.write_graph_node(data)
     # graph_edge = write_graph.write_graph_edge(data)

@@ -9,7 +9,7 @@ class Read_packet:
         # print(os.getcwd())
         self.create_folder()
         # self.csvlist = os.listdir(self.dirpath)
-
+        self.get_csv_file_list()
         # for index, csvs in enumerate(self.csvlist):
         #     print(str(index)+' : '+csvs)
         
@@ -22,7 +22,7 @@ class Read_packet:
 
     def read_packet(self, start, end):
             print("write packet")
-            for csvs in self.csvlist[int(start):int(end)+1]:
+            for csvs in self.csvlist[int(start):int(end)]:
                 with open(self.dirpath+csvs, newline='') as csvfile:
                     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
                     for row in list(spamreader)[1:]:

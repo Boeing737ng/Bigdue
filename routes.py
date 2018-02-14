@@ -17,13 +17,15 @@ def getTimestamp():
 @app.route('/')
 def home():
   #time = getTimestamp()
+  time = os.listdir(os.getcwd()+'/static/data/packet/')
   first = request.args.get('first')
   last = request.args.get('last')
-  time = os.listdir(os.getcwd()+'/static/data/packet/')
+  
   isExist = 'true' #For javascript
   if not first == None:
     isExist = 'false'
     print(first + ", " + last)
+    maincsv.main([first, last])
   return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
 @app.route('/graph')
