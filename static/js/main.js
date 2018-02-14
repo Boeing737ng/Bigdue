@@ -12,13 +12,14 @@ function convertTimestamp(){
         console.log(timestamp[i] + " : " + formattedTime);
     }
 }
-convertTimestamp();
+//convertTimestamp();
 
 $(function() {
     $('#show_data').bind('click', function() {
-        var timestamp = getTimestamp();
+        //var timestamp = getTimestamp();
+        var timestamp = ["1","2","3"];
         var script_root = getScriptRoot();
-        $.getJSON(script_root + '/sendValue', {
+        $.getJSON(script_root + '/', {
             data: JSON.stringify(timestamp),
         }, function(data) {
             $("#result").text(data.result);
@@ -26,3 +27,23 @@ $(function() {
         return false;
     });
 });
+
+// $(function() {
+//     $('#show_data').click(function() {
+//         //var timestamp = getTimestamp();
+//         
+//         $.ajax({
+//             url: '/sendValue',
+//             data: {"data": JSON.stringify(timestamp)},
+//             type: 'POST',
+//             contentType: 'application/json;charset=UTF-8',
+//             dataType: "json",
+//             success: function(response) {
+//                 console.log(response);
+//             },
+//             error: function(error) {
+//                 console.log(error);
+//             }
+//         });
+//     });
+// });
