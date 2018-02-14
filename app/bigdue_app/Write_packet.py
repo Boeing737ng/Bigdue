@@ -16,7 +16,7 @@ class Write_packet:
                 'dst_ipaddress',
                 'dst_port',
                 'packet_size'])
-
+            print(str(len(data))+"packet write")
             for row in data:
                 writer.writerow(
                     [row['timestamp'],
