@@ -19,6 +19,7 @@ def get_csv_list():
         #self.csvlist = os.listdir(file_path)
   # if '.DS_Store' in self.csvList:
   #   self.csvList.remove('.DS_Store')
+  csvlist.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
   return csvlist
 
 @app.route('/')
