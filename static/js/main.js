@@ -8,7 +8,7 @@ $(document).ready(function() {
     }
 });
 
-function sendDataToServer(first_value, last_value) {
+function sendDataToServer(first_value, last_value ,timestamp) {
     if(first_value < 0){
         first_value = 0;
     }
@@ -16,6 +16,7 @@ function sendDataToServer(first_value, last_value) {
     $.getJSON(script_root + '/', {
         first: first_value,
         last: last_value,
+        current_timestamp: timestamp,
         success: function(){
             showGraphOptions();
         }
@@ -72,11 +73,18 @@ function convertTimestamp(timestamp){
 }
 
 function getSelectedData() {
+    var timeStampInMs = window.performance 
+        && window.performance.now 
+        && window.performance.timing 
+        && window.performance.timing.navigationStart 
+        ? window.performance.now()  
+        + window.performance.timing.navigationStart : Date.now();
+    var timeStampInS = Math.ceil(timeStampInMs);
     var timestamp = getTimestamp();
     var selected_time =  slider.noUiSlider.get();
     var first_file = findClosestValue(parseInt(selected_time[0]), timestamp);
     var second_file = findClosestValue(parseInt(selected_time[1]), timestamp);
-    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file));
+    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file),timeStampInS);
 }
 
 function findClosestValue (num, array) {
