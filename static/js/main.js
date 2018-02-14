@@ -14,6 +14,19 @@ function sendDataToServer(first,last) {
     return false;
 }
 
+var slider = document.getElementById('slider');
+slider.style.width = '60%';
+slider.style.margin = 'auto';
+
+noUiSlider.create(slider, {
+	start: [20, 80],
+	connect: true,
+	range: {
+		'min': 0,
+		'max': 100
+	}
+});
+
 // $(function() {
 //     $('#show_data').bind('click', function() {
 //         //var timestamp = getTimestamp();
@@ -57,6 +70,10 @@ function getIndexOfElement(element) {
 function showGraphOptions() {
     var menu = document.getElementsByClassName('menu')[0];
     menu.style.display = 'block';
+}
+
+function openSelectMenu() {
+
 }
 
 // $(function() {
