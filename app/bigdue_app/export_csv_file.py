@@ -27,6 +27,14 @@ class Export_csv_file:
     def __init__(self):
         self.data = list()
         self.file_name = ""
+        data_root = "static/data/"
+
+        if not(os.path.isdir("static/")):
+            os.mkdir("static/")
+        if not(os.path.isdir(data_root)):
+            os.mkdir(data_root)
+        if not(os.path.isdir(data_root + "packet/")):
+            os.mkdir(data_root + "packet/")
 
         self.write_packet = Write_packet.Write_packet()
         self.write_graph = Write_graph.Write_graph()
@@ -48,20 +56,20 @@ class Export_csv_file:
         return len(self.data)
     
     def create_folder(self, file_name=None):                                                                                                            
-        data_root = "static/data/"
+        # data_root = "static/data/"
 
-        if not(os.path.isdir("static/")):
-            os.mkdir("static/")
-        if not(os.path.isdir(data_root)):
-            os.mkdir(data_root)
-        if not(os.path.isdir(data_root + "packet/")):
-            os.mkdir(data_root + "packet/")
-        if not(os.path.isdir(data_root+ "graph/")):
-            os.mkdir(data_root + "graph/")
-        if not(os.path.isdir(data_root + "distance/")):
-            os.mkdir(data_root + "distance/")
-        if not(os.path.isdir(data_root + "/map")):
-            os.mkdir(data_root + "map/")
+        # if not(os.path.isdir("static/")):
+        #     os.mkdir("static/")
+        # if not(os.path.isdir(data_root)):
+        #     os.mkdir(data_root)
+        # if not(os.path.isdir(data_root + "packet/")):
+        #     os.mkdir(data_root + "packet/")
+        # if not(os.path.isdir(data_root+ "graph/")):
+        #     os.mkdir(data_root + "graph/")
+        # if not(os.path.isdir(data_root + "distance/")):
+        #     os.mkdir(data_root + "distance/")
+        # if not(os.path.isdir(data_root + "/map")):
+        #     os.mkdir(data_root + "map/")
 
         print("create packet, graph, map folder & file (in static/data/timestamp folder)")
         self.file_name = file_name
