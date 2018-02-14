@@ -44,7 +44,7 @@ def map():
 
 @app.route('/bubble')
 def bubble():
-  return render_template('bubble.html', title = 'Buuble')
+  return render_template('bubble.html', title = 'Bubble')
 
 @app.route('/timeGraph')
 def timeGraph():

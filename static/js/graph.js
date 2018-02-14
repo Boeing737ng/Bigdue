@@ -65,16 +65,18 @@ var options = {
 
 $(document).ready(function() {
   if (window.location.pathname == '/graph') {
-    readNodeCSV();
-    readEdgeCSV();
+    var timeStamp = localStorage.getItem('current_timestamp');
+    console.log("graph:" + timeStamp);
+    readNodeCSV(timeStamp);
+    readEdgeCSV(timeStamp);
   }
 });
 
 // get node
-function readNodeCSV() {
+function readNodeCSV(timeStamp) {
     $.ajax({
         type:'GET',
-        url: 'static/data/graph/node.csv',
+        url: 'static/data/graph/' + timeStamp + '_node.csv',
         dataType: 'text',
         success: function (response) {
           console.log("Nodes extracted")
@@ -86,10 +88,10 @@ function readNodeCSV() {
 }
 
 // get edge
-function readEdgeCSV() {
+function readEdgeCSV(timeStamp) {
   $.ajax({
       type:'GET',
-      url: 'static/data/graph/edge.csv',
+      url: 'static/data/graph/' + timeStamp + '_edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
