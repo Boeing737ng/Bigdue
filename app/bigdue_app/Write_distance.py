@@ -4,16 +4,16 @@ try:
 except ImportError:
     from app.bigdue_app import UrlGeoloc
 try:
-    import Calulate_distance
+    import Calculate_distance
 except ImportError:
-    from app.bigdue_app import Calulate_distance
+    from app.bigdue_app import Calculate_distance
 # import Ping
 
 class Write_distance:
     
     def __init__(self):
         self.urlGeoloc = UrlGeoloc.UrlGeoloc()
-        self.calculate_distance = Calulate_distance.Calculate_distance()
+        self.calculate_distance = Calculate_distance.Calculate_distance()
         # self.ping = Ping.Ping()
         pass
 
