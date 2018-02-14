@@ -30,11 +30,9 @@ def home():
   
   if not timestamp == None:
     print(first + ", " + last + ", " + timestamp)
-    maincsv.main([first, last, timsetamp])
-  else:
-    print(first + ", " + last)
-    maincsv.main([first, last])
-  return render_template('home.html', title = 'Main', accessRoot = time)
+    maincsv.main([first, last, timestamp])
+    
+  return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
 @app.route('/graph')
 def graph():

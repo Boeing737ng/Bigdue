@@ -72,7 +72,7 @@ class Write_graph:
         if os.path.isfile("static/data/graph/"+filename+"_edge.csv"):
             os.remove("static/data/graph/edge.csv")
             print('old edge file deleted')
-        csv_file = open("static/data/graph/edge.csv", 'w', newline='')
+        csv_file = open("static/data/graph/"+filename+"_edge.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_num', 'timestamp'])

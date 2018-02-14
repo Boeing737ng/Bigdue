@@ -21,9 +21,9 @@ except ImportError:
 import sys
 
 def main(argv):
-    start = argv[0]
-    end = argv[1]
-    filename = end-start
+    start = int(argv[0])
+    end = int(argv[1])
+    filename = argv[2]
     read_packet = Read_packet.Read_packet()
 
     write_graph = Write_graph.Write_graph()
