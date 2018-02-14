@@ -70,7 +70,6 @@ class Export_csv_file:
         #     os.mkdir(data_root + "distance/")
         # if not(os.path.isdir(data_root + "/map")):
         #     os.mkdir(data_root + "map/")
-        
         print("create packet, graph, map folder & file (in static/data/timestamp folder)")
         self.file_name = file_name
         if file_name == None:
