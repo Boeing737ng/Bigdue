@@ -13,11 +13,10 @@ function convertTimestamp(){
     }
 }
 //convertTimestamp();
-
+var timestamp = ["1","2","3","4","5","6","7","8","9"];
 $(function() {
     $('#show_data').bind('click', function() {
         //var timestamp = getTimestamp();
-        var timestamp = ["1","2","3"];
         var script_root = getScriptRoot();
         $.getJSON(script_root + '/', {
             data: JSON.stringify(timestamp),
@@ -28,6 +27,11 @@ $(function() {
         return false;
     });
 });
+
+function getIndexOfElement(element) {
+    var index =  timestamp.indexOf(element);
+    return index;
+}
 
 function showGraphOptions() {
     var menu = document.getElementsByClassName('menu')[0];
