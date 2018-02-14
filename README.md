@@ -29,23 +29,25 @@
     - WinPcap : https://www.winpcap.org/install/default.htm
     - WinPcap Dev Pack : https://www.winpcap.org/devel.htm
 
-  #### 2. Install virtual environments
-    - $ pip install virtualenv
-  
-  #### 3. Create virtual environments
-    - $ virtualenv venv
+  #### 2. Create virtual environments
+    - $ python -m venv ./
 
-  #### 4. Download and copy WinPcap Devs files to venv
+  #### 3. Download and copy WinPcap Devs files to venv
     - Copy all the file in the include folder which is in Winpcap dev pack to include folder in venv
     - Copy Packet.lib and wpcap.lib in Winpcap dev pack/lib to lib folder in venv. If you are using 64bits, copy the file from x64 folder
     
-  #### 5. Activate virtual environments
-    - $ source venv/Scripts/activate
+  #### 4. Activate virtual environments
+    In cmd
+    - $ cd Script
+    - $ activate.bat
+
+    In git bash
+    - $ source Script/activate
     
-  #### 6. Install requirements modules
+  #### 5. Install requirements modules
     - $ pip install -r requirements.txt
 
-  #### 7. Enjoy
+  #### 6. Enjoy
     - $ python routes.py
 
 ### Mac OS
@@ -55,17 +57,14 @@
   #### 1. Install python3
     - python3 : https://www.python.org/
 
-  #### 2. Install virtual environments
-    - $ pip3 install virtualenv
-  
-  #### 3. Create virtual environments
-    - $ virtualenv venv
+  #### 2. Create virtual environments
+    - $ python -m venv ./
 
-  #### 4. Activate virtual environments
-    - $ source venv/bin/activate
+  #### 3. Activate virtual environments
+    - $ source ./bin/activate
 
-  #### 5. Install requirements modules
+  #### 4. Install requirements modules
     - $ pip3 install -r requirements.txt
 
-  #### 7. Enjoy
+  #### 5. Enjoy
     - $ python3 routes.py
