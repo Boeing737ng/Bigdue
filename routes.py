@@ -1,7 +1,7 @@
 import sys
 import os
 import json
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from threading import Thread
 from app.bigdue_app import main
 from app.bigdue_app import Export_csv_file
@@ -14,9 +14,15 @@ def getTimestamp():
   return timestamp_array
 
 @app.route('/')
-def home():
+def index():
   time = getTimestamp()
-  return render_template('home.html', title = 'Main', accessRoot = time)
+  js_time = request.args.get('data')
+  isExist = 'true' #For javascript
+  if js_time == None:
+    isExist = 'false'
+    print(isExist)
+  print(js_time)
+  return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
 @app.route('/graph')
 def graph():
@@ -34,18 +40,19 @@ def bubble():
 def timeGraph():
   return render_template('timeGraph.html', title = 'Time - Graph')
 
-@app.route('/sendValue')
-def getTimeValue():
-  #time = request.form.get('value') # For 'POST method
-  js_time = request.args.get('data') # For 'GET' method
-  selected_time = json.loads(js_time)
-  print(selected_time)
-  return 'done'
+  # @app.route('/sendValue')
+# def home():
+#   # print('yes')
+#   # js_time = request.json('data') # For 'POST method
+#   js_time = request.args.get('data') # For 'GET' method
+#   # selected_time = json.loads(js_time)
+#   print(js_time)
+#   return render_template('index.html')
 
 if __name__ == '__main__':
-  t1 = Thread(target = main.main)
-  t1.setDaemon(True)
-  t1.start()
+  # t1 = Thread(target = main.main)
+  # t1.setDaemon(True)
+  # t1.start()
 
   t2 = Thread(target = app.run)
   t2.setDaemon(True)

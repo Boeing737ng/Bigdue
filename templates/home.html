@@ -1,20 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
   <div class="jumbo">
-    <h2>Bigdue<h2>
-      <input id="choose_time" type="submit" name="choose_time" value="시간 선택">
-      <input id="show_data" type="submit" name="show_data" value="데이터 확인">
+    <h2>Bigdue</h2>
+    <a id="choose_time" name="choose_time">시간 선택</a>
+    <a id="show_data" name="show_data">데이터 확인</a>
   </div>
   <script type=text/javascript>
+    function getTimestamp(){
       var array = "{{ accessRoot | safe }}";
-      function getTimestamp(){
-        return array;
-      }
-
-      function getScriptRoot() {
-        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-        return $SCRIPT_ROOT;
-      }
-      console.log(getTimestamp())
+      var converted_array =  array.replace(/'/g, '"');
+      console.log(JSON.parse(converted_array));
+      return JSON.parse(converted_array);
+    }
+    function getScriptRoot() {
+      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      return $SCRIPT_ROOT;
+    }
+    console.log(getTimestamp())
   </script>
 {% endblock %}
