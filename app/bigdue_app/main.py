@@ -15,7 +15,7 @@ try:
 except ImportError:
     from app.bigdue_app import ManipulatePackets
 
-CONST_MAX_LEN = 1000000
+CONST_MAX_LEN = 200
 
 def main():
     packet = ReadPacket.ReadPacket()

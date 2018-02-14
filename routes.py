@@ -18,6 +18,7 @@ def home():
   time = getTimestamp()
   js_time = request.args.get('data')
   isExist = 'true' #For javascript
+
   if js_time == None:
     isExist = 'false'
     print(isExist)
