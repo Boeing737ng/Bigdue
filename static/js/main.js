@@ -2,9 +2,11 @@
 //var timestamp = ["1518585580", "1518585582", "1518585584", "1518585585", "1518585586", "1518585587", "1518585589", "1518585590", "1518585591", "1518585592", "1518585594", "1518585622", "1518585628", "1518585629", "1518585645", "1518585705", "1518585740", "1518585761", "1518585762", "1518585765", "1518585766"];
 
 $(document).ready(function() {
+    var menu = document.getElementsByClassName('menu')[0];
     if (window.location.pathname == '/') {
-        var menu = document.getElementsByClassName('menu')[0];
         menu.style.display = 'none';
+    }else{
+        menu.style.display = 'block';
     }
 });
 
@@ -33,20 +35,6 @@ noUiSlider.create(slider, {
 	}
 });
 
-// $(function() {
-//     $('#show_data').bind('click', function() {
-//         //var timestamp = getTimestamp();
-//         var script_root = getScriptRoot();
-//         $.getJSON(script_root + '/', {
-//             data: JSON.stringify(timestamp),
-//             success: function(){
-//                 showGraphOptions();
-//             }
-//         });
-//         return false;
-//     });
-// });
-
 function convertTimestamp(){
     var timestamp = getTimestamp();
     for(var i = 0 ; i < timestamp.length; i++){
@@ -60,7 +48,6 @@ function convertTimestamp(){
         console.log(timestamp[i] + " : " + formattedTime);
     }
 }
-//convertTimestamp();
 
 function onSelectAllData() {
     var timestamp = getTimestamp();
@@ -81,23 +68,3 @@ function showGraphOptions() {
 function openSelectMenu() {
 
 }
-
-// $(function() {
-//     $('#show_data').click(function() {
-//         //var timestamp = getTimestamp();
-//         
-//         $.ajax({
-//             url: '/sendValue',
-//             data: {"data": JSON.stringify(timestamp)},
-//             type: 'POST',
-//             contentType: 'application/json;charset=UTF-8',
-//             dataType: "json",
-//             success: function(response) {
-//                 console.log(response);
-//             },
-//             error: function(error) {
-//                 console.log(error);
-//             }
-//         });
-//     });
-// });
