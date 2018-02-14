@@ -16,17 +16,12 @@ def get_csv_list():
   for file in os.listdir(file_path):
     if file.endswith('.csv'):
         csvlist.append(file)
-        #self.csvlist = os.listdir(file_path)
-  # if '.DS_Store' in self.csvList:
-  #   self.csvList.remove('.DS_Store')
+
   csvlist.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
   return csvlist
 
 @app.route('/')
 def home():
-  #time = getTimestamp()
-
-  #time = os.listdir(os.getcwd()+'/static/data/packet/')
   time = get_csv_list()
   
   first = request.args.get('first')
@@ -54,16 +49,7 @@ def bubble():
 @app.route('/timeGraph')
 def timeGraph():
   return render_template('timeGraph.html', title = 'Time - Graph')
-
-  # @app.route('/sendValue')
-# def home():
-#   # print('yes')
-#   # js_time = request.json('data') # For 'POST method
-#   js_time = request.args.get('data') # For 'GET' method
-#   # selected_time = json.loads(js_time)
-#   print(js_time)
-#   return render_template('index.html')
-
+  
 if __name__ == '__main__':
   t1 = Thread(target = main.main)
   t1.setDaemon(True)
