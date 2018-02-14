@@ -6,18 +6,28 @@ from threading import Thread
 from app.bigdue_app import main
 from app.bigdue_app import Export_csv_file
 from app.makecsv import main as maincsv
+from app.makecsv import Read_packet
 
 app = Flask(__name__)      
 
-def getTimestamp():
-  timestamp = Export_csv_file.Export_csv_file()
-  timestamp_array = timestamp.time_list
-  return timestamp_array
+def get_csv_list():
+  csvlist = list()
+  file_path = os.getcwd()+'/static/data/packet/'
+  for file in os.listdir(file_path):
+    if file.endswith('.csv'):
+        csvlist.append(file)
+        #self.csvlist = os.listdir(file_path)
+  # if '.DS_Store' in self.csvList:
+  #   self.csvList.remove('.DS_Store')
+  return csvlist
 
 @app.route('/')
 def home():
   #time = getTimestamp()
-  time = os.listdir(os.getcwd()+'/static/data/packet/')
+
+  #time = os.listdir(os.getcwd()+'/static/data/packet/')
+  time = get_csv_list()
+  
   first = request.args.get('first')
   last = request.args.get('last')
   

@@ -56,5 +56,11 @@ class Read_packet:
 
     def get_csv_file_list(self):
         file_path = os.getcwd()+'/static/data/packet/'
-        self.csvlist = os.listdir(file_path)
+        for file in os.listdir(file_path):
+            if file.endswith('.csv'):
+                self.csvlist.push(file)
+                #self.csvlist = os.listdir(file_path)
+        if '.DS_Store' in self.csvList:
+            self.csvList.remove('.DS_Store')
+        print(self.csvList)
         return self.csvlist
