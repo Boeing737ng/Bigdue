@@ -32,7 +32,7 @@ def home():
     print(first + ", " + last + ", " + timestamp)
     maincsv.main([first, last, timestamp])
     
-  return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
+  return render_template('home.html', title = 'Main', accessRoot = time)
 
 @app.route('/graph')
 def graph():
