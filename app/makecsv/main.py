@@ -23,7 +23,7 @@ import sys
 def main(argv):
     start = argv[0]
     end = argv[1]
-    filename = "1234"
+    filename = end-start
     read_packet = Read_packet.Read_packet()
 
     write_graph = Write_graph.Write_graph()
