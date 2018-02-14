@@ -35,7 +35,9 @@ class Write_graph:
         csv_file = open("static/data/graph/"+filename+"_node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
-        writer.writerow(['node', 'weight'])
+        writer.writerow([
+            'node',
+            'weight'])
 
         duplicate = self.check_duplicate_of_graph_node(data)
 
@@ -75,7 +77,11 @@ class Write_graph:
         csv_file = open("static/data/graph/"+filename+"_edge.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
-        writer.writerow(['src_ipaddress', 'dst_ipaddress', 'packet_num', 'timestamp'])
+        writer.writerow([
+            'src_ipaddress',
+            'dst_ipaddress',
+            'packet_num',
+            'timestamp'])
         
         duplicate = self.check_duplicate_of_graph_edge(data)
     
