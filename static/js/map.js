@@ -27,7 +27,7 @@ function readMapNodeCSV() {
         url: 'static/data/map/node.csv',
         dataType: 'text',
         success: function (response) {
-          console.log("Nodes extracted")
+          console.log(response)
         },
         error: function (error) {
           console.log(error)

@@ -26,11 +26,12 @@ def home():
   
   first = request.args.get('first')
   last = request.args.get('last')
+  timestamp = request.args.get('current_timestamp')
   
   isExist = 'true' #For javascript
   if not first == None:
     isExist = 'false'
-    print(first + ", " + last)
+    print(first + ", " + last + ", " + timestamp)
     maincsv.main([first, last])
   return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
