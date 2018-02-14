@@ -7,6 +7,7 @@ try:
     import Calulate_distance
 except ImportError:
     from app.bigdue_app import Calulate_distance
+import os
 # import Ping
 
 class Write_distance:

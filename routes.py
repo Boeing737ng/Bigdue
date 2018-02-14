@@ -32,7 +32,7 @@ def home():
   if not first == None:
     isExist = 'false'
     print(first + ", " + last + ", " + timestamp)
-    maincsv.main([first, last])
+    maincsv.main([first, last, timestamp])
   return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
 @app.route('/graph')
