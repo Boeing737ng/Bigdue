@@ -16,13 +16,13 @@ def getTimestamp():
 @app.route('/')
 def home():
   time = getTimestamp()
-  js_time = request.args.get('data')
+  first = request.args.get('first')
+  last = request.args.get('last')
   isExist = 'true' #For javascript
 
-  if js_time == None:
+  if not first == None:
     isExist = 'false'
-    print(isExist)
-  print(js_time)
+    print(first + ", " + last)
   return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
 @app.route('/graph')
