@@ -51,6 +51,7 @@ function createDragOption(min, max) {
         if(handle === 1){
             timestamp[1].innerHTML = convertTimestamp(timestamp[1].innerHTML);
         }
+
         //updateSliderValue.innerHTML = convertTimestamp(values[handle]);
         //convertToolTipText();
     });
@@ -80,7 +81,8 @@ function getSelectedData() {
     var selected_time =  slider.noUiSlider.get();
     var first_file = findClosestValue(parseInt(selected_time[0]), timestamp);
     var second_file = findClosestValue(parseInt(selected_time[1]), timestamp);
-    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file),timeStampInS);
+    console.log(first_file + '|'+ second_file);
+    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file) + 1,timeStampInS);
 }
 
 function getCurrentTimestamp() {
