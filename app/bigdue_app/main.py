@@ -15,7 +15,7 @@ try:
 except ImportError:
     from app.bigdue_app import ManipulatePackets
 
-CONST_MAX_LEN = 1000000
+CONST_MAX_LEN = 1000
 
 def main():
     packet = ReadPacket.ReadPacket()
@@ -26,7 +26,12 @@ def main():
     i = 0
     for timestamp, read_data in read_whole_packet:
         # retrieved_data = manipulated_packet.wireshark(timestamp, read_data)
-        retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
+
+        try:
+            retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
+        except KeyboardInterrupt:
+            print("asdfasdfasdfasdf")
+
         # print("No. "+str(i)+str(retrieved_data))
         if not(None in retrieved_data.values()):
             i = i+1

@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, jsonify
 from threading import Thread
 from app.bigdue_app import main
 from app.bigdue_app import Export_csv_file
+from app.makecsv import main as maincsv
 
 app = Flask(__name__)      
 
@@ -15,13 +16,18 @@ def getTimestamp():
 
 @app.route('/')
 def home():
-  time = getTimestamp()
+  # time = getTimestamp()
+  time = os.listdir(os.getcwd()+'/static/data/packet/')
   js_time = request.args.get('data')
   isExist = 'true' #For javascript
+  
   if js_time == None:
     isExist = 'false'
     print(isExist)
+  if js_time != None:
+    maincsv.main([1, 2])
   print(js_time)
+
   return render_template('home.html', title = 'Main', accessRoot = time, trigger = isExist)
 
 @app.route('/graph')
