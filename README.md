@@ -33,8 +33,8 @@
     - $ python -m venv ./
 
   #### 3. Download and copy WinPcap Devs files to venv
-    - Copy all the file in the include folder which is in Winpcap dev pack to include folder in venv
-    - Copy Packet.lib and wpcap.lib in Winpcap dev pack/lib to lib folder in venv. If you are using 64bits, copy the file from x64 folder
+    - Copy all the file in the include folder which is in Winpcap dev pack to include folder
+    - Copy Packet.lib and wpcap.lib in Winpcap dev pack/lib to lib folder. If you are using 64bits, copy the file from x64 folder
     
   #### 4. Activate virtual environments
     In cmd
@@ -49,7 +49,7 @@
 
   #### 6. Enjoy
     - $ python routes.py
-
+    
 ### Mac OS
   #### 0. Clone Bigdue Project
     - $ git clone https://github.com/Boeing737ng/Bigdue.git
