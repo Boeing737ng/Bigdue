@@ -20,7 +20,11 @@ def home():
   time = os.listdir(os.getcwd()+'/static/data/packet/')
   js_time = request.args.get('data')
   isExist = 'true' #For javascript
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 6460bc9f2d7fc67bd916632283a4fb7532c74637
   if js_time == None:
     isExist = 'false'
     print(isExist)
