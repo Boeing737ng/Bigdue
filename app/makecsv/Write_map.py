@@ -8,6 +8,7 @@ except ImportError:
 class Write_map:
     
     def __init__(self):
+        self.remove_map_csv_file_list()
         self.urlGeoloc = UrlGeoloc.UrlGeoloc()
 
     def check_duplicate_of_map_node(self, graph_node):
@@ -23,13 +24,13 @@ class Write_map:
                 duplicate[dup_key] = [geoloc['country'], geoloc['state'], geoloc['city']]
         return duplicate
 
-    def write_map_node(self, graph_node):
+    def write_map_node(self, graph_node, filename):
         print("write map_node")
         # csv_file = open(file_name+"/map/node.csv", 'w', newline='')
-        if os.path.isfile("static/data/map/node.csv"):
-            os.remove("static/data/map/node.csv")
-            print('old node file deleted')
-        csv_file = open("static/data/map/node.csv", 'w', newline='')
+        # if os.path.isfile("static/data/map/node.csv"):
+        #     os.remove("static/data/map/node.csv")
+        #     print('old node file deleted')
+        csv_file = open("static/data/map/"+filename+"_node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['node_lat', 'node_lng', 'country', 'state', 'city'])
@@ -65,13 +66,13 @@ class Write_map:
 
         return duplicate
 
-    def write_map_edge(self, graph_edge):
+    def write_map_edge(self, graph_edge, filename):
         print("write map_edge")
         # csv_file = open(file_name + "/map/edge.csv", 'w', newline='')
-        if os.path.isfile("static/data/map/edge.csv"):
-            os.remove("static/data/map/edge.csv")
-            print('old edge file deleted')
-        csv_file = open("static/data/map/edge.csv", 'w', newline='')
+        # if os.path.isfile("static/data/map/edge.csv"):
+        #     os.remove("static/data/map/edge.csv")
+        #     print('old edge file deleted')
+        csv_file = open("static/data/map/"+filename+"_edge.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
         writer.writerow(
@@ -91,3 +92,9 @@ class Write_map:
                 ])
 
         csv_file.close()
+
+    def remove_map_csv_file_list(self):
+        file_path = os.getcwd()+'/static/data/map/'
+        for file in os.listdir(file_path):
+            if file.endswith('.csv'):
+                os.remove(file_path+file)

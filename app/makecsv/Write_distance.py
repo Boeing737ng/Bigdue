@@ -14,13 +14,14 @@ class Write_distance:
     def __init__(self):
         self.urlGeoloc = UrlGeoloc.UrlGeoloc()
         self.calculate_distance = Calulate_distance.Calculate_distance()
+        self.remove_distance_csv_file_list()
         # self.ping = Ping.Ping()
         pass
 
-    def write_map_edge_distance_count(self, duplicate_map_edge):
+    def write_map_edge_distance_count(self, duplicate_map_edge, filename):
         print("write map edge distance")
         # csv_file = open(file_name + "/distance/edge_distance_count.csv", 'w', newline='')
-        csv_file = open("static/data/distance/edge_distance_count.csv", 'w', newline='')
+        csv_file = open("static/data/distance/"+filename+"_edge_distance_count.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
         writer.writerow(
@@ -122,10 +123,10 @@ class Write_distance:
 
         return duplicate
 
-    def write_map_edge_distance_size(self, data):
+    def write_map_edge_distance_size(self, data, filename):
         print("write map edge distance")
         # csv_file = open(file_name + "/distance/edge_distance_size.csv", 'w', newline='')
-        csv_file = open("static/data/distance/edge_distance_size.csv", 'w', newline='')
+        csv_file = open("static/data/distance/"+filename+"_edge_distance_size.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
         writer.writerow(
@@ -168,3 +169,9 @@ class Write_distance:
         #         [splited[0], splited[1], splited[2], splited[3], value, distance, src_rtt, dst_rtt])
 
         csv_file.close()
+
+    def remove_distance_csv_file_list(self):
+        file_path = os.getcwd()+'/static/data/distance/'
+        for file in os.listdir(file_path):
+            if file.endswith('.csv'):
+                os.remove(file_path+file)
