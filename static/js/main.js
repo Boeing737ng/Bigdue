@@ -1,6 +1,4 @@
 
-//var timestamp = ["1518585580", "1518585582", "1518585584", "1518585585", "1518585586", "1518585587", "1518585589", "1518585590", "1518585591", "1518585592", "1518585594", "1518585622", "1518585628", "1518585629", "1518585645", "1518585705", "1518585740", "1518585761", "1518585762", "1518585765", "1518585766"];
-
 $(document).ready(function() {
     var menu = document.getElementsByClassName('menu')[0];
     if (window.location.pathname == '/') {
@@ -49,7 +47,6 @@ function createDragOption(min, max) {
         }
         //updateSliderValue.innerHTML = convertTimestamp(values[handle]);
         //convertToolTipText();
-        console.log(slider.noUiSlider.get());
     });
 }
 
@@ -71,11 +68,12 @@ function convertTimestamp(timestamp){
     return formattedTime;
 }
 
-function showSelectedData() {
+function getSelectedData() {
     var timestamp = getTimestamp();
     var selected_time =  slider.noUiSlider.get();
-    var closest_value = findClosestValue(parseInt(selected_time[0]), timestamp);
-    console.log(selected_time[0] + ':'+ closest_value);
+    var first_file = findClosestValue(parseInt(selected_time[0]), timestamp);
+    var second_file = findClosestValue(parseInt(selected_time[1]), timestamp);
+    sendDataToServer(getIndexOfElement(first_file), getIndexOfElement(second_file));
 }
 
 function findClosestValue (num, array) {
@@ -98,6 +96,7 @@ function onSelectAllData() {
 }
 
 function getIndexOfElement(element) {
+    var timestamp = getTimestamp();
     var index =  timestamp.indexOf(element);
     return index;
 }
