@@ -22,31 +22,52 @@ function sendDataToServer(first_value, last_value) {
     return false;
 }
 
-var slider = document.getElementById('slider');
-slider.style.width = '60%';
-slider.style.margin = 'auto';
-
-noUiSlider.create(slider, {
-	start: [20, 80],
-	connect: true,
-	range: {
-		'min': 0,
-		'max': 100
-	}
-});
-
-function convertTimestamp(){
+function createDragOption(min, max) {
     var timestamp = getTimestamp();
-    for(var i = 0 ; i < timestamp.length; i++){
-        var integer_time = parseInt(timestamp[i]);
-        var date = new Date(integer_time*1000);
-        var hours = date.getHours();
-        var minutes = "0" + date.getMinutes();
-        var seconds = "0" + date.getSeconds();
-        // Display time in 10:30:23 format
-        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-        console.log(timestamp[i] + " : " + formattedTime);
+    var slider = document.getElementById('slider');
+    var updateSliderValue = document.getElementById('value');
+    slider.style.width = '60%';
+    slider.style.margin = 'auto';
+    noUiSlider.create(slider, {
+        start: [parseInt(timestamp[0]), parseInt(timestamp[timestamp.length-1])],
+        connect: true,
+        tooltips: true,
+        range: {
+            'min': parseInt(min),
+            'max': parseInt(max)
+        }
+    });
+    convertToolTipText();
+    slider.noUiSlider.on('set', function( values, handle ) {
+        var timestamp = document.getElementsByClassName('noUi-tooltip');
+        console.log(values + ',' + handle);
+        if(handle === 0){
+            timestamp[0].innerHTML = convertTimestamp(timestamp[0].innerHTML);
+        }
+        if(handle === 1){
+            timestamp[1].innerHTML = convertTimestamp(timestamp[1].innerHTML);
+        }
+        //updateSliderValue.innerHTML = convertTimestamp(values[handle]);
+        //convertToolTipText();
+    });
+}
+
+function convertToolTipText() {
+    var timestamp = document.getElementsByClassName('noUi-tooltip');
+    for(var i = 0; i < timestamp.length; i++){
+        timestamp[i].innerHTML = convertTimestamp(timestamp[i].innerHTML);
     }
+}
+
+function convertTimestamp(timestamp){
+    Math.trunc(timestamp);
+    var integer_time = parseInt(timestamp);
+    var date = new Date(integer_time*1000);
+    var hours = "0" + date.getHours();
+    var minutes = "0" + date.getMinutes();
+    // Display time in 10:30:23 format
+    var formattedTime = hours.substr(-2) + ':' + minutes.substr(-2);
+    return formattedTime;
 }
 
 function onSelectAllData() {
@@ -66,5 +87,8 @@ function showGraphOptions() {
 }
 
 function openSelectMenu() {
-
+    var timestamp = getTimestamp();
+    createDragOption(timestamp[0], timestamp[timestamp.length - 1]);
+    var option = document.getElementById('slider_container');
+    option.style.display = 'block';
 }
