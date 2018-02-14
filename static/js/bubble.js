@@ -54,13 +54,16 @@ $(document).ready(function() {
           circle_node.append("text")
           .attr("clip-path", function(d) { return "url(#clip-" + d.node + ")"; })
         .selectAll("tspan")
-        .data(function(d) { return format(Math.pow(d.weight,2)).split(/(?=[A-Z][^A-Z])/g); })
+        .data(function(d) {
+          return d.node.split(/(?=[A-Z][^A-Z])/g);
+           //return format(Math.pow(d.weight,2)).split(/(?=[A-Z][^A-Z])/g); 
+          })
         .enter().append("tspan")
           .attr("x", 0)
           .attr("y", function(d, i, circle_nodes) { return 13 + (i - circle_nodes.length / 2 - 0.5) * 10; })
           .text(function(d) { 
-            console.log(d);
-            return d; });
+            return d; 
+          });
     
           circle_node.append("title")
           .text(function(d) { return d.node + "\n" + format(Math.pow(d.weight,2)); });
