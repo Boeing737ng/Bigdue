@@ -33,7 +33,12 @@ class Write_map:
         csv_file = open("static/data/map/"+filename+"_node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
-        writer.writerow(['node_lat', 'node_lng', 'country', 'state', 'city'])
+        writer.writerow([
+            'node_lat',
+            'node_lng',
+            'country',
+            'state',
+            'city'])
 
         duplicate = self.check_duplicate_of_map_node(graph_node)
         
@@ -75,8 +80,13 @@ class Write_map:
         csv_file = open("static/data/map/"+filename+"_edge.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
-        writer.writerow(
-            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count', 'timestamp'])
+        writer.writerow([
+            'src_lat',
+            'src_lng',
+            'dst_lat',
+            'dst_lng',
+            'count',
+            'timestamp'])
 
         duplicate = self.check_duplicate_of_map_edge(graph_edge)
         
