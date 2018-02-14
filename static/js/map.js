@@ -164,8 +164,9 @@ var map = AmCharts.makeChart( "map", {
     "draggerAlpha": 1,
     "gridAlpha": 0.2
   },
-
-  "backgroundZoomsToTop": true,
+  "mouseWheelZoomEnabled": true,
+  "autoZoom": false,
+  "backgroundZoomsToTop": false,
   "linesAboveImages": true,
   
   "export": {
