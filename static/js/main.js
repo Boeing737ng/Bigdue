@@ -21,12 +21,18 @@ $(function() {
         var script_root = getScriptRoot();
         $.getJSON(script_root + '/', {
             data: JSON.stringify(timestamp),
-        }, function(data) {
-            $("#result").text(data.result);
+            success: function(){
+                showGraphOptions();
+            }
         });
         return false;
     });
 });
+
+function showGraphOptions() {
+    var menu = document.getElementsByClassName('menu')[0];
+    menu.style.display = 'block';
+}
 
 // $(function() {
 //     $('#show_data').click(function() {

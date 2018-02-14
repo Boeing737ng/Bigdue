@@ -14,7 +14,7 @@ def getTimestamp():
   return timestamp_array
 
 @app.route('/')
-def index():
+def home():
   time = getTimestamp()
   js_time = request.args.get('data')
   isExist = 'true' #For javascript
