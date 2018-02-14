@@ -47,3 +47,25 @@
 
   #### 7. Enjoy
     - $ python routes.py
+
+### Mac OS
+  #### 0. Clone Bigdue Project
+    - $ git clone https://github.com/Boeing737ng/Bigdue.git
+
+  #### 1. Install python3
+    - python3 : https://www.python.org/
+
+  #### 2. Install virtual environments
+    - $ pip3 install virtualenv
+  
+  #### 3. Create virtual environments
+    - $ virtualenv venv
+
+  #### 4. Activate virtual environments
+    - $ source venv/bin/activate
+
+  #### 5. Install requirements modules
+    - $ pip3 install -r requirements.txt
+
+  #### 7. Enjoy
+    - $ python3 routes.py
