@@ -21,16 +21,28 @@
 ## Installation
 
 ### Windows
-  1. Install python3, WinPcap
-  2. Create virtual environments
-    - python -m venv ./
-  3. Download and copy WinPcap Devs files to venv
-    - Copy WinPcap Devs files to venv Lib, Include
-  4. Activate virtual environments
-    - cd Scripts
-    - activate.bat
-  5. Install PyPcap, MaxMindAPI
-    - git clone each repository
-    - python setup.py install
-  6. pip install -r requirements.txt
-  7. Enjoy
+  #### 0. Clone Bigdue Project
+    - $ git clone https://github.com/Boeing737ng/Bigdue.git
+
+  #### 1. Install python3, Download WinPcap, WinPcap Dev Pack
+    - python3 : https://www.python.org/
+    - WinPcap : https://www.winpcap.org/install/default.htm
+    - WinPcap Dev Pack : https://www.winpcap.org/devel.htm
+
+  #### 2. Install virtual environments
+    - $ pip install virtualenv
+  
+  #### 3. Create virtual environments
+    - $ virtualenv venv
+
+  #### 4. Download and copy WinPcap Devs files to venv
+    - Copy WinPcap Dev Pack files to venv Lib, Include
+    
+  #### 5. Activate virtual environments
+    - $ source venv/Scripts/activate
+    
+  #### 6. Install requirements modules
+    - $ pip install -r requirements.txt
+
+  #### 7. Enjoy
+    - $ python routes.py
