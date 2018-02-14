@@ -4,6 +4,7 @@ import os
 class Write_graph:
     
     def __init__(self):
+        self.remove_graph_csv_file_list()
         pass
 
     def check_duplicate_of_graph_node(self, data):
@@ -24,14 +25,14 @@ class Write_graph:
         
         return duplicate
 
-    def write_graph_node(self, data):
+    def write_graph_node(self, data, filename):
         print("write graph_node")
         
         # csv_file = open(file_name+"/graph/node.csv", 'w', newline='')
-        if os.path.isfile("static/data/graph/node.csv"):
-            os.remove("static/data/graph/node.csv")
-            print('old node file deleted')
-        csv_file = open("static/data/graph/node.csv", 'w', newline='')
+        # if os.path.isfile("static/data/graph/node.csv"):
+        #     os.remove("static/data/graph/node.csv")
+        #     print('old node file deleted')
+        csv_file = open("static/data/graph/"+filename+"_node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
         writer.writerow(['node', 'weight'])
@@ -65,10 +66,10 @@ class Write_graph:
                     }
         return duplicate
 
-    def write_graph_edge(self, data):
+    def write_graph_edge(self, data, filename):
         print("write graph_edge")
         # csv_file = open(file_name+"/graph/edge.csv", 'w', newline='')
-        if os.path.isfile("static/data/graph/edge.csv"):
+        if os.path.isfile("static/data/graph/"+filename+"_edge.csv"):
             os.remove("static/data/graph/edge.csv")
             print('old edge file deleted')
         csv_file = open("static/data/graph/edge.csv", 'w', newline='')
@@ -89,3 +90,9 @@ class Write_graph:
         csv_file.close()
 
         return duplicate
+
+    def remove_graph_csv_file_list(self):
+        file_path = os.getcwd()+'/static/data/graph/'
+        for file in os.listdir(file_path):
+            if file.endswith('.csv'):
+                os.remove(file_path+file)
