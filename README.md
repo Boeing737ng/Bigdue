@@ -50,7 +50,7 @@
   #### 6. Enjoy
     - $ python routes.py
     
-### Mac OS
+### Mac OS / Linux
   #### 0. Clone Bigdue Project
     - $ git clone https://github.com/Boeing737ng/Bigdue.git
 
@@ -58,7 +58,7 @@
     - python3 : https://www.python.org/
 
   #### 2. Create virtual environments
-    - $ python -m venv ./
+    - $ python3 -m venv ./
 
   #### 3. Activate virtual environments
     - $ source ./bin/activate
