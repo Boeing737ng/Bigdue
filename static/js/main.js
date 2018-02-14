@@ -12,6 +12,8 @@ function sendDataToServer(first_value, last_value ,timestamp) {
     if(first_value < 0){
         first_value = 0;
     }
+    localStorage.setItem("current_timestamp",timestamp);
+    console.log("main: " + timestamp);
     var script_root = getScriptRoot();
     $.getJSON(script_root + '/', {
         first: first_value,

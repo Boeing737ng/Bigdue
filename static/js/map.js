@@ -15,19 +15,21 @@ window.onload = function () {
 
 $(document).ready(function() {
   if (window.location.pathname == '/map') {
-    readMapNodeCSV();
-    readMapEdgeCSV();
+    var timeStamp = localStorage.getItem('current_timestamp');
+    console.log("map:" + timeStamp);
+    readMapNodeCSV(timeStamp);
+    readMapEdgeCSV(timeStamp);
   }
 });
 
 // get node
-function readMapNodeCSV() {
+function readMapNodeCSV(timeStamp) {
     $.ajax({
         type:'GET',
-        url: 'static/data/map/node.csv',
+        url: 'static/data/map/'+ timeStamp +'_node.csv',
         dataType: 'text',
         success: function (response) {
-          console.log(response)
+          console.log("Nodes extracted")
         },
         error: function (error) {
           console.log(error)
@@ -36,10 +38,10 @@ function readMapNodeCSV() {
 }
 
 // get edge
-function readMapEdgeCSV() {
+function readMapEdgeCSV(timeStamp) {
   $.ajax({
       type:'GET',
-      url: 'static/data/map/edge.csv',
+      url: 'static/data/map/'+ timeStamp +'_edge.csv',
       //async: false,
       dataType: 'text',
       success: function (response) {
