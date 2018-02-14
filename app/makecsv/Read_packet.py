@@ -4,7 +4,7 @@ import os
 class Read_packet:
     
     def __init__(self):
-        # self.dirpath = '../bigdue_app/static/data/packet/'
+        self.dirpath = 'static/data/packet/'
         self.packet_list = []
         # print(os.getcwd())
         self.create_folder()

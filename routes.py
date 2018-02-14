@@ -54,9 +54,9 @@ def timeGraph():
 #   return render_template('index.html')
 
 if __name__ == '__main__':
-  # t1 = Thread(target = main.main)
-  # t1.setDaemon(True)
-  # t1.start()
+  t1 = Thread(target = main.main)
+  t1.setDaemon(True)
+  t1.start()
 
   t2 = Thread(target = app.run)
   t2.setDaemon(True)
