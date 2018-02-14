@@ -36,7 +36,8 @@
     - $ virtualenv venv
 
   #### 4. Download and copy WinPcap Devs files to venv
-    - Copy WinPcap Dev Pack files to venv Lib, Include
+    - Copy all the file in the include folder which is in Winpcap dev pack to include folder in venv
+    - Copy Packet.lib and wpcap.lib in Winpcap dev pack/lib to lib folder in venv. If you are using 64bits, copy the file from x64 folder
     
   #### 5. Activate virtual environments
     - $ source venv/Scripts/activate
