@@ -15,7 +15,7 @@ try:
 except ImportError:
     from app.bigdue_app import ManipulatePackets
 
-CONST_MAX_LEN = 1000000
+CONST_MAX_LEN = 10000
 
 def main():
     packet = ReadPacket.ReadPacket()
@@ -53,7 +53,6 @@ def main():
         csv_file.write_csv_file()
         print("!!!!!!!KeyboardInterrup write end!!!!!!!")
         sys.exit(0)
-
     return
 
 if __name__ == '__main__':
