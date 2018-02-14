@@ -49,6 +49,7 @@ function createDragOption(min, max) {
         }
         //updateSliderValue.innerHTML = convertTimestamp(values[handle]);
         //convertToolTipText();
+        console.log(slider.noUiSlider.get());
     });
 }
 
@@ -68,6 +69,26 @@ function convertTimestamp(timestamp){
     // Display time in 10:30:23 format
     var formattedTime = hours.substr(-2) + ':' + minutes.substr(-2);
     return formattedTime;
+}
+
+function showSelectedData() {
+    var timestamp = getTimestamp();
+    var selected_time =  slider.noUiSlider.get();
+    var closest_value = findClosestValue(parseInt(selected_time[0]), timestamp);
+    console.log(selected_time[0] + ':'+ closest_value);
+}
+
+function findClosestValue (num, array) {
+    var current = parseInt(array[0].replace('.csv',''));
+    var diff = Math.abs(num - current);
+    for (var i = 0; i < array.length; i++) {
+        var new_diff = Math.abs(num - parseInt(array[i].replace('.csv','')));
+        if (new_diff < diff) {
+            diff = new_diff;
+            current = array[i];
+        }
+    }
+    return current;
 }
 
 function onSelectAllData() {

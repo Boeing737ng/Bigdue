@@ -7,18 +7,17 @@
   </div>
   <div id="slider_container">
     <div id="slider"></div>
+    <button onclick="showSelectedData();">선택 완료</button>
   </div>
   <script type=text/javascript>
     function getTimestamp(){
       var array = "{{ accessRoot | safe }}";
       var converted_array =  array.replace(/'/g, '"');
-      console.log(JSON.parse(converted_array));
       return JSON.parse(converted_array);
     }
     function getScriptRoot() {
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
       return $SCRIPT_ROOT;
     }
-    console.log(getTimestamp())
   </script>
 {% endblock %}
