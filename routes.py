@@ -28,8 +28,11 @@ def home():
   last = request.args.get('last')
   timestamp = request.args.get('current_timestamp')
   
-  if not first == None:
+  if not timestamp == None:
     print(first + ", " + last + ", " + timestamp)
+    maincsv.main([first, last, timsetamp])
+  else:
+    print(first + ", " + last)
     maincsv.main([first, last])
   return render_template('home.html', title = 'Main', accessRoot = time)
 
