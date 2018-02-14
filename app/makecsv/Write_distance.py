@@ -25,8 +25,14 @@ class Write_distance:
         csv_file = open("static/data/distance/"+filename+"_edge_distance_count.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
-        writer.writerow(
-            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'count', 'distance', 'rtt'])
+        writer.writerow([
+            'src_lat',
+            'src_lng',
+            'dst_lat',
+            'dst_lng',
+            'count',
+            'distance',
+            'rtt'])
 
         duplicate = duplicate_map_edge
         timestamp_list = {}
@@ -130,8 +136,14 @@ class Write_distance:
         csv_file = open("static/data/distance/"+filename+"_edge_distance_size.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
-        writer.writerow(
-            ['src_lat', 'src_lng', 'dst_lat', 'dst_lng', 'size', 'distance', 'rtt'])
+        writer.writerow([
+            'src_lat',
+            'src_lng',
+            'dst_lat',
+            'dst_lng',
+            'size',
+            'distance',
+            'rtt'])
 
         duplicate = self.check_duplicate_of_map_edge_size(data)
         timestamp_list = {}
