@@ -59,5 +59,7 @@ if __name__ == '__main__':
   t2.setDaemon(True)
   t2.start()
   while True:
-     pass
+    if not t1.isAlive():
+      sys.exit(0)
+    pass
   #app.run(debug=True)
