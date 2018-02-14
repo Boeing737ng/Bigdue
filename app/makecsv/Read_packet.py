@@ -9,6 +9,7 @@ class Read_packet:
         # print(os.getcwd())
         self.create_folder()
         # self.csvlist = os.listdir(self.dirpath)
+        self.csvlist = list()
         self.get_csv_file_list()
         # for index, csvs in enumerate(self.csvlist):
         #     print(str(index)+' : '+csvs)
@@ -58,9 +59,6 @@ class Read_packet:
         file_path = os.getcwd()+'/static/data/packet/'
         for file in os.listdir(file_path):
             if file.endswith('.csv'):
-                self.csvlist.push(file)
-                #self.csvlist = os.listdir(file_path)
-        if '.DS_Store' in self.csvList:
-            self.csvList.remove('.DS_Store')
-        print(self.csvList)
+                self.csvlist.append(file)
+        self.csvlist.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
         return self.csvlist
