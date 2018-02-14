@@ -66,7 +66,9 @@ $(document).ready(function() {
           });
     
           circle_node.append("title")
-          .text(function(d) { return d.node + "\n" + format(Math.pow(d.weight,2)); });
+          .text(function(d) { 
+            console.log(d)
+            return d.node + "\n" + Math.trunc(d.data.weight); });
     });
 
   }
