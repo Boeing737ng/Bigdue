@@ -1,4 +1,5 @@
 import csv
+import os
 try:
     import UrlGeoloc
 except ImportError:
@@ -25,6 +26,9 @@ class Write_map:
     def write_map_node(self, graph_node):
         print("write map_node")
         # csv_file = open(file_name+"/map/node.csv", 'w', newline='')
+        if os.path.isfile("static/data/map/node.csv"):
+            os.remove("static/data/map/node.csv")
+            print('old node file deleted')
         csv_file = open("static/data/map/node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
@@ -64,6 +68,9 @@ class Write_map:
     def write_map_edge(self, graph_edge):
         print("write map_edge")
         # csv_file = open(file_name + "/map/edge.csv", 'w', newline='')
+        if os.path.isfile("static/data/map/edge.csv"):
+            os.remove("static/data/map/edge.csv")
+            print('old edge file deleted')
         csv_file = open("static/data/map/edge.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
