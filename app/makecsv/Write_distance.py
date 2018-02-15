@@ -57,11 +57,22 @@ class Write_distance:
 
         for key, value in timestamp_list.items():
             splited = key.split(',')
-            distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[0], splited[1]], [splited[2], splited[3]])
+            distance = self.calculate_distance.calculate_distance_btw_two_geoloc(
+                [splited[0],
+                splited[1]],
+                [splited[2],
+                splited[3]])
             rtt = value['rtt']
             count = value['packet_num']
             if rtt < 10000:
-                writer.writerow([splited[0], splited[1], splited[2], splited[3], count, distance, rtt])
+                writer.writerow([
+                    splited[0],
+                    splited[1],
+                    splited[2],
+                    splited[3],
+                    count,
+                    distance,
+                    rtt])
 
         csv_file.close()
 
@@ -142,11 +153,22 @@ class Write_distance:
 
         for key, value in timestamp_list.items():
             splited = key.split(',')
-            distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[0], splited[1]], [splited[2], splited[3]])
+            distance = self.calculate_distance.calculate_distance_btw_two_geoloc(
+                [splited[0],
+                splited[1]],
+                [splited[2],
+                splited[3]])
             rtt = value['rtt']
             count = value['bytes']
             if rtt < 10000:
-                writer.writerow([splited[0], splited[1], splited[2], splited[3], count, distance, rtt])
+                writer.writerow([
+                    splited[0],
+                    splited[1],
+                    splited[2],
+                    splited[3],
+                    count,
+                    distance,
+                    rtt])
         csv_file.close()
 
     def remove_distance_csv_file_list(self):
