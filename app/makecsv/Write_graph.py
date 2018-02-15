@@ -28,7 +28,10 @@ class Write_graph:
     def write_graph_node(self, data, filename):
         print("write graph_node")
         
-        csv_file = open("static/data/graph/"+filename+"_node.csv", 'w', newline='')
+        csv_file = open(
+            "static/data/graph/"+filename+"_node.csv",
+            mode = 'w',
+            encoding = 'utf-8')
         writer = csv.writer(csv_file)
         
         writer.writerow([
@@ -65,7 +68,10 @@ class Write_graph:
         if os.path.isfile("static/data/graph/"+filename+"_edge.csv"):
             os.remove("static/data/graph/edge.csv")
             print('old edge file deleted')
-        csv_file = open("static/data/graph/"+filename+"_edge.csv", 'w', newline='')
+        csv_file = open(
+            "static/data/graph/"+filename+"_edge.csv",
+            mode = 'w',
+            encoding = 'utf-8')
         writer = csv.writer(csv_file)
         
         writer.writerow([
