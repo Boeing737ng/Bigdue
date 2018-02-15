@@ -11,7 +11,6 @@ except ImportError:
 # class 나누기
 class Export_csv_file:
     
-    time_list = list()
     def __init__(self):
         self.data = list()
         self.file_name = ""
