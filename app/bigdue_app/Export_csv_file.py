@@ -25,9 +25,6 @@ class Export_csv_file:
             os.mkdir(data_root + "packet/")
 
         self.write_packet = Write_packet.Write_packet()
-        self.write_graph = Write_graph.Write_graph()
-        self.write_map = Write_map.Write_map()
-        self.write_distance = Write_distance.Write_distance()
 
     def feed(self, data):
         self.data.append(data)
