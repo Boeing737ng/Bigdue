@@ -20,7 +20,10 @@ class Write_distance:
     def write_map_edge_distance_count(self, duplicate_map_edge, filename):
         print("write map edge distance")
         
-        csv_file = open("static/data/distance/"+filename+"_edge_distance_count.csv", 'w', newline='')
+        csv_file = open(
+            "static/data/distance/"+filename+"_edge_distance_count.csv",
+            mode = 'w',
+            encoding = 'utf-8')
         writer = csv.writer(csv_file)
 
         writer.writerow([
@@ -103,7 +106,10 @@ class Write_distance:
     def write_map_edge_distance_size(self, data, filename):
         print("write map edge distance")
         
-        csv_file = open("static/data/distance/"+filename+"_edge_distance_size.csv", 'w', newline='')
+        csv_file = open(
+            "static/data/distance/"+filename+"_edge_distance_size.csv",
+            mode = 'w',
+            encoding = 'utf-8')
         writer = csv.writer(csv_file)
 
         writer.writerow([
