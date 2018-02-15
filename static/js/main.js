@@ -45,11 +45,12 @@ function createDragOption(min, max) {
     slider.noUiSlider.on('set', function( values, handle ) {
         var timestamp = document.getElementsByClassName('noUi-tooltip');
         console.log(values + ',' + handle);
+        value_arr = String(values).split(',');
         if(handle === 0){
-            timestamp[0].innerHTML = convertTimestamp(timestamp[0].innerHTML);
+            timestamp[0].innerHTML = convertTimestamp(parseFloat(value_arr[0]));
         }
         if(handle === 1){
-            timestamp[1].innerHTML = convertTimestamp(timestamp[1].innerHTML);
+            timestamp[1].innerHTML = convertTimestamp(parseFloat(value_arr[1]));
         }
 
         //updateSliderValue.innerHTML = convertTimestamp(values[handle]);
@@ -68,10 +69,11 @@ function convertTimestamp(timestamp){
     Math.trunc(timestamp);
     var integer_time = parseInt(timestamp);
     var date = new Date(integer_time*1000);
-    var hours = "0" + date.getHours();
-    var minutes = "0" + date.getMinutes();
-    // Display time in 10:30:23 format
-    var formattedTime = hours.substr(-2) + ':' + minutes.substr(-2);
+    // var hours = "0" + date.getHours();
+    // var minutes = "0" + date.getMinutes();
+    // // Display time in 10:30:23 format
+    // var formattedTime = hours.substr(-2) + ':' + minutes.substr(-2);
+    var formattedTime = date.toLocaleString()
     return formattedTime;
 }
 
