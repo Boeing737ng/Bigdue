@@ -132,12 +132,17 @@ function showGraphOptions() {
 }
 
 function openSelectMenu() {
+    var extendable_box = document.getElementsByClassName('jumbo')[0];
+    extendable_box.style.animationName = 'slide_down'; 
+    extendable_box.style.animationDuration = '600ms';
+    extendable_box.style.height = '450px';
     var loading_text = document.getElementsByClassName('loading_text')[0];
     loading_text.innerHTML = 'Analysing the selected data';
+    $('#slider_container').fadeIn('slow');
     var timestamp = getTimestamp();
     createDragOption(timestamp[0], timestamp[timestamp.length - 1]);
-    var option = document.getElementById('slider_container');
-    option.style.display = 'block';
+    // var option = document.getElementById('slider_container');
+    // option.style.display = 'block';
 }
 
 function showLoading(){
