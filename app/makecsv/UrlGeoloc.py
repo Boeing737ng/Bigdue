@@ -7,8 +7,7 @@ class UrlGeoloc:
 
     def __init__(self):
         current_path = os.getcwd()
-        print(current_path)
-        self.reader = geoip2.database.Reader(os.getcwd()+'/geolite/GeoLite2-City.mmdb')
+        self.reader = geoip2.database.Reader(current_path+'/geolite/GeoLite2-City.mmdb')
         self.set_public_ipaddress()
 
     def get_url_geoloc(self, ipaddress):
@@ -24,7 +23,7 @@ class UrlGeoloc:
             'state' : response.subdivisions.most_specific.name,
             'city' : response.city.name
         }
-        # [response.location.latitude, response.location.longitude, response.country.name, response.subdivisions.most_specific.name, response.city.name]
+        
         return geoloc_dup
 
     def set_public_ipaddress(self, ipaddress=None):
