@@ -42,8 +42,12 @@ class Write_map:
         
         for key, value in duplicate.items():
             splited = key.split(',')
-            print([splited[0], splited[1], value[0], value[1], value[2]])
-            writer.writerow([splited[0], splited[1], value[0], value[1], value[2]])
+            writer.writerow([
+                splited[0],
+                splited[1],
+                value[0],
+                value[1],
+                value[2]])
 
         csv_file.close()
 
