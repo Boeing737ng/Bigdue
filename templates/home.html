@@ -12,7 +12,7 @@
   </div>
   <script type=text/javascript>
     function getTimestamp(){
-      var array = "{{ accessRoot | safe }}";
+      var array = "{{ timestamp | safe }}";
       var converted_array =  array.replace(/'/g, '"');
       return JSON.parse(converted_array);
     }

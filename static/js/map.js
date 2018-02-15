@@ -90,9 +90,10 @@ function addCountry(data) {
     var latitude = parsed[0];
     var longitude = parsed[1];
     var country = parsed[2];
+    var town = parsed[4];
     var city = new AmCharts.MapImage();
 
-    city.title = country;
+    city.title = country + "," + town;
     city.latitude = latitude;
     city.longitude = longitude;
     city.type = "circle";
