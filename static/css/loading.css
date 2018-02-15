@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     z-index: 10000;
-    display:block;
+    display: none;
 }
 .osahanloading {
     /*animation: osahanloading 1.5s linear 0s normal none infinite running;*/
