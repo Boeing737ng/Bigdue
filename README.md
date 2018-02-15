@@ -24,8 +24,8 @@
   #### 0. Clone Bigdue Project
     - $ git clone https://github.com/Boeing737ng/Bigdue.git
 
-  #### 1. Install python3, Download WinPcap, WinPcap Dev Pack
-    - python3 : https://www.python.org/
+  #### 1. Install python3.6v, Download WinPcap, WinPcap Dev Pack
+    - python3.6v : https://www.python.org/downloads/
     - WinPcap : https://www.winpcap.org/install/default.htm
     - WinPcap Dev Pack : https://www.winpcap.org/devel.htm
 
@@ -58,8 +58,8 @@
   #### 0. Clone Bigdue Project
     - $ git clone https://github.com/Boeing737ng/Bigdue.git
 
-  #### 1. Install python3
-    - python3 : https://www.python.org/
+  #### 1. Install python3.6v
+    - python3.6v : https://www.python.org/downloads/
 
   #### 2. Install Maxmind db
     - GeoLite2 City DB : https://dev.maxmind.com/geoip/geoip2/geolite2/
