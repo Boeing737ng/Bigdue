@@ -16,12 +16,10 @@ class Write_distance:
         self.urlGeoloc = UrlGeoloc.UrlGeoloc()
         self.calculate_distance = Calculate_distance.Calculate_distance()
         self.remove_distance_csv_file_list()
-        # self.ping = Ping.Ping()
-        pass
 
     def write_map_edge_distance_count(self, duplicate_map_edge, filename):
         print("write map edge distance")
-        # csv_file = open(file_name + "/distance/edge_distance_count.csv", 'w', newline='')
+        
         csv_file = open("static/data/distance/"+filename+"_edge_distance_count.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
@@ -61,22 +59,6 @@ class Write_distance:
             count = value['packet_num']
             if rtt < 10000:
                 writer.writerow([splited[0], splited[1], splited[2], splited[3], count, distance, rtt])
-        # for key, value in duplicate.items():
-        #     splited = key.split(',')
-        #     distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[2], splited[3]], [splited[4], splited[5]])
-        #     src_rtt = self.ping.get_avg_rtt(splited[0])
-        #     dst_rtt = self.ping.get_avg_rtt(splited[1])
-        #     writer.writerow([
-        #         splited[0],
-        #         splited[1],
-        #         splited[2],
-        #         splited[3],
-        #         splited[4],
-        #         splited[5],
-        #         value,
-        #         distance,
-        #         src_rtt,
-        #         dst_rtt])
 
         csv_file.close()
 
@@ -87,13 +69,7 @@ class Write_distance:
         for read_data in data:
             dup_key = read_data['src_ipaddress']+","+read_data['dst_ipaddress']
 
-            # try:
-            #     duplicate[dup_key] += read_data['bytes']
-            # except:
-            #     duplicate[dup_key] = read_data['bytes']
             try:
-                # duplicate[dup_key]['packet_num'] += 1
-                # duplicate[dup_key]['timestamp'] += read_data['timestamp']
                 duplicate[dup_key]['bytes'] += int(read_data['packet_size'])
             except:
                 duplicate[dup_key] = {
@@ -115,24 +91,18 @@ class Write_distance:
             dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
-                # duplicate[dup_key]['packet_num'] += value['packet_num']
-                # duplicate[dup_key]['timestamp'] += value['timestamp']
                 duplicate[dup_key]['bytes'] += value['bytes']
             except:
                 duplicate[dup_key] = {
-                    # 'packet_num' : value['packet_num'],
                     'timestamp' : value['timestamp'],
                     'bytes' : value['bytes']
                 }
         
-        # for key, value in duplicate.items():
-        #     duplicate[key]['timestamp'] /= duplicate[key]['packet_num']
-
         return duplicate
 
     def write_map_edge_distance_size(self, data, filename):
         print("write map edge distance")
-        # csv_file = open(file_name + "/distance/edge_distance_size.csv", 'w', newline='')
+        
         csv_file = open("static/data/distance/"+filename+"_edge_distance_size.csv", 'w', newline='')
         writer = csv.writer(csv_file)
 
@@ -171,16 +141,6 @@ class Write_distance:
             count = value['bytes']
             if rtt < 10000:
                 writer.writerow([splited[0], splited[1], splited[2], splited[3], count, distance, rtt])
-
-        # print(duplicate)
-        # for key, value in duplicate.items():
-        #     splited = key.split(',')
-        #     distance = self.calculate_distance.calculate_distance_btw_two_geoloc([splited[0], splited[1]], [splited[2], splited[3]])
-        #     src_rtt = self.ping.get_avg_rtt(splited[0])
-        #     dst_rtt = self.ping.get_avg_rtt(splited[1])
-        #     writer.writerow(
-        #         [splited[0], splited[1], splited[2], splited[3], value, distance, src_rtt, dst_rtt])
-
         csv_file.close()
 
     def remove_distance_csv_file_list(self):
