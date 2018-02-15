@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     z-index: 10000;
-    display:none;
+    display:block;
 }
 .osahanloading {
     /*animation: osahanloading 1.5s linear 0s normal none infinite running;*/
@@ -18,7 +18,7 @@
     margin-left: -15px;
     margin-top: -15px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: 30px;
 }
 .osahanloading::after {
@@ -50,4 +50,25 @@
         -webkit-transform: rotate(4320deg);
         transform: rotate(4320deg);
     }
+}
+
+.loading_container{
+    background-color: white;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    width: 270px;
+    height: 140px;
+    border-radius: 20px;
+}
+.loading_text{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 77%;
 }
