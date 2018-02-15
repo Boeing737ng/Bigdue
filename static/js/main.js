@@ -37,8 +37,8 @@ function createDragOption(min, max) {
         connect: true,
         tooltips: true,
         range: {
-            'min': parseInt(min),
-            'max': parseInt(max)
+            'min': parseInt(min)-1,
+            'max': parseInt(max)+1
         }
     });
     convertToolTipText();
