@@ -28,10 +28,6 @@ class Write_graph:
     def write_graph_node(self, data, filename):
         print("write graph_node")
         
-        # csv_file = open(file_name+"/graph/node.csv", 'w', newline='')
-        # if os.path.isfile("static/data/graph/node.csv"):
-        #     os.remove("static/data/graph/node.csv")
-        #     print('old node file deleted')
         csv_file = open("static/data/graph/"+filename+"_node.csv", 'w', newline='')
         writer = csv.writer(csv_file)
         
@@ -54,13 +50,8 @@ class Write_graph:
         for read_data in data:
             dup_key = read_data['src_ipaddress']+","+read_data['dst_ipaddress']
 
-            # try:
-            #     duplicate[dup_key] += 1
-            # except:
-            #     duplicate[dup_key] = 1
             try:
                 duplicate[dup_key]['packet_num'] += 1
-                # duplicate[dup_key]['timestamp'] += read_data['timestamp']
             except:
                 duplicate[dup_key] = {
                     'packet_num' : 1,
@@ -70,7 +61,7 @@ class Write_graph:
 
     def write_graph_edge(self, data, filename):
         print("write graph_edge")
-        # csv_file = open(file_name+"/graph/edge.csv", 'w', newline='')
+        
         if os.path.isfile("static/data/graph/"+filename+"_edge.csv"):
             os.remove("static/data/graph/edge.csv")
             print('old edge file deleted')
@@ -85,7 +76,6 @@ class Write_graph:
         
         duplicate = self.check_duplicate_of_graph_edge(data)
     
-        # max_value = max(duplicate.values())
         max_value = max(value['packet_num'] for value in duplicate.values())
 
         for key, value in duplicate.items():
