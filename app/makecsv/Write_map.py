@@ -25,7 +25,10 @@ class Write_map:
     def write_map_node(self, graph_node, filename):
         print("write map_node")
         
-        csv_file = open("static/data/map/"+filename+"_node.csv", 'w', newline='', encoding='utf-8')
+        csv_file = open(
+            "static/data/map/"+filename+"_node.csv",
+            mode = 'w',
+            encoding = 'utf-8')
         writer = csv.writer(csv_file)
         
         writer.writerow([
@@ -65,7 +68,10 @@ class Write_map:
     def write_map_edge(self, graph_edge, filename):
         print("write map_edge")
         
-        csv_file = open("static/data/map/"+filename+"_edge.csv", 'w', newline='')
+        csv_file = open(
+            "static/data/map/"+filename+"_edge.csv",
+            mode = 'w',
+            encoding = 'utf-8')
         writer = csv.writer(csv_file)
 
         writer.writerow([
