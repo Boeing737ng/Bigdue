@@ -128,10 +128,10 @@ h3 {
   transition: 0.2s;
 }
 
-.time_button:hover{
+.time_button:hover, #select_time:hover{
   cursor: pointer;
   background-color: rgb(65, 64, 64);
-  border: 2px solid white;
+  border: 1px solid white;
   color: white;
 }
 .time_button:focus, #select_time:focus{
@@ -152,15 +152,14 @@ h3 {
   outline: none;
 }
 #select_time{
+  transition: 0.2s;
+  background-color: inherit;
   width: 100px;
   height: 30px;
   margin-top: 40px;
   border-radius: 5px;
+  border: 1px solid gray;
 }
-#select_time:hover{
-  cursor: pointer;
-}
-
 #guide_text{
   height: 15px;
 }
