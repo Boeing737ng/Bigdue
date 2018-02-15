@@ -44,10 +44,11 @@
     In cmd
     - $ cd Scripts
     - $ activate.bat
+    - $ cd ..
 
     In git bash
-    - $ source Scripts/activate
-    
+    - $ source ./Scripts/activate
+
   #### 6. Install requirements modules
     - $ pip install -r requirements.txt
 
