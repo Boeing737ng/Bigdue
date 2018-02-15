@@ -29,7 +29,7 @@ def home():
   timestamp = request.args.get('current_timestamp')
   
   if not timestamp == None:
-    print(first + ", " + last + ", " + timestamp)
+    print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
     maincsv.main([first, last, timestamp])
 
   return render_template('home.html', title = 'Main', accessRoot = time)
