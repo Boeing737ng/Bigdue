@@ -25,7 +25,7 @@ class Write_map:
     def write_map_node(self, graph_node, filename):
         print("write map_node")
         
-        csv_file = open("static/data/map/"+filename+"_node.csv", 'w', newline='')
+        csv_file = open("static/data/map/"+filename+"_node.csv", 'w', newline='', encoding='utf-8')
         writer = csv.writer(csv_file)
         
         writer.writerow([
@@ -39,6 +39,7 @@ class Write_map:
         
         for key, value in duplicate.items():
             splited = key.split(',')
+            print([splited[0], splited[1], value[0], value[1], value[2]])
             writer.writerow([splited[0], splited[1], value[0], value[1], value[2]])
 
         csv_file.close()
