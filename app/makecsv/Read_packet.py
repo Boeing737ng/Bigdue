@@ -6,20 +6,11 @@ class Read_packet:
     def __init__(self):
         self.dirpath = 'static/data/packet/'
         self.packet_list = []
-        # print(os.getcwd())
+        
         self.create_folder()
-        # self.csvlist = os.listdir(self.dirpath)
+        
         self.csvlist = list()
         self.get_csv_file_list()
-        # for index, csvs in enumerate(self.csvlist):
-        #     print(str(index)+' : '+csvs)
-        
-        # start = int(input("Enter a start csv file num : "))
-        # end = int(input("Enter a end csv file num : "))+1
-
-        # self.csvlist = self.csvlist[start:end]
-        pass
-
 
     def read_packet(self, start, end):
             print("write packet")
