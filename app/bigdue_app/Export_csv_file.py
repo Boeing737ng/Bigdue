@@ -41,13 +41,9 @@ class Export_csv_file:
         return len(self.data)
     
     def create_folder(self, file_name=None):                  
-        print("create packet, graph, map folder & file (in static/data/timestamp folder)")
         self.file_name = file_name
         if file_name == None:
             self.file_name = str(time.time()).split('.')[0]
-        if not self.file_name in self.time_list:
-            self.time_list.append(self.file_name)
-            print(self.time_list)
 
     def write_csv_file(self, file_name=None):
             self.create_folder(file_name)

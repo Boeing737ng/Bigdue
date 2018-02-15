@@ -13,9 +13,8 @@ class Read_packet:
         self.get_csv_file_list()
 
     def read_packet(self, start, end):
-            print("write packet")
             for csvs in self.csvlist[int(start):int(end)]:
-                with open(self.dirpath+csvs, newline='') as csvfile:
+                with open(self.dirpath+csvs, encoding = 'utf-8') as csvfile:
                     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
                     for row in list(spamreader)[1:]:
                         packets = row[0].split(',')
@@ -27,24 +26,27 @@ class Read_packet:
                             'dst_port' : packets[4],
                             'packet_size' : packets[5]})
 
-            print(len(self.packet_list))
+            print("read "+str(len(self.packet_list))+"packets")
             return self.packet_list
 
     def create_folder(self, file_name=None):                                                                                                            
         data_root = "static/data/"
 
         if not(os.path.isdir("static/")):
+            print("create static folder")
             os.mkdir("static/")
         if not(os.path.isdir(data_root)):
+            print("create static/data folder")
             os.mkdir(data_root)
         if not(os.path.isdir(data_root+ "graph/")):
+            print("create static/data/graph folder")
             os.mkdir(data_root + "graph/")
         if not(os.path.isdir(data_root + "distance/")):
+            print("create static/data/distance folder")
             os.mkdir(data_root + "distance/")
         if not(os.path.isdir(data_root + "/map")):
+            print("create static/data/map folder")
             os.mkdir(data_root + "map/")
-
-        print("create packet, graph, map folder & file (in static/data/timestamp folder)")
 
     def get_csv_file_list(self):
         file_path = os.getcwd()+'/static/data/packet/'

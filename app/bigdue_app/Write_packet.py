@@ -5,7 +5,6 @@ class Write_packet:
         pass
 
     def write_packet(self, file_name, data):
-            print("write packet")
             # csv_file = open(file_name+"/packet/packet.csv", 'w', newline='')
             csv_file = open("static/data/packet/" + file_name + ".csv", 'w', newline='')
             writer = csv.writer(csv_file)
@@ -16,7 +15,8 @@ class Write_packet:
                 'dst_ipaddress',
                 'dst_port',
                 'packet_size'])
-            print(str(len(data))+"packet write")
+            print(file_name+" : "+str(len(data))+" packet write")
+            
             for row in data:
                 writer.writerow(
                     [row['timestamp'],
