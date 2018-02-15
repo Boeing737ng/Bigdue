@@ -119,11 +119,25 @@ function addLine(data) {
     var log_value = parseInt(Math.log10(line_size));
     var line = new AmCharts.MapLine();
 
+
+
     line.latitudes = [ src_lat, dst_lat ];
     line.longitudes = [ src_lng, dst_lng ];
     line.thickness = log_value; // Maximum value: 10
     line.arrowSize = (line.thickness * 1.7);
     line.chart = map;
+    // if(log_value == 4){
+    //   line.color = '#d63031'
+    // }
+    // else if(log_value == 3){
+    //   line.color = '#ff7675'
+    // }
+    // else if(log_value == 2){
+    //   line.color = '#ff7675'
+    // }
+    // else if(log_value == 1){
+    //   line.color = '#fab1a0'
+    // }
     map.dataProvider.lines.push(line);
     line.validate();
   }
