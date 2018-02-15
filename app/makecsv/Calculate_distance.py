@@ -22,7 +22,5 @@ class Calculate_distance:
 
         distance = R * c
 
-        # print("Result:", distance)
-        # print("Should be:", 278.546, "km")
         return distance
 
