@@ -13,6 +13,7 @@ class Read_packet:
         self.get_csv_file_list()
 
     def read_packet(self, start, end):
+        print('packets reading start')
             for csvs in self.csvlist[int(start):int(end)]:
                 with open(self.dirpath+csvs, encoding = 'utf-8') as csvfile:
                     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -26,7 +27,7 @@ class Read_packet:
                             'dst_port' : packets[4],
                             'packet_size' : packets[5]})
 
-            print("read "+str(len(self.packet_list))+"packets")
+            print('read '+str(len(self.packet_list))+'packets')
             return self.packet_list
 
     def create_folder(self, file_name=None):                                                                                                            
