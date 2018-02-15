@@ -2,11 +2,11 @@ import csv
 try:
     import UrlGeoloc
 except ImportError:
-    from app.bigdue_app import UrlGeoloc
+    from app.makecsv import UrlGeoloc
 try:
     import Calculate_distance
 except ImportError:
-    from app.bigdue_app import Calculate_distance
+    from app.makecsv import Calculate_distance
 import os
 # import Ping
 

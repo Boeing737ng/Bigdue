@@ -3,7 +3,7 @@ import os
 try:
     import UrlGeoloc
 except ImportError:
-    from app.bigdue_app import UrlGeoloc
+    from app.makecsv import UrlGeoloc
 
 class Write_map:
     
