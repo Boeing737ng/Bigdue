@@ -112,10 +112,17 @@ function findClosestValue (num, array) {
 }
 
 function onSelectAllData() {
-    var loading_text = document.getElementsByClassName('loading_text')[0];
-    loading_text.innerHTML = 'Analysing all data';
     var timeStampInS = getCurrentTimestamp();
     var timestamp = getTimestamp();
+
+    var extendable_box = document.getElementsByClassName('jumbo')[0];
+    extendable_box.style.animationName = 'slide_up'; 
+    extendable_box.style.animationDuration = '800ms';
+    extendable_box.style.height = '250px';
+    $('#slider_container').fadeOut('fast');
+
+    setLoadingText('Analysing all data');
+    displayGuideText('All data selected. Choose your desired visualized item on top. <b>IT MAY TAKE SOME TIME!</b>');
     console.log(timestamp);
     sendDataToServer(0,timestamp.length,timeStampInS);
 }
@@ -132,14 +139,16 @@ function showGraphOptions() {
 }
 
 function openSelectMenu() {
+    var timestamp = getTimestamp();
+    setLoadingText('Analysing the selected data');
+    displayGuideText('Select the time range of your desired section and');
+
     var extendable_box = document.getElementsByClassName('jumbo')[0];
     extendable_box.style.animationName = 'slide_down'; 
     extendable_box.style.animationDuration = '600ms';
     extendable_box.style.height = '450px';
-    var loading_text = document.getElementsByClassName('loading_text')[0];
-    loading_text.innerHTML = 'Analysing the selected data';
     $('#slider_container').fadeIn('slow');
-    var timestamp = getTimestamp();
+
     createDragOption(timestamp[0], timestamp[timestamp.length - 1]);
     // var option = document.getElementById('slider_container');
     // option.style.display = 'block';
@@ -151,4 +160,14 @@ function showLoading(){
 
 function hideLoading(){
     document.getElementsByClassName("animationload")[0].style.display = "none";
+}
+
+function displayGuideText(text) {
+    var guide_text = document.getElementById('guide_text');
+    guide_text.innerHTML = text;
+}
+
+function setLoadingText(text) {
+    var loading_text = document.getElementsByClassName('loading_text')[0];
+    loading_text.innerHTML = text;
 }
