@@ -50,9 +50,6 @@ function createDragOption(min, max) {
         if(handle === 1){
             timestamp[1].innerHTML = convertTimestamp(parseFloat(value_arr[1]));
         }
-
-        //updateSliderValue.innerHTML = convertTimestamp(values[handle]);
-        //convertToolTipText();
     });
 }
 
@@ -134,8 +131,6 @@ function openSelectMenu() {
     displayGuideText('Select the time range of your desired section and submit');
     displayOrHideOption();
     createDragOption(timestamp[0], timestamp[timestamp.length - 1]);
-    // var option = document.getElementById('slider_container');
-    // option.style.display = 'block';
 }
 
 function showLoading(){

@@ -15,8 +15,7 @@ var pack = d3.pack()
 $(document).ready(function() {
   if (window.location.pathname == '/bubble') {
     hideLoading();
-    var body = document.getElementsByTagName('body')[0];
-    body.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
     var timeStamp = localStorage.getItem('current_timestamp');
     console.log("bubble:" + timeStamp);
     file_root = file_root + timeStamp;
