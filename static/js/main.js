@@ -112,6 +112,8 @@ function findClosestValue (num, array) {
 }
 
 function onSelectAllData() {
+    var loading_text = document.getElementsByClassName('loading_text')[0];
+    loading_text.innerHTML = 'Analysing all data';
     var timeStampInS = getCurrentTimestamp();
     var timestamp = getTimestamp();
     console.log(timestamp);
@@ -130,6 +132,8 @@ function showGraphOptions() {
 }
 
 function openSelectMenu() {
+    var loading_text = document.getElementsByClassName('loading_text')[0];
+    loading_text.innerHTML = 'Analysing the selected data';
     var timestamp = getTimestamp();
     createDragOption(timestamp[0], timestamp[timestamp.length - 1]);
     var option = document.getElementById('slider_container');
