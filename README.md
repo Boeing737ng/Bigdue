@@ -29,14 +29,18 @@
     - WinPcap : https://www.winpcap.org/install/default.htm
     - WinPcap Dev Pack : https://www.winpcap.org/devel.htm
 
-  #### 2. Create virtual environments
+  #### 2. Install Maxmind db
+    - GeoLite2 City DB : https://dev.maxmind.com/geoip/geoip2/geolite2/
+    - Copy the installed GeoLite2-City.mmdb file under geolite folder
+    
+  #### 3. Create virtual environments
     - $ python -m venv ./
 
-  #### 3. Download and copy WinPcap Devs files to venv
+  #### 4. Download and copy WinPcap Devs files to venv
     - Copy all the file in the "include" folder which is in Winpcap dev pack to "include" folder
     - Copy Packet.lib and wpcap.lib in Winpcap dev pack/"lib" to "lib" folder. If you are using 64bits, copy the file from x64 folder
     
-  #### 4. Activate virtual environments
+  #### 5. Activate virtual environments
     In cmd
     - $ cd Script
     - $ activate.bat
@@ -44,10 +48,10 @@
     In git bash
     - $ source Script/activate
     
-  #### 5. Install requirements modules
+  #### 6. Install requirements modules
     - $ pip install -r requirements.txt
 
-  #### 6. Enjoy
+  #### 7. Enjoy
     - $ python routes.py
     
 ### Mac OS / Linux
@@ -57,14 +61,18 @@
   #### 1. Install python3
     - python3 : https://www.python.org/
 
-  #### 2. Create virtual environments
+  #### 2. Install Maxmind db
+    - GeoLite2 City DB : https://dev.maxmind.com/geoip/geoip2/geolite2/
+    - Copy the installed GeoLite2-City.mmdb file under geolite folder
+
+  #### 3. Create virtual environments
     - $ python3 -m venv ./
 
-  #### 3. Activate virtual environments
+  #### 4. Activate virtual environments
     - $ source ./bin/activate
 
-  #### 4. Install requirements modules
+  #### 5. Install requirements modules
     - $ pip3 install -r requirements.txt
 
-  #### 5. Enjoy
+  #### 6. Enjoy
     - $ python3 routes.py
