@@ -114,14 +114,7 @@ function findClosestValue (num, array) {
 function onSelectAllData() {
     var timeStampInS = getCurrentTimestamp();
     var timestamp = getTimestamp();
-
-    var extendable_box = document.getElementsByClassName('jumbo')[0];
-    extendable_box.style.animationName = 'slide_up'; 
-    extendable_box.style.animationDuration = '800ms';
-    extendable_box.style.height = '250px';
-    $('#slider_container').fadeOut('fast');
-
-    setLoadingText('Analysing all data');
+    setLoadingText('Analysing all data...');
     displayGuideText('All data selected. Choose your desired visualized item on top. <b>IT MAY TAKE SOME TIME!</b>');
     console.log(timestamp);
     sendDataToServer(0,timestamp.length,timeStampInS);
@@ -140,15 +133,9 @@ function showGraphOptions() {
 
 function openSelectMenu() {
     var timestamp = getTimestamp();
-    setLoadingText('Analysing the selected data');
-    displayGuideText('Select the time range of your desired section and');
-
-    var extendable_box = document.getElementsByClassName('jumbo')[0];
-    extendable_box.style.animationName = 'slide_down'; 
-    extendable_box.style.animationDuration = '600ms';
-    extendable_box.style.height = '450px';
-    $('#slider_container').fadeIn('slow');
-
+    setLoadingText('Analysing the selected data...');
+    displayGuideText('Select the time range of your desired section and submit');
+    displayOrHideOption();
     createDragOption(timestamp[0], timestamp[timestamp.length - 1]);
     // var option = document.getElementById('slider_container');
     // option.style.display = 'block';
@@ -170,4 +157,21 @@ function displayGuideText(text) {
 function setLoadingText(text) {
     var loading_text = document.getElementsByClassName('loading_text')[0];
     loading_text.innerHTML = text;
+}
+
+function displayOrHideOption() {
+    var extendable_box = document.getElementsByClassName('jumbo')[0];
+    if(extendable_box.style.height === '450px'){
+        displayGuideText('');
+        extendable_box.style.animationName = 'slide_up'; 
+        extendable_box.style.animationDuration = '800ms';
+        extendable_box.style.height = '250px';
+        $('#slider_container').fadeOut('fast');
+    }
+    else{
+        extendable_box.style.animationName = 'slide_down'; 
+        extendable_box.style.animationDuration = '600ms';
+        extendable_box.style.height = '450px';
+        $('#slider_container').fadeIn('slow');
+    }
 }

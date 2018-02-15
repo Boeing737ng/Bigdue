@@ -160,3 +160,7 @@ h3 {
 #select_time:hover{
   cursor: pointer;
 }
+
+#guide_text{
+  height: 15px;
+}
