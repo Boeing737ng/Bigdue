@@ -13,7 +13,6 @@ function sendDataToServer(first_value, last_value ,timestamp) {
         first_value = 0;
     }
     localStorage.setItem("current_timestamp",timestamp);
-    console.log("main: " + timestamp);
     var script_root = getScriptRoot();
     $.getJSON(script_root + '/', {
         first: first_value,
@@ -44,7 +43,6 @@ function createDragOption(min, max) {
     convertToolTipText();
     slider.noUiSlider.on('set', function( values, handle ) {
         var timestamp = document.getElementsByClassName('noUi-tooltip');
-        console.log(values + ',' + handle);
         value_arr = String(values).split(',');
         if(handle === 0){
             timestamp[0].innerHTML = convertTimestamp(parseFloat(value_arr[0]));
@@ -116,7 +114,6 @@ function onSelectAllData() {
     var timestamp = getTimestamp();
     setLoadingText('Analysing all data...');
     displayGuideText('All data selected. Choose your desired visualized item on top. <b>IT MAY TAKE SOME TIME!</b>');
-    console.log(timestamp);
     sendDataToServer(0,timestamp.length,timeStampInS);
 }
 

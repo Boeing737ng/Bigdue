@@ -10,7 +10,7 @@
 }
 .osahanloading {
     /*animation: osahanloading 1.5s linear 0s normal none infinite running;*/
-    animation: osahanloading 20s linear forwards 0s;
+    animation: osahanloading 2s linear forwards infinite 0s;
     background: #fed37f none repeat scroll 0 0;
     border-radius: 50px;
     height: 30px;
@@ -23,7 +23,7 @@
 }
 .osahanloading::after {
     /*animation: osahanloading_after 1.5s linear 0s normal none infinite running;*/
-    animation: osahanloading_after 20s linear forwards 0s;
+    animation: osahanloading_after 3s linear forwards infinite 0s;
     border-color: #85d6de transparent;
     border-radius: 80px;
     border-style: solid;
@@ -43,12 +43,12 @@
     }
     50% {
         background: #85d6de none repeat scroll 0 0;
-        -webkit-transform: rotate(2160deg);
-        transform: rotate(2160deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
     100% {
-        -webkit-transform: rotate(4320deg);
-        transform: rotate(4320deg);
+        -webkit-transform: rotate(720deg);
+        transform: rotate(720deg);
     }
 }
 
