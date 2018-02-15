@@ -30,7 +30,7 @@ function createDragOption(min, max) {
     var timestamp = getTimestamp();
     var slider = document.getElementById('slider');
     var updateSliderValue = document.getElementById('value');
-    slider.style.width = '60%';
+    slider.style.width = '75%';
     slider.style.margin = 'auto';
     noUiSlider.create(slider, {
         start: [parseInt(timestamp[0]), parseInt(timestamp[timestamp.length-1])],

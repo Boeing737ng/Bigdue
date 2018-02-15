@@ -140,11 +140,13 @@ h3 {
   text-align: center;
   margin: 100px 0 0 0;
 }
+.noUi-tooltip{
+  border-radius: 10px !important;
+}
 .noUi-handle:focus, .noUi-handle-lower:focus{
   outline: none;
 }
 #select_time{
-  width: 100px;
   width: 100px;
   height: 30px;
   margin-top: 40px;
