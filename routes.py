@@ -22,25 +22,25 @@ def get_csv_list():
 
 @app.route('/')
 def home():
-  timestamp_array = get_csv_list()
+  time = get_csv_list()
   
   first = request.args.get('first')
   last = request.args.get('last')
   timestamp = request.args.get('current_timestamp')
   
   if not timestamp == None:
-    print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
+    print(first + ", " + last + ", " + timestamp)
     maincsv.main([first, last, timestamp])
-
-  return render_template('home.html', title = 'Main', timestamp = timestamp_array)
+    
+  return render_template('home.html', title = 'Main', accessRoot = time)
 
 @app.route('/graph')
 def graph():
-  return render_template('graph.html', title = 'Graph')
+  return render_template('graph.html')
 
 @app.route('/map')
 def map():
-  return render_template('map.html', title = 'Map')
+  return render_template('map.html', title = 'Map', accessRoot = 'time')
 
 @app.route('/bubble')
 def bubble():
@@ -60,6 +60,7 @@ if __name__ == '__main__':
   t2.start()
   while True:
     if not t1.isAlive():
+      print("Program Exit")
       sys.exit(0)
     pass
   #app.run(debug=True)
