@@ -22,25 +22,25 @@ def get_csv_list():
 
 @app.route('/')
 def home():
-  time = get_csv_list()
+  timestamp_array = get_csv_list()
   
   first = request.args.get('first')
   last = request.args.get('last')
   timestamp = request.args.get('current_timestamp')
   
   if not timestamp == None:
-    print(first + ", " + last + ", " + timestamp)
+    print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
     maincsv.main([first, last, timestamp])
     
-  return render_template('home.html', title = 'Main', accessRoot = time)
+  return render_template('home.html', title = 'Main', timestamp = timestamp_array)
 
 @app.route('/graph')
 def graph():
-  return render_template('graph.html')
+  return render_template('graph.html', title = 'Graph')
 
 @app.route('/map')
 def map():
-  return render_template('map.html', title = 'Map', accessRoot = 'time')
+  return render_template('map.html', title = 'Map')
 
 @app.route('/bubble')
 def bubble():
