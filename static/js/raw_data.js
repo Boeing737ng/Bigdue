@@ -20,5 +20,5 @@ function readPackets(timestamp, container) {
         error: function (error) {
           console.log(error)
         }
-      }).done(addCountry);
+      });
 }
