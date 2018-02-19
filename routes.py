@@ -34,6 +34,11 @@ def home():
     
   return render_template('home.html', title = 'Main', timestamp = timestamp_array)
 
+@app.route('/raw_data')
+def rawData():
+  timestamp_array = get_csv_list()
+  return render_template('raw_data.html', title = 'Raw Data', timestamp = timestamp_array)
+
 @app.route('/graph')
 def graph():
   return render_template('graph.html', title = 'Graph')

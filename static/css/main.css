@@ -163,3 +163,8 @@ h3 {
 #guide_text{
   height: 15px;
 }
+#raw_packets{
+  width: 600px;
+  margin-left: 200px;
+  text-align: left;
+}
