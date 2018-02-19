@@ -37,7 +37,7 @@
     - $ python -m venv ./
 
   #### 4. Download and copy WinPcap Devs files to venv
-    - Copy all the file in the "Include" folder which is in "Winpcap dev pack" and paste to "Include" folder in ROOT directory
+    - Copy all the file in the "Include" folder which is in "Winpcap dev pack" and paste to "Include" folder in project root directory
     - Copy Packet.lib and wpcap.lib in Winpcap dev pack/"Lib" and paste to "Lib" folder. If you are using 64bits, copy the file from x64 folder
     
   #### 5. Activate virtual environments
