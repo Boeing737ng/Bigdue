@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, jsonify
 from threading import Thread
 from app.bigdue_app import main
 from app.bigdue_app import Export_csv_file
+from app.bigdue_app import WiresharkParsing
 from app.makecsv import main as maincsv
 from app.makecsv import Read_packet
 
@@ -16,7 +17,7 @@ def get_csv_list():
   for file in os.listdir(file_path):
     if file.endswith('.csv'):
         csvlist.append(file)
-
+  s = WiresharkParsing.main()
   csvlist.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
   return csvlist
 

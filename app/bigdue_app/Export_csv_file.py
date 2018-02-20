@@ -22,6 +22,8 @@ class Export_csv_file:
             os.mkdir(data_root)
         if not(os.path.isdir(data_root + "packet/")):
             os.mkdir(data_root + "packet/")
+        if not(os.path.isdir(data_root + "wireshark/")):
+            os.mkdir(data_root + "wireshark/")
 
         self.write_packet = Write_packet.Write_packet()
 
@@ -45,6 +47,9 @@ class Export_csv_file:
             self.file_name = str(time.time()).split('.')[0]
 
     def write_csv_file(self, file_name=None):
-            self.create_folder(file_name)
+        self.create_folder(file_name)
+        if file_name == None:
             self.write_packet.write_packet(self.file_name, self.data)
-            self.data = list()
+        else:
+            self.write_packet.write_wireshark_packet(self.file_name, self.data)
+        self.data = list()
