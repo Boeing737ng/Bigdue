@@ -168,3 +168,10 @@ h3 {
   margin-left: 200px;
   text-align: left;
 }
+
+.helper_text{
+  text-align: right;
+  margin-right: 50px;
+  font-weight: 300;
+  text-decoration: unset;
+}
