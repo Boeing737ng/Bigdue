@@ -16,6 +16,18 @@
       var converted_array =  array.replace(/'/g, '"');
       return JSON.parse(converted_array);
     }
+    function getWiresharkFiles(){
+      var array = "{{ wiresharkfiles | safe }}";
+      var converted_array =  array.replace(/'/g, '"');
+      console.log(array)
+      return JSON.parse(converted_array);
+    }
+    function getPcapFiles(){
+      var array = "{{ pcapfilelist | safe }}";
+      var converted_array =  array.replace(/'/g, '"');
+      console.log(array)
+      return JSON.parse(converted_array);
+    }
     function getScriptRoot() {
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
       return $SCRIPT_ROOT;
