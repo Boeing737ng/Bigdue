@@ -11,4 +11,4 @@ function ctrl_c() {
 }
 
 mkdir -p data
-tcpdump -i any -C 1024 -w data/`date -u +%s_%N`.pcap
+tcpdump -i any -C 1024 -w data/`date -u +%s_%N`.pcap ip
