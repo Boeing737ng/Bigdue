@@ -25,8 +25,8 @@ def main():
     csv_file = Export_csv_file.Export_csv_file()
     
     wireshark_file_list = get_pcap_list()
-    for wireshark_file_name in wireshark_file_list:
-        print(wireshark_file_name)
+    if wireshark_file_list:
+        print('static/wiresharkFolder/ : '+str(wireshark_file_list))
 
     file_path = os.getcwd()+'/static/wiresharkFolder/'
     for wireshark_file_name in wireshark_file_list:
@@ -36,7 +36,6 @@ def main():
                 retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
                 if not(None in retrieved_data.values()):
                     csv_file.feed(retrieved_data)
-            print(wireshark_file_name.split('.pcap')[0])
             csv_file.write_csv_file(wireshark_file_name.split('.pcap')[0])
 
 if __name__ == '__main__':

@@ -21,10 +21,20 @@ def get_csv_list():
   csvlist.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
   return csvlist
 
+def get_wireshark_list():
+  csvlist = list()
+  file_path = os.getcwd()+'/static/data/wireshark/'
+  for file in os.listdir(file_path):
+    if file.endswith('.csv'):
+        csvlist.append(file)
+  s = WiresharkParsing.main()
+  csvlist.sort(key=lambda f: str(''.join(filter(str.isalpha, f))))
+  return csvlist
+
 @app.route('/')
 def home():
   timestamp_array = get_csv_list()
-  
+  print('static/data/wireshark/ : '+str(get_wireshark_list()))
   first = request.args.get('first')
   last = request.args.get('last')
   timestamp = request.args.get('current_timestamp')
