@@ -30,6 +30,7 @@ def main():
     try:
         for timestamp, read_data in read_whole_packet:
             retrieved_data = manipulated_packet.retrieve_data(timestamp, read_data)
+            print(read_data)
             if not(None in retrieved_data.values()):
                 csv_file.feed(retrieved_data)
                 i = i+1
