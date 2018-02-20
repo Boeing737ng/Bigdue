@@ -18,6 +18,11 @@ try:
 except ImportError:
     from app.makecsv import Write_map
 
+try:
+    import Write_time
+except ImportError:
+    from app.makecsv import Write_time
+
 import sys
 
 def main(argv):
@@ -29,6 +34,7 @@ def main(argv):
     write_graph = Write_graph.Write_graph()
     write_map = Write_map.Write_map()
     write_distance = Write_distance.Write_distance()
+    write_time = Write_time.Write_time()
 
     data = read_packet.read_packet(argv[0], argv[1])
 
@@ -42,6 +48,9 @@ def main(argv):
             
     write_distance.write_map_edge_distance_count(duplicate_map_edge, filename)
     write_distance.write_map_edge_distance_size(data, filename)
+
+    write_time.write_time_src(data, filename)
+    write_time.write_time_dst(data, filename)
 
 if __name__ == '__main__':
     sys.exit(main())
