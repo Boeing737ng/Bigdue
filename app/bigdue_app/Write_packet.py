@@ -39,7 +39,8 @@ class Write_packet:
                 'dst_ipaddress',
                 'dst_port',
                 'packet_size'])
-            print("wireshar/"+file_name+" : "+str(len(data))+" packet write")
+                 
+            print("wireshark/"+file_name+" : "+str(len(data))+" packet write")
             
             for row in data:
                 writer.writerow(

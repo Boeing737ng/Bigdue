@@ -47,8 +47,8 @@ class Export_csv_file:
             self.file_name = str(time.time()).split('.')[0]
 
     def write_csv_file(self, file_name=None):
+        self.create_folder(file_name)
         if file_name == None:
-            self.create_folder(file_name)
             self.write_packet.write_packet(self.file_name, self.data)
         else:
             self.write_packet.write_wireshark_packet(self.file_name, self.data)
