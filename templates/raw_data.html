@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div id="raw_packets"></div>
+
+    <script type=text/javascript>
+        function getTimestamp(){
+            var array = "{{ timestamp | safe }}";
+            var converted_array =  array.replace(/'/g, '"');
+            return JSON.parse(converted_array);
+        }
+    </script>
+{% endblock %}
+ 

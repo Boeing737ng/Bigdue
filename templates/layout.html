@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Bigdue</title>    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
     <link href="../static/css/vis-network.css" rel="stylesheet" type="text/css" />
     <!-- AmCharts CSS -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="../static/css/timeGraph.css">
     <link rel="stylesheet" href="../static/css/nouislider.min.css">
     <link rel="stylesheet" href="../static/css/loading.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <!-- Prevent 404 favicon error -->
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   </head>
   <body>
     <header>
@@ -20,7 +23,8 @@
       <strong><nav>
         <ul class="menu">
           <li><a onclick="showLoading();" href="{{ url_for('home') }}">Home</a></li>
-          <li><a onclick="showLoading();" href="{{ url_for('graph') }}">Graph</a></li>
+          <li><a onclick="showLoading();" href="{{ url_for('rawData') }}">Raw Packets</a></li>
+          <!-- <li><a onclick="showLoading();" href="{{ url_for('graph') }}">Graph</a></li> -->
           <li><a onclick="showLoading();" href="{{ url_for('map') }}">Map</a></li>
           <li><a onclick="showLoading();" href="{{ url_for('bubble') }}">Bubble</a></li>
           <li><a onclick="showLoading();" href="{{ url_for('timeGraph') }}">Time-Graph</a></li>
@@ -58,5 +62,6 @@
     <script type="text/javascript" src="../static/js/graph.js"></script>
     <script type="text/javascript" src="../static/js/bubble.js"></script>
     <script type="text/javascript" src="../static/js/timeGraph.js"></script>
+    <script type="text/javascript" src="../static/js/raw_data.js"></script>
   </body>
 </html>

@@ -1,20 +1,21 @@
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
-
-var format = d3.format(",d");
-
-var color = d3.scaleOrdinal(d3.schemeCategory20c);
-
-var file_root = 'static/data/graph/';
-var pack = d3.pack()
-    .size([width, height])
-    .padding(1.5);
-
 
 $(document).ready(function() {
   if (window.location.pathname == '/bubble') {
     hideLoading();
+
+    var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+    var format = d3.format(",d");
+
+    var color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+    var file_root = 'static/data/graph/';
+    var pack = d3.pack()
+        .size([width, height])
+        .padding(1.5);
+
     document.body.style.overflow = 'auto';
     var timeStamp = localStorage.getItem('current_timestamp');
     console.log("bubble:" + timeStamp);
@@ -44,12 +45,12 @@ $(document).ready(function() {
           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
     
           circle_node.append("circle")
-          .attr("node", function(d) { return d.node; })
+          .attr("id", function(d) { return d.node; })
           .attr("r", function(d) { return d.r; })
           .style("fill", function(d) { return color(d.package); });
     
           circle_node.append("clipPath")
-          .attr("node", function(d) { return "clip-" + d.node; })
+          .attr("id", function(d) { return "clip-" + d.node; })
         .append("use")
           .attr("xlink:href", function(d) { return "#" + d.node; });
     
@@ -58,12 +59,12 @@ $(document).ready(function() {
         .selectAll("tspan")
         .data(function(d) {
           return d.node.split(/(?=[A-Z][^A-Z])/g);
-           //return format(Math.pow(d.weight,2)).split(/(?=[A-Z][^A-Z])/g); 
+           //return format(Math.pow(d.weight,2)).split(/(?=[A-Z][^A-Z])/g);
           })
         .enter().append("tspan")
           .attr("x", 0)
           .attr("y", function(d, i, circle_nodes) { return 13 + (i - circle_nodes.length / 2 - 0.5) * 10; })
-          .text(function(d) { 
+          .text(function(d) {
             return d; 
           });
     
