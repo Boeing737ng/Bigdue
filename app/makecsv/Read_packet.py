@@ -48,6 +48,9 @@ class Read_packet:
         if not(os.path.isdir(data_root + "/map")):
             print("create static/data/map folder")
             os.mkdir(data_root + "map/")
+        if not(os.path.isdir(data_root + "/time")):
+            print("create static/data/time folder")
+            os.mkdir(data_root + "time/")
 
     def get_csv_file_list(self):
         file_path = os.getcwd()+'/static/data/packet/'
