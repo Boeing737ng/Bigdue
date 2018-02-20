@@ -17,7 +17,7 @@ def get_csv_list():
   for file in os.listdir(file_path):
     if file.endswith('.csv'):
         csvlist.append(file)
-  s = WiresharkParsing.main()
+
   csvlist.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
   return csvlist
 
@@ -27,14 +27,25 @@ def get_wireshark_list():
   for file in os.listdir(file_path):
     if file.endswith('.csv'):
         csvlist.append(file)
-  s = WiresharkParsing.main()
+
   csvlist.sort(key=lambda f: str(''.join(filter(str.isalpha, f))))
   return csvlist
+
+def get_pcap_list():
+    pacplist = list()
+    file_path = os.getcwd()+'/static/wiresharkFolder/'
+    for file in os.listdir(file_path):
+        if file.endswith('.pcap'):
+            pacplist.append(file)
+
+    pacplist.sort(key=lambda f: str(''.join(filter(str.isalpha, f))))
+    return pacplist
 
 @app.route('/')
 def home():
   timestamp_array = get_csv_list()
-  print('static/data/wireshark/ : '+str(get_wireshark_list()))
+  wireshark_list = get_wireshark_list()
+  pcap_list = get_pcap_list()
   first = request.args.get('first')
   last = request.args.get('last')
   timestamp = request.args.get('current_timestamp')
@@ -43,7 +54,7 @@ def home():
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
     maincsv.main([first, last, timestamp])
     
-  return render_template('home.html', title = 'Main', timestamp = timestamp_array)
+  return render_template('home.html', title = 'Main', timestamp = timestamp_array, pcapfilelist = pcap_list, wiresharkfiles = wireshark_list)
 
 @app.route('/raw_data')
 def rawData():
