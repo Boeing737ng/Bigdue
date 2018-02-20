@@ -4,6 +4,9 @@
 # MaxmindDB
 *.mmdb
 
+# pcap
+*.pcap
+
 # python venv
 **/bin
 **/include
