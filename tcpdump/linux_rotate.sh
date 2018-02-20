@@ -1,8 +1,7 @@
 #!/bin/bash
 
-SRCDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SRCDIR="$(dirname ${BASH_SOURCE[0]})"
 cd ${SRCDIR}
-
 
 trap ctrl_c INT
 
