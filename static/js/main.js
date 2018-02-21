@@ -256,6 +256,7 @@ function selectCSVFile() {
     }
     if(checkedValue.length > 0){
         var timestamp = getCurrentTimestamp();
+        setLoadingText('Analysing the selected data...');
         sendCSVDataToServer(checkedValue, timestamp);
     }
 }
