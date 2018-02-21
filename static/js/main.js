@@ -44,6 +44,7 @@ function sendCSVDataToServer(csv_files ,timestamp) {
         selected_csv: JSON.stringify(csv_files),
         current_timestamp: timestamp,
         success: function(){
+            showGraphOptions();
             console.log('files sent');
         }
     });
@@ -228,7 +229,7 @@ function createTableContent(array, type) {
 }
 
 function selectData() {
-    clearTableContent();
+    //clearTableContent();
     //var checkedValue = document.querySelector('.select_file:checked').value;
     var checkedValue = []; 
     var inputElements = document.getElementsByClassName('select_file_pcap');
