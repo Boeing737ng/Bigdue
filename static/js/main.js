@@ -196,7 +196,7 @@ function displayOrHideOption() {
 function displayPcapFile() {
     var pcap = getPcapFiles();
     if(pcap.length > 0) {
-        createTableContent(pcap, 'file');
+        createTableContent(pcap, 'pcap');
     }
 }
 
@@ -240,7 +240,7 @@ function selectData() {
     if(checkedValue.length > 0){
         sendPcapDataToServer(checkedValue);
     }
-    displayCSVFile();
+    //displayCSVFile();
 }
 
 function selectCSVFile() {

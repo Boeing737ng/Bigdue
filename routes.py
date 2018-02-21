@@ -61,7 +61,7 @@ def home():
   if not pcap == None:
     pcap_array = json.loads(pcap)
     WiresharkParsing.main(pcap_array)
-    # print(pcap_array)
+    print(pcap_array)
 
   if not csv == None:
     csv_array = json.loads(csv)

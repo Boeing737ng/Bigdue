@@ -190,12 +190,12 @@ h3 {
   display: inline-block;
 }
 
-#file_list, #csv_list{
+#pcap_list, #csv_list{
   border-collapse: collapse;
   width: 100%;
   margin: auto;
 }
-#file_list{
+#pcap_list{
   float: left;
 }
 #csv_list{
