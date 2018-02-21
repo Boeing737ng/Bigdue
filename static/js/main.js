@@ -257,6 +257,7 @@ function selectCSVFile() {
     if(checkedValue.length > 0){
         var timestamp = getCurrentTimestamp();
         setLoadingText('Analysing the selected data...');
+        displayGuideText('All data selected. Choose your desired visualized item on top. <b>IT MAY TAKE SOME TIME!</b>');
         sendCSVDataToServer(checkedValue, timestamp);
     }
 }
