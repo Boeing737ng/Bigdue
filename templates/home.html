@@ -11,9 +11,15 @@
     </div>
   </div>
   <div id="file_selector">
-    <table id="file_list"></table>
+    <div class="file_list_wrapper">
+      <table id="file_list"></table>
+      <button onclick="selectData();">Convert To CSV</button>
+    </div>
+    <div class="csv_list_wrapper">
+      <table id="csv_list"></table>
+      <button onclick="selectCSVFile();">SELECT</button>
+    </div>
   </div>
-  <button onclick="selectData();">SELECT</button>
   <script type=text/javascript>
     function getTimestamp(){
       var array = "{{ timestamp | safe }}";

@@ -54,11 +54,18 @@ def home():
 
   # value from JS for selected .pcap files
   pcap = request.args.get('pcap')
+
+  # value from JS for selected .csv files
+  csv = request.args.get('selected_csv')
   
   if not pcap == None:
     pcap_array = json.loads(pcap)
     WiresharkParsing.main(pcap_array)
     # print(pcap_array)
+
+  if not csv == None:
+    csv_array = json.loads(csv)
+    print(csv_array)
 
   if not timestamp == None:
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)

@@ -3,6 +3,8 @@ $(document).ready(function() {
     var menu = document.getElementsByClassName('menu')[0];
     if (window.location.pathname == '/') {
         menu.style.display = 'none';
+        displayPcapFile();
+        displayCSVFile();
     }else{
         menu.style.display = 'block';
     }
@@ -30,7 +32,17 @@ function sendPcapDataToServer(pcap_files) {
     $.getJSON(script_root + '/', {
         pcap: JSON.stringify(pcap_files),
         success: function(){
-            console.log(pcap_files);
+            console.log('files sent');
+        }
+    });
+    return false;
+}
+
+function sendCSVDataToServer(csv_files) {
+    var script_root = getScriptRoot();
+    $.getJSON(script_root + '/', {
+        selected_csv: JSON.stringify(csv_files),
+        success: function(){
             console.log('files sent');
         }
     });
@@ -183,33 +195,42 @@ function displayOrHideOption() {
 function displayPcapFile() {
     var pcap = getPcapFiles();
     if(pcap.length > 0) {
-        createTableContent(pcap);
+        createTableContent(pcap, 'file');
     }
 }
 
-function createTableContent(pcap_array) {
-    var container = document.getElementById('file_list');
-    for(var i = 0; i < pcap_array.length; i++){
+function displayCSVFile() {
+    var csv = getWiresharkFiles();
+    if(csv.length > 0) {
+        createTableContent(csv, 'csv');
+    }
+}
+
+function createTableContent(array, type) {
+    var newType = type + '_list';
+    var container = document.getElementById(newType);
+    for(var i = 0; i < array.length; i++){
         var row = document.createElement('tr');
         var col_input = document.createElement('td');
         var col_file = document.createElement('td');
         var select = document.createElement('input');
         select.setAttribute('type', 'checkbox');
-        select.setAttribute('value', pcap_array[i]);
-        select.className = 'select_file';
+        select.setAttribute('value', array[i]);
+        select.className = 'select_file_' + type;
 
-        col_file.innerHTML = pcap_array[i];
+        col_file.innerHTML = array[i];
         col_input.appendChild(select);
         row.appendChild(col_input);
         row.appendChild(col_file);
         container.appendChild(row);
     }
 }
-displayPcapFile();
+
 function selectData() {
+    clearTableContent();
     //var checkedValue = document.querySelector('.select_file:checked').value;
     var checkedValue = []; 
-    var inputElements = document.getElementsByClassName('select_file');
+    var inputElements = document.getElementsByClassName('select_file_pcap');
     for(var i=0; inputElements[i]; ++i){
         if(inputElements[i].checked){
             checkedValue.push(inputElements[i].value);
@@ -217,5 +238,27 @@ function selectData() {
     }
     if(checkedValue.length > 0){
         sendPcapDataToServer(checkedValue);
+    }
+    displayCSVFile();
+}
+
+function selectCSVFile() {
+    var checkedValue = []; 
+    var inputElements = document.getElementsByClassName('select_file_csv');
+    for(var i=0; inputElements[i]; ++i){
+        if(inputElements[i].checked){
+            checkedValue.push(inputElements[i].value);
+        }
+    }
+    if(checkedValue.length > 0){
+        sendCSVDataToServer(checkedValue);
+    }
+}
+
+function clearTableContent() {
+    var table = document.getElementById("csv_list");
+    // faster way to remove child elements
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
     }
 }

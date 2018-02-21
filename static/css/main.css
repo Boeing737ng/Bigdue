@@ -182,14 +182,24 @@ h3 {
 /********** PCAP Table **********/
 
 #file_selector{
-  width: 30%;
+  width: 50%;
   margin: 40px auto 0px;
 }
+.file_list_wrapper, .csv_list_wrapper{
+  width: 40%;
+  display: inline-block;
+}
 
-#file_list{
+#file_list, #csv_list{
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin: auto;
+}
+#file_list{
+  float: left;
+}
+#csv_list{
+  float: right;
 }
 
 td{
