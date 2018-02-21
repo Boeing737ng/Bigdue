@@ -38,10 +38,11 @@ function sendPcapDataToServer(pcap_files) {
     return false;
 }
 
-function sendCSVDataToServer(csv_files) {
+function sendCSVDataToServer(csv_files ,timestamp) {
     var script_root = getScriptRoot();
     $.getJSON(script_root + '/', {
         selected_csv: JSON.stringify(csv_files),
+        current_timestamp: timestamp,
         success: function(){
             console.log('files sent');
         }
@@ -251,7 +252,8 @@ function selectCSVFile() {
         }
     }
     if(checkedValue.length > 0){
-        sendCSVDataToServer(checkedValue);
+        var timestamp = getCurrentTimestamp();
+        sendCSVDataToServer(checkedValue, timestamp);
     }
 }
 

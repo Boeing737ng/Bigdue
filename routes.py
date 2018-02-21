@@ -66,8 +66,9 @@ def home():
   if not csv == None:
     csv_array = json.loads(csv)
     print(csv_array)
+    print(timestamp)
 
-  if not timestamp == None:
+  if not first == None:
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
     maincsv.main([first, last, timestamp])
     
