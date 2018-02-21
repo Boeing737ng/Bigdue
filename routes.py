@@ -65,12 +65,16 @@ def home():
 
   if not csv == None:
     csv_array = json.loads(csv)
-    print(csv_array)
-    print(timestamp)
+    print("file list : "+ str(csv_array) + " filename: " + timestamp)
+    maincsv.main([csv_array, timestamp])
+    print("----- All csv file writting end -----")
+    # print(csv_array)
+    # print(timestamp)
 
   if not first == None:
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
     maincsv.main([first, last, timestamp])
+    print("----- All csv file writting end -----")
     
   return render_template('home.html', title = 'Main', timestamp = timestamp_array, pcapfilelist = pcap_list, wiresharkfiles = wireshark_list)
 
