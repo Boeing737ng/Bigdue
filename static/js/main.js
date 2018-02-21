@@ -31,6 +31,7 @@ function sendPcapDataToServer(pcap_files) {
     var script_root = getScriptRoot();
     $.getJSON(script_root + '/', {
         pcap: JSON.stringify(pcap_files),
+        async: false,
         success: function(){
             console.log('files sent');
         }
@@ -39,6 +40,7 @@ function sendPcapDataToServer(pcap_files) {
 }
 
 function sendCSVDataToServer(csv_files ,timestamp) {
+    localStorage.setItem("current_timestamp",timestamp);
     var script_root = getScriptRoot();
     $.getJSON(script_root + '/', {
         selected_csv: JSON.stringify(csv_files),
