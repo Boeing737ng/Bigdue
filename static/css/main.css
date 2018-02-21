@@ -178,3 +178,20 @@ h3 {
   font-weight: 300;
   text-decoration: unset;
 }
+
+/********** PCAP Table **********/
+
+#file_selector{
+  width: 30%;
+  margin: 40px auto 0px;
+}
+
+#file_list{
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+
+td{
+  border: 1px solid gray;
+}

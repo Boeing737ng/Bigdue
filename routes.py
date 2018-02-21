@@ -46,10 +46,19 @@ def home():
   timestamp_array = get_csv_list()
   wireshark_list = get_wireshark_list()
   pcap_list = get_pcap_list()
+
+  # values from JS for selected timestamp
   first = request.args.get('first')
   last = request.args.get('last')
   timestamp = request.args.get('current_timestamp')
+
+  # value from JS for selected .pcap files
+  pcap = request.args.get('pcap')
   
+  if not pcap == None:
+    pcap_array = json.loads(pcap)
+    print(pcap_array)
+
   if not timestamp == None:
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
     maincsv.main([first, last, timestamp])

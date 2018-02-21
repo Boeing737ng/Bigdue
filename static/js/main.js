@@ -25,6 +25,18 @@ function sendDataToServer(first_value, last_value ,timestamp) {
     return false;
 }
 
+function sendPcapDataToServer(pcap_files) {
+    var script_root = getScriptRoot();
+    $.getJSON(script_root + '/', {
+        pcap: JSON.stringify(pcap_files),
+        success: function(){
+            console.log(pcap_files);
+            console.log('files sent');
+        }
+    });
+    return false;
+}
+
 function createDragOption(min, max) {
     var timestamp = getTimestamp();
     var slider = document.getElementById('slider');
@@ -165,5 +177,45 @@ function displayOrHideOption() {
         extendable_box.style.animationDuration = '600ms';
         extendable_box.style.height = '450px';
         $('#slider_container').fadeIn('slow');
+    }
+}
+
+function displayPcapFile() {
+    var pcap = getPcapFiles();
+    if(pcap.length > 0) {
+        createTableContent(pcap);
+    }
+}
+
+function createTableContent(pcap_array) {
+    var container = document.getElementById('file_list');
+    for(var i = 0; i < pcap_array.length; i++){
+        var row = document.createElement('tr');
+        var col_input = document.createElement('td');
+        var col_file = document.createElement('td');
+        var select = document.createElement('input');
+        select.setAttribute('type', 'checkbox');
+        select.setAttribute('value', pcap_array[i]);
+        select.className = 'select_file';
+
+        col_file.innerHTML = pcap_array[i];
+        col_input.appendChild(select);
+        row.appendChild(col_input);
+        row.appendChild(col_file);
+        container.appendChild(row);
+    }
+}
+displayPcapFile();
+function selectData() {
+    //var checkedValue = document.querySelector('.select_file:checked').value;
+    var checkedValue = []; 
+    var inputElements = document.getElementsByClassName('select_file');
+    for(var i=0; inputElements[i]; ++i){
+        if(inputElements[i].checked){
+            checkedValue.push(inputElements[i].value);
+        }
+    }
+    if(checkedValue.length > 0){
+        sendPcapDataToServer(checkedValue);
     }
 }

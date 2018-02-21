@@ -10,6 +10,10 @@
       <button id="select_time" onclick="getSelectedData();">SUBMIT</button>
     </div>
   </div>
+  <div id="file_selector">
+    <table id="file_list"></table>
+  </div>
+  <button onclick="selectData();">SELECT</button>
   <script type=text/javascript>
     function getTimestamp(){
       var array = "{{ timestamp | safe }}";
