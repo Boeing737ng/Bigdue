@@ -57,7 +57,8 @@ def home():
   
   if not pcap == None:
     pcap_array = json.loads(pcap)
-    print(pcap_array)
+    WiresharkParsing.main(pcap_array)
+    # print(pcap_array)
 
   if not timestamp == None:
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)

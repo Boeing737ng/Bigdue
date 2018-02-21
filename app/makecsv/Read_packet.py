@@ -5,6 +5,7 @@ class Read_packet:
     
     def __init__(self):
         self.dirpath = 'static/data/packet/'
+        self.wireshark_dirpath = 'static/data/wireshark/'
         self.packet_list = []
         
         self.create_folder()
@@ -16,6 +17,24 @@ class Read_packet:
         print('packets reading start')
         for csvs in self.csvlist[int(start):int(end)]:
             with open(self.dirpath+csvs, encoding = 'utf-8') as csvfile:
+                spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+                for row in list(spamreader)[1:]:
+                    packets = row[0].split(',')
+                    self.packet_list.append({
+                        'timestamp' : packets[0],
+                        'src_ipaddress' : packets[1],
+                        'src_port' : packets[2],
+                        'dst_ipaddress' : packets[3],
+                        'dst_port' : packets[4],
+                        'packet_size' : packets[5]})
+
+        print('read '+str(len(self.packet_list))+'packets')
+        return self.packet_list
+
+    def wireshark_read_packet(self, data):
+        print('wireshark packets reading start')
+        for csvs in data:
+            with open(self.wireshark_dirpath+csvs, encoding = 'utf-8') as csvfile:
                 spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
                 for row in list(spamreader)[1:]:
                     packets = row[0].split(',')

@@ -26,17 +26,25 @@ except ImportError:
 import sys
 
 def main(argv):
-    start = int(argv[0])
-    end = int(argv[1])
-    filename = argv[2]
+    argv_len = len(argv)
+    if argv_len is 3:
+        start = int(argv[0])
+        end = int(argv[1])
+        filename = argv[2]
+    elif argv_len is 2:
+        filelist = argv[0]
+        filename = argv[1]
+        
     read_packet = Read_packet.Read_packet()
 
     write_graph = Write_graph.Write_graph()
     write_map = Write_map.Write_map()
     write_distance = Write_distance.Write_distance()
     write_time = Write_time.Write_time()
-
-    data = read_packet.read_packet(argv[0], argv[1])
+    if argv_len is 3:
+        data = read_packet.read_packet(start, end)
+    elif argv_len is 2:
+        data = read_packet.wireshark_read_packet(filelist)
 
     graph_node = write_graph.write_graph_node(data, filename)
     graph_edge = write_graph.write_graph_edge(data, filename)

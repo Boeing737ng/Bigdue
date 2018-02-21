@@ -20,16 +20,17 @@ def get_pcap_list():
     pacplist.sort(key=lambda f: str(''.join(filter(str.isalpha, f))))
     return pacplist
 
-def main():
+def main(argvs):
     manipulated_packet = ManipulatePackets.ManipulatePackets()
     csv_file = Export_csv_file.Export_csv_file()
     
-    wireshark_file_list = get_pcap_list()
+    wireshark_file_list = argvs
     if wireshark_file_list:
         print('static/wiresharkFolder/ : '+str(wireshark_file_list))
 
     file_path = os.getcwd()+'/static/wiresharkFolder/'
     for wireshark_file_name in wireshark_file_list:
+        print("write start "+wireshark_file_name)
         with open(file_path + wireshark_file_name, 'rb') as f:
             pcap = dpkt.pcap.Reader(f)
             for timestamp, read_data in pcap:
