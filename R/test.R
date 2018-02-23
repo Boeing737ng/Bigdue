@@ -36,6 +36,8 @@ correlation
 write.csv(correlation, "C:/Users/Hanul-Park/Desktop/Bigdue/Bigdue/static/data/correlation_coefficient.csv")
 
 
+
+
 install.packages ("dplyr")
 install.packages ("ggplot2")
 install.packages ("reshape2")
@@ -44,15 +46,13 @@ library(ggplot2)
 library(reshape2)
 
 
-# setwd("C:/Users/Hanul-Park/Desktop/테스트결과/고석규/distance")
+
+
+# 1
 setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
 t <- list.files()
-t
 
-l <- c()
-l2 <- c()
-par(new=T)
-
+df <- data.frame()
 
 for (name in t) {
   setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
@@ -65,56 +65,155 @@ for (name in t) {
   packet <- toString(packet[2])
   packet <- read.csv(file = packet)
   
-  str(packet)
-  packet <- packet[order(packet$rtt),]
+  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
   
-  outlier<-packet
-  cumulative_frequencies <- mutate(outlier, cum_frequency=cumsum(outlier$size))
-  cumulative_frequencies  
+  df <- rbind(df, packet)
+}
+# write.csv(df, "C:/Users/Hanul-Park/Documents/카카오톡 받은 파일/merge.csv")
+# str(df)
+# par( mfrow =c(1, 2))
+
+plot(x = df$rtt, y = df$distance, xlab ="RTT",
+     ylab ="Distance", main ="RTT x Distance")
+
+# lm(종속변수~독립변수)
+res = lm(df$distance~df$rtt)
+abline(res, col = "red")
+
+
+# 2
+setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+t <- list.files()
+
+df <- data.frame()
+
+for (name in t) {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  print(paste0(getwd(),"/",name,"/","distance"))
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
   
-  cumulative_frequencies <- mutate(cumulative_frequencies, 
-                                   percentage
-                                   =cumulative_frequencies$cum_frequency / 
-                                     sum(cumulative_frequencies$size))
+  packet <- list.files(pattern = "*.csv")
+  packet <- strsplit(packet, " ")
+  packet <- toString(packet[2])
+  packet <- read.csv(file = packet)
   
-  cumulative_frequencies <- rbind(c(0,0,0,0,0,0,0,0,0), cumulative_frequencies)
-  cumulative_frequencies
+  # packet <- packet[(packet$size <= 1000)&(packet$size > 0) ,]
+  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
   
-  l <- c(l, name)
-  l2 <- c(l2, cumulative_frequencies)
-  plot(x = cumulative_frequencies$rtt, y = cumulative_frequencies$percetage, type = "l")
-  # lines(x = cumulative_frequencies$rtt, y = cumulative_frequencies$percetage)
+  df <- rbind(df, packet)
 }
 
+# str(df)
+# par( mfrow =c(1, 2))
+# plot(x = df$rtt, y = df$distance, xlab ="RTT",
+#      ylab ="Distance", main ="RTT x Distance")
+plot(x = df$rtt, y = df$size, xlab ="RTT",
+     ylab ="Size", main ="RTT x Size")
 
-legend_detail <- c("Foreign User"="#f04546", "Local User"="#3591d1") #red
-ggplot() +
-  #  geom_step(data=cumulative_frequencies2, aes(x=rtt, y=percentage, color="Local User"))  +
+res = lm(df$size~df$rtt)
+abline(res)
+
+
+
+
+# 3
+setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+file_list <- list.files()
+
+df <- data.frame()
+
+for (name in file_list) {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  print(paste0(getwd(),"/",name,"/","distance"))
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
   
-  geom_step(data=cumulative_frequencies, aes(x=rtt, y=percentage, color="Foreign User"))  +
+  packet <- list.files(pattern = "*.csv")
+  packet <- strsplit(packet, " ")
+  packet <- toString(packet[2])
+  packet <- read.csv(file = packet)
   
-  labs(x="RTT(ms)", y="Packet Size(%)", title="CDF of RTT vs Packet Size [1 Millon Packets]\n")+
-  scale_color_manual(name="Index\n", values=legend_detail)+
-  theme(plot.title = element_text(hjust = 0.5))+xlim(0,0.34)
+  # packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
+  
+  df <- rbind(df, packet)
+}
+
+# str(packet)
+# df <- df[order(df$rtt),]
+df <- df[order(df$distance),]
+df
+
+outlier<-df
+cumulative_frequencies <- mutate(outlier, cum_frequency=cumsum(outlier$size))
+cumulative_frequencies  
+cumulative_frequencies <- mutate(cumulative_frequencies, 
+                                 percentage
+                                 =cumulative_frequencies$cum_frequency / 
+                                   sum(cumulative_frequencies$size))
+
+cumulative_frequencies <- rbind(c(0,0,0,0,0,0,0,0,0), cumulative_frequencies)
+cumulative_frequencies
 
 
-plot(cumulative_frequencies$rtt, cumulative_frequencies$distance,
-     xlim = c(0,0.3),
-     ylim = c(0,16000),
-     xlab="RTT",
-     ylab="Distance",
-     main="Relationship between RTT & Distance (Foreigner Group)")
-RTTs<-cumulative_frequencies$rtt
-Dis<-cumulative_frequencies$distance
-cor(Dis, RTTs, method=c("pearson"))
+# plot(x = cumulative_frequencies$rtt, y = cumulative_frequencies$percentage, xlab ="RTT(ms)",
+#      ylab ="Packet Size(%)", main ="CDF of RTT vs Packet Size [1 Millon Packets]\n", type = "l")
 
-plot(cumulative_frequencies$size, cumulative_frequencies$distance,
-     xlim = c(0,2000000),
-     ylim = c(0,16000),
-     xlab="Size",
-     ylab="Distance",
-     main="Relationship between Size & Distance")
+plot(x = cumulative_frequencies$distance, y = cumulative_frequencies$percentage, xlab ="Distance(km)",
+     ylab ="Packet Size(%)", main ="CDF of RTT vs Packet Size [1 Millon Packets]\n", type = "l")
+
+res = lm(cumulative_frequencies$percentage~cumulative_frequencies$distance)
+abline(res)
 
 
-cdf_fun <- ecdf(packet$distance)  
-plot(cdf_fun, xlab="RTT",  ylab="Fraction of Data",main="CDF")
+
+i <- 65
+alphabet  <- function(x) { rawToChar(as.raw(x)) }
+
+# 4
+setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+file_list <- list.files()
+
+# name_list <- c()
+# df <- data.frame()
+# par(new = T)
+par( mfrow =c(3, 5))
+# par( mfrow =c(1, 1))
+
+for (name in file_list) {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  print(paste0(getwd(),"/",name,"/","distance"))
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
+  
+  packet <- list.files(pattern = "*.csv")
+  packet <- strsplit(packet, " ")
+  packet <- toString(packet[2])
+  packet <- read.csv(file = packet)
+  
+  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
+  packet <- packet[order(packet$distance),]
+  
+  # df <- packet
+  # name_list <- c(name_list, name)
+  
+  # packet <- cbind(packet, name)
+  # df <- rbind(df, packet)
+  
+  # par(new = T)
+  # plot(x = df$distance, y = df$rtt, col = df$name, type = "l")
+  
+  
+  
+  plot(x = packet$rtt, y = packet$distance, xlab ="RTT",
+       ylab ="Distance", type = "p", main = alphabet(i))
+  i <- i+1
+
+  # plot(x = packet$rtt, y = packet$size, xlab ="RTT",
+  #      ylab ="Size", type = "p", main = name)
+  
+  res = lm(packet$distance~packet$rtt)
+  # res = lm(packet$size~packet$rtt)
+  abline(res)
+}
+
