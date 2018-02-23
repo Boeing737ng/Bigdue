@@ -15,6 +15,10 @@ class Write_map:
         duplicate = {}
         for key, value in graph_node.items():
             geoloc = self.urlGeoloc.get_url_geoloc(key)
+            if geoloc['lat'] is None:
+                print("IP : "+key+" is not found address")
+                continue
+
             dup_key = str(geoloc['lat'])+','+str(geoloc['lng'])
             try:
                 duplicate[dup_key] = [geoloc['country'], geoloc['state'], geoloc['city']]
@@ -57,6 +61,10 @@ class Write_map:
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
+            
+            if (geoloc['lat'] is None) or (geoloc2['lat'] is None):
+                continue
+
             dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
