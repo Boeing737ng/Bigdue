@@ -68,8 +68,6 @@ def home():
     print("file list : "+ str(csv_array) + " filename: " + timestamp)
     maincsv.main([csv_array, timestamp])
     print("----- All csv file writting end -----")
-    # print(csv_array)
-    # print(timestamp)
 
   if not first == None:
     print("start: " + first + ", " + "end: " + last + ", " + "filename: " + timestamp)
@@ -112,4 +110,3 @@ if __name__ == '__main__':
       print("Program Exit")
       sys.exit(0)
     pass
-  #app.run(debug=True)
