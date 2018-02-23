@@ -7,6 +7,9 @@
 # pcap
 *.pcap
 
+# zip file
+*.zip
+
 # python venv
 **/bin
 **/include
