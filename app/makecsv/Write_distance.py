@@ -102,6 +102,10 @@ class Write_distance:
             splited = key.split(',')
             geoloc = self.urlGeoloc.get_url_geoloc(splited[0])
             geoloc2 = self.urlGeoloc.get_url_geoloc(splited[1])
+            
+            if (geoloc['lat'] is None) or (geoloc2['lat'] is None):
+                continue
+            
             dup_key = str(geoloc['lat']) + ',' + str(geoloc['lng']) + ',' + str(
                 geoloc2['lat']) + ',' + str(geoloc2['lng'])
             try:
