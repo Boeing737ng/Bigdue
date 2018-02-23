@@ -7,6 +7,9 @@
 # pcap
 *.pcap
 
+# zip file
+*.zip
+
 # python venv
 **/bin
 **/include
@@ -97,6 +100,10 @@ __pycache__/
 *.csv
 *.vscode
 *.pylintrc
+
+# zip files
+*.zip
+.zip
 
 #dependencies
 /node_modules
