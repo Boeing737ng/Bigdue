@@ -1,6 +1,7 @@
 from math import sin, cos, sqrt, atan2, radians
 
 class Calculate_distance:
+    
     def __init__(self):
         pass
 
@@ -22,7 +23,5 @@ class Calculate_distance:
 
         distance = R * c
 
-        # print("Result:", distance)
-        # print("Should be:", 278.546, "km")
         return distance
 
