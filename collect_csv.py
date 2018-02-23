@@ -3,12 +3,13 @@ import sys
 import os
 
 def main():
-    dirpath = 'static/data/packet/'
-    wireshark_dirpath = 'static/data/wireshark/'
+    data_root = 'static/data/'
+    dirpath = data_root+'packet/'
+    wireshark_dirpath = data_root+'wireshark/'
     file_name = input("file name : ")
     packet_list = list()
     csvlist = get_csv_list()
-
+    
     print(str(csvlist)+'csv reading start')
     for csvs in csvlist:
         with open(dirpath+csvs, encoding = 'utf-8') as csvfile:
