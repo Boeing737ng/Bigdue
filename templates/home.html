@@ -4,6 +4,7 @@
     <h2>Bigdue</h2>
     <button class="time_button" id="choose_time" name="choose_time" onclick="openSelectMenu();">SELECT TIME RANGE</button>
     <button class="time_button" id="show_data" name="show_data" onclick="onSelectAllData();">SELECT ALL DATA</button>
+    <button class="time_button" id="previous_data" name="previous_data" onclick="onLoadPreviosData();">LOAD PREVIOUS FILE</button>
     <p id="guide_text"></p>
     <div id="slider_container">
       <div id="slider"></div>
@@ -37,6 +38,10 @@
       var converted_array =  array.replace(/'/g, '"');
       console.log(array)
       return JSON.parse(converted_array);
+    }
+    function getPreviousFile(){
+      var filename = "{{ previousfile | safe }}";
+      return filename
     }
     function getScriptRoot() {
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};

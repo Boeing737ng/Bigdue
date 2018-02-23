@@ -41,12 +41,21 @@ def get_pcap_list():
     pacplist.sort(key=lambda f: str(''.join(filter(str.isalpha, f))))
     return pacplist
 
+def get_previous_file():
+  previousfile = ''
+  file_path = os.getcwd()+'/static/data/time'
+  for file in os.listdir(file_path):
+    if file.endswith('.csv'):
+      previousfile = file
+
+  return str(previousfile).split('_')[0]
+
 @app.route('/')
 def home():
   timestamp_array = get_csv_list()
   wireshark_list = get_wireshark_list()
   pcap_list = get_pcap_list()
-
+  previous_file_name = get_previous_file()
   # values from JS for selected timestamp
   first = request.args.get('first')
   last = request.args.get('last')
@@ -74,7 +83,7 @@ def home():
     maincsv.main([first, last, timestamp])
     print("----- All csv file writting end -----")
     
-  return render_template('home.html', title = 'Main', timestamp = timestamp_array, pcapfilelist = pcap_list, wiresharkfiles = wireshark_list)
+  return render_template('home.html', title = 'Main', timestamp = timestamp_array, pcapfilelist = pcap_list, wiresharkfiles = wireshark_list, previousfile = previous_file_name)
 
 @app.route('/raw_data')
 def rawData():

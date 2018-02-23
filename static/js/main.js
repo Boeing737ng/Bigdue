@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
     var menu = document.getElementsByClassName('menu')[0];
+    if (getPreviousFile() == ''){
+        document.getElementById('previous_data').style.display = 'none'
+    }
     if (window.location.pathname == '/') {
         menu.style.display = 'none';
         displayPcapFile();
@@ -51,6 +54,18 @@ function sendCSVDataToServer(csv_files ,timestamp) {
         }
     });
     return false;
+}
+
+function onLoadPreviosData() {
+    filename = getPreviousFile()
+    if (filename == ''){
+        displayGuideText('<b>NOT FOUND PREVIOUS FILES!</b>');
+    }else{
+        setLoadingText('Analysing all data...');
+        displayGuideText('Previous data selected. Choose your desired visualized item on top. <b>IT MAY TAKE SOME TIME!</b>');
+        showGraphOptions()
+        localStorage.setItem('current_timestamp', getPreviousFile())
+    }
 }
 
 function createDragOption(min, max) {

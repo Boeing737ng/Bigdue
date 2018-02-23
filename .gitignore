@@ -101,5 +101,9 @@ __pycache__/
 *.vscode
 *.pylintrc
 
+# zip files
+*.zip
+.zip
+
 #dependencies
 /node_modules
