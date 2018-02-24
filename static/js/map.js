@@ -32,10 +32,10 @@ function readMapNodeCSV(timeStamp) {
         url: 'static/data/map/'+ timeStamp +'_node.csv',
         dataType: 'text',
         success: function (response) {
-          console.log("Nodes extracted")
+          console.log("Nodes extracted");
         },
         error: function (error) {
-          console.log(error)
+          console.log(error);
         }
       }).done(addCountry);
 }
@@ -48,10 +48,10 @@ function readMapEdgeCSV(timeStamp) {
       //async: false,
       dataType: 'text',
       success: function (response) {
-        console.log("Edges extracted")
+        console.log("Edges extracted");
       },
       error: function (error) {
-        console.log(error)
+        console.log(error);
       }
     }).done(addLine);
 }

@@ -17,7 +17,7 @@ function readPackets(timestamp, container) {
             container.innerHTML = response;
         },
         error: function (error) {
-          console.log(error)
+          console.log(error);
         }
       });
 }

@@ -26,7 +26,7 @@ function readSrcCSV(timeStamp) {
         //drawChart(response)
       },
       error: function (error) {
-        console.log(error)
+        console.log(error);
       }
     });
 }
@@ -45,7 +45,7 @@ function readDstCSV(timeStamp) {
         //drawChart(response)
       },
       error: function (error) {
-        console.log(error)
+        console.log(error);
       }
     });
 }
