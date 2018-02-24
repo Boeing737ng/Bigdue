@@ -73,7 +73,7 @@ function drawSrcChart(src_data){
   for(var row = 1; row < csv.length - 1; row++){
     var parsed = csv[row].split(',');
     var ip = parsed[0];
-    var date = new Date(parseInt(parsed[1]));
+    var date = new Date(parseInt(parsed[1]) * 10 **3);
     var time = parseInt(parsed[2]);
     var size = parseInt(parsed[3]);
     var count = parseInt(parsed[4]);
@@ -105,7 +105,7 @@ function drawDstChart(src_data){
   for(var row = 1; row < csv.length - 1; row++){
     var parsed = csv[row].split(',');
     var ip = parsed[0];
-    var date = new Date(parseInt(parsed[1]));
+    var date = new Date(parseInt(parsed[1]) * 10 **3);
     var time = parseInt(parsed[2]);
     var size = parseInt(parsed[3]);
     var count = parseInt(parsed[4]);
