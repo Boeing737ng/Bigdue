@@ -2,7 +2,7 @@
 $(document).ready(function() {
     var menu = document.getElementsByClassName('menu')[0];
     if (getPreviousFile() == ''){
-        document.getElementById('previous_data').style.display = 'none'
+        document.getElementById('previous_data').style.display = 'none';
     }
     if (window.location.pathname == '/') {
         //menu.style.display = 'none';
@@ -57,14 +57,14 @@ function sendCSVDataToServer(csv_files ,timestamp) {
 }
 
 function onLoadPreviosData() {
-    filename = getPreviousFile()
+    filename = getPreviousFile();
     if (filename == ''){
         displayGuideText('<b>NOT FOUND PREVIOUS FILES!</b>');
     }else{
         setLoadingText('Analysing all data...');
         displayGuideText('Previous data selected. Choose your desired visualized item on top. <b>IT MAY TAKE SOME TIME!</b>');
-        showGraphOptions()
-        localStorage.setItem('current_timestamp', getPreviousFile())
+        showGraphOptions();
+        localStorage.setItem('current_timestamp', getPreviousFile());
     }
 }
 
@@ -111,7 +111,7 @@ function convertTimestamp(timestamp){
     // var minutes = "0" + date.getMinutes();
     // // Display time in 10:30:23 format
     // var formattedTime = hours.substr(-2) + ':' + minutes.substr(-2);
-    var formattedTime = date.toLocaleString()
+    var formattedTime = date.toLocaleString();
     return formattedTime;
 }
 
