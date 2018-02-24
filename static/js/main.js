@@ -5,7 +5,7 @@ $(document).ready(function() {
         document.getElementById('previous_data').style.display = 'none'
     }
     if (window.location.pathname == '/') {
-        menu.style.display = 'none';
+        //menu.style.display = 'none';
         displayPcapFile();
         displayCSVFile();
     }else{

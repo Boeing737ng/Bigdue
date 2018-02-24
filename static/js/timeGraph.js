@@ -8,6 +8,7 @@ $(document).ready(function() {
     console.log("map:" + timeStamp);
     readSrcCSV(timeStamp);
     readDstCSV(timeStamp);
+    showGraphOptions();
   }
 });
 

@@ -21,6 +21,7 @@ $(document).ready(function() {
     console.log("map:" + timeStamp);
     readMapNodeCSV(timeStamp);
     readMapEdgeCSV(timeStamp);
+    showGraphOptions();
   }
 });
 

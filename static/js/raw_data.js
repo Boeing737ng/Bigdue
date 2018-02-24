@@ -4,8 +4,7 @@ $(document).ready(function() {
         var container = document.getElementById('raw_packets');
         var timestamp = getTimestamp();
         readPackets(timestamp[0], container);
-
-      
+        showGraphOptions();
     }
 });
 
