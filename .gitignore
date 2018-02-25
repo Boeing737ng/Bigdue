@@ -10,6 +10,9 @@
 # zip file
 *.zip
 
+# cenv
+cenv/
+
 # python venv
 **/bin
 **/include
