@@ -3,7 +3,7 @@
 ## Network Packet Analysis
 
 ### Raw Packet
-<img src="./img/packet_row.png" style="width:300px !important;height:150px !important;">
+<img src="./img/packet_row.png" style="max-width:300px !important;max-height:150px !important;">
 
 ### Map Packet Graph
 <img src="./img/packet_map.png" style="width:600px;height:350px;">
