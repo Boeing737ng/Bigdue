@@ -24,8 +24,8 @@ Dis<-packet$distance
 plot(Dis, RTTs,
      xlim = c(0,16000),
      ylim = c(0,1),
-     xlab="Distance",
-     ylab="RTT", cex.lab = 1.5, axes = F)
+     xlab="Distance(Km)",
+     ylab="RTT(ms)", cex.lab = 1.5, axes = F)
 Axis(side=1, labels=T, cex.axis = 1.5)
 Axis(side=2, labels=T, cex.axis = 1.5)
 # main=paste("Relationship between RTT & Distance [",Size_of_Packets,"of packets]")
@@ -37,8 +37,8 @@ cor(packet$distance, packet$rtt, method=c("pearson"))
 plot(packet$size, packet$distance,
     xlim = c(0,2500),
      ylim = c(0,16000),
-     xlab="Size",
-     ylab="Distance", cex.lab = 1.5, axes = F)
+     xlab="Size(Bytes)",
+     ylab="Distance(Km)", cex.lab = 1.5, axes = F)
 Axis(side=1, labels=T, cex.axis = 1.5)
 Axis(side=2, labels=T, cex.axis = 1.5)
 # main=paste("Relationship between Size & Distance [",Size_of_Packets,"of packets]")
@@ -47,8 +47,8 @@ Axis(side=2, labels=T, cex.axis = 1.5)
 plot(packet$size, packet$rtt, 
      xlim = c(0,2000),
      ylim = c(0,0.3),
-     xlab="Size",
-     ylab="RTT", cex.lab = 1.5, axes = F)
+     xlab="Size(Bytes)",
+     ylab="RTT(ms)", cex.lab = 1.5, axes = F)
 Axis(side=1, labels=T, cex.axis = 1.5)
 Axis(side=2, labels=T, cex.axis = 1.5)
 # main=paste("Relationship between RTT & Size [",Size_of_Packets,"of packets]")

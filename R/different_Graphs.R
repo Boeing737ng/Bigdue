@@ -41,17 +41,18 @@ Yintercept<-f2(Xintercept)
 graph_CF<-ggplot() +
   geom_step(data=CF_local, aes(x=distance, y=percentage))  +
   
-  labs(x="Distance(km)", y="Packet Size(%)", title=Title_CF)+
+  labs(x="Distance(km)", y="Packet Size(%)")+
   scale_color_manual(name="Index\n", values=legend_detail)+
-  theme(plot.title = element_text(hjust = 0.5))+
+  theme(axis.text=element_text(size=14), axis.title.y = element_text(size = rel(1.5), angle = 90), 
+        axis.title.x = element_text(size = rel(1.5), angle = 00))+
   #geom_vline(xintercept = Xintercept, linetype="dotted", color = "black", size=1.0)+
   #geom_hline(yintercept = Yintercept, linetype="dotted", color = "black", size=1.0)+
   geom_segment(mapping=aes(x=3000, xend=3000, y=0, yend=Yintercept), linetype="dotted", size=1.0)+
   geom_segment(mapping=aes(x=0, xend=3000, y=Yintercept, yend=Yintercept), linetype="dotted", size=1.0)+
   scale_x_continuous(expand = c(0.01,0))+
   scale_y_continuous(expand = c(0,0.02))+
-  geom_text(mapping=aes(x=0, y=Yintercept), label=round(Yintercept, 3), hjust=1.4, col="black", size=3)+
-  geom_text(mapping=aes(x=Xintercept, y=0), label=Xintercept, vjust=2.3, col="black", size=3)
+  geom_text(mapping=aes(x=0, y=Yintercept), label=round(Yintercept, 3), hjust=1.4, col="black", size=4)+
+  geom_text(mapping=aes(x=Xintercept, y=0), label=Xintercept, vjust=2.3, col="black", size=4)
 
 graph_CF_without_clipping <- ggplot_gtable(ggplot_build(graph_CF))
 graph_CF_without_clipping$layout$clip[graph_CF_without_clipping$layout$name == "panel"] <- "off"
