@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
   if (window.location.pathname == '/bubble') {
+    showGraphOptions();
     hideLoading();
 
     var svg = d3.select("svg"),

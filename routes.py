@@ -83,28 +83,45 @@ def home():
     maincsv.main([first, last, timestamp])
     print("----- All csv file writting end -----")
     
-  return render_template('home.html', title = 'Main', timestamp = timestamp_array, pcapfilelist = pcap_list, wiresharkfiles = wireshark_list, previousfile = previous_file_name)
+  return render_template(
+    'home.html',
+    title = 'Main',
+    timestamp = timestamp_array,
+    pcapfilelist = pcap_list,
+    wiresharkfiles = wireshark_list,
+    previousfile = previous_file_name)
 
 @app.route('/raw_data')
 def rawData():
   timestamp_array = get_csv_list()
-  return render_template('raw_data.html', title = 'Raw Data', timestamp = timestamp_array)
+  return render_template(
+    'raw_data.html',
+    title = 'Raw Data',
+    timestamp = timestamp_array)
 
 @app.route('/graph')
 def graph():
-  return render_template('graph.html', title = 'Graph')
+  return render_template(
+    'graph.html',
+    title = 'Graph')
 
 @app.route('/map')
 def map():
-  return render_template('map.html', title = 'Map')
+  return render_template(
+    'map.html',
+    title = 'Map')
 
 @app.route('/bubble')
 def bubble():
-  return render_template('bubble.html', title = 'Bubble')
+  return render_template(
+    'bubble.html',
+    title = 'Bubble')
 
 @app.route('/timeGraph')
 def timeGraph():
-  return render_template('timeGraph.html', title = 'Time - Graph')
+  return render_template(
+    'timeGraph.html',
+    title = 'Time - Graph')
 
 if __name__ == '__main__':
   t1 = Thread(target = main.main)

@@ -37,7 +37,7 @@ write.csv(correlation, "C:/Users/Hanul-Park/Desktop/Bigdue/Bigdue/static/data/co
 
 
 
-
+# plot
 install.packages ("dplyr")
 install.packages ("ggplot2")
 install.packages ("reshape2")
@@ -48,118 +48,132 @@ library(reshape2)
 
 
 
+df <- data.frame()
+
+for (name in t) {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  print(paste0(getwd(),"/",name,"/","distance"))
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
+
+  packet <- list.files(pattern = "*.csv")
+  packet <- strsplit(packet, " ")
+  packet <- toString(packet[2])
+  packet <- read.csv(file = packet)
+
+  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
+
+  df <- rbind(df, packet)
+}
+# write.csv(df, "C:/Users/Hanul-Park/Documents/카카오톡 받은 파일/merge.csv")
+# str(df)
+# par( mfrow =c(1, 2))
+
+plot(x = df$rtt, y = df$distance, xlab ="RTT",
+     ylab ="Distance", main ="RTT x Distance")
+
+# lm(종속변수~독립변수)
+res = lm(df$distance~df$rtt)
+abline(res, col = "red")
+
+df <- data.frame()
+
+# 2
+setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+t <- list.files()
+
+df <- data.frame()
+
+for (name in t) {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  print(paste0(getwd(),"/",name,"/","distance"))
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
+
+  packet <- list.files(pattern = "*.csv")
+  packet <- strsplit(packet, " ")
+  packet <- toString(packet[2])
+  packet <- read.csv(file = packet)
+init <- function() {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  t <- list.files()
+
+  df <- data.frame()
+
+  for (name in t) {
+    setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+    print(paste0(getwd(),"/",name,"/","distance"))
+    setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+    setwd(toString(paste0(getwd(),"/",name,"/","distance")))
+
+    packet <- list.files(pattern = "*.csv")
+    packet <- strsplit(packet, " ")
+    packet <- toString(packet[2])
+    packet <- read.csv(file = packet)
+
+    packet <- packet[(packet$rtt >= 0.1),]
+    # packet <- packet[(packet$distance >= 0)&(packet$distance <= 6720.495),]
+    # packet <- packet[(packet$rtt <= 0.4)&(packet$rtt >= 0.1),]
+    # packet <- packet[(packet$size <= 1000000)&(packet$size > 0),]
+
+    df <- rbind(df, packet)
+  }
+  return(df)
+}
+
+
+
+
 # 1
-setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-t <- list.files()
-<<<<<<< Updated upstream
-=======
-df <- data.frame()
-
-for (name in t) {
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  print(paste0(getwd(),"/",name,"/","distance"))
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
-
-  packet <- list.files(pattern = "*.csv")
-  packet <- strsplit(packet, " ")
-  packet <- toString(packet[2])
-  packet <- read.csv(file = packet)
-
-  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
-
-  df <- rbind(df, packet)
-}
+df <- init()
 # write.csv(df, "C:/Users/Hanul-Park/Documents/카카오톡 받은 파일/merge.csv")
 # str(df)
+summary(df)
 # par( mfrow =c(1, 2))
-
+correlation <- cor(df$rtt,df$distance)
 plot(x = df$rtt, y = df$distance, xlab ="RTT",
-     ylab ="Distance", main ="RTT x Distance")
+     ylab ="Distance", main =paste("RTT x Distance", "/", round(correlation, digits = 2)))
 
 # lm(종속변수~독립변수)
 res = lm(df$distance~df$rtt)
-abline(res, col = "red")
->>>>>>> Stashed changes
-
-df <- data.frame()
-
-# 2
-setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-t <- list.files()
-
-df <- data.frame()
-
-for (name in t) {
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  print(paste0(getwd(),"/",name,"/","distance"))
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
-
-  packet <- list.files(pattern = "*.csv")
-  packet <- strsplit(packet, " ")
-  packet <- toString(packet[2])
-  packet <- read.csv(file = packet)
-<<<<<<< Updated upstream
-  
-  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
-  
-  df <- rbind(df, packet)
-}
-# write.csv(df, "C:/Users/Hanul-Park/Documents/카카오톡 받은 파일/merge.csv")
-# str(df)
-# par( mfrow =c(1, 2))
-
-plot(x = df$rtt, y = df$distance, xlab ="RTT",
-     ylab ="Distance", main ="RTT x Distance")
-
-# lm(종속변수~독립변수)
-res = lm(df$distance~df$rtt)
-abline(res, col = "red")
+abline(res, col = "red", lwd = 1)
 
 
-# 2
-setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-t <- list.files()
 
-df <- data.frame()
 
-for (name in t) {
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  print(paste0(getwd(),"/",name,"/","distance"))
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
-  
-  packet <- list.files(pattern = "*.csv")
-  packet <- strsplit(packet, " ")
-  packet <- toString(packet[2])
-  packet <- read.csv(file = packet)
-  
-  # packet <- packet[(packet$size <= 1000)&(packet$size > 0) ,]
-  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
-  
-=======
 
   # packet <- packet[(packet$size <= 1000)&(packet$size > 0) ,]
   packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
 
->>>>>>> Stashed changes
   df <- rbind(df, packet)
 }
+=======
+# 2
+df <- init()
+>>>>>>> bed1accef8c91e9a2f3ca7011479d677b42e0bfd
 
-# str(df)
+str(df)
+summary(df)
 # par( mfrow =c(1, 2))
 # plot(x = df$rtt, y = df$distance, xlab ="RTT",
 #      ylab ="Distance", main ="RTT x Distance")
+
+correlation <- cor(df$rtt,df$size)
 plot(x = df$rtt, y = df$size, xlab ="RTT",
-     ylab ="Size", main ="RTT x Size")
+     ylab ="Size", main =paste("RTT x Size", "/", round(correlation, digits = 2)))
 
 res = lm(df$size~df$rtt)
-abline(res)
+abline(res, col = "red", lwd = 1)
+
+a <- c(1, 2, 3, 4, 5, 6, 7)
+b <- c(7, 6, 5 ,4, 3, 2, 1)
+c <- c(2, 2, 2, 2, 3, 2, 2)
+cor(a,c)
+plot(a,c)
+res = lm(c~a)
+abline(res, col = "red", lwd = 1)
 
 
-
-<<<<<<< Updated upstream
 
 # 3
 setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
@@ -172,38 +186,20 @@ for (name in file_list) {
   print(paste0(getwd(),"/",name,"/","distance"))
   setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
   setwd(toString(paste0(getwd(),"/",name,"/","distance")))
-  
-=======
 
-# 3
-setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-file_list <- list.files()
-
-df <- data.frame()
-
-for (name in file_list) {
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  print(paste0(getwd(),"/",name,"/","distance"))
-  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
-  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
-
->>>>>>> Stashed changes
   packet <- list.files(pattern = "*.csv")
   packet <- strsplit(packet, " ")
   packet <- toString(packet[2])
   packet <- read.csv(file = packet)
-<<<<<<< Updated upstream
-  
-  # packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
-  
-=======
 
   # packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
 
->>>>>>> Stashed changes
   df <- rbind(df, packet)
 }
 
+=======
+df <- init()
+>>>>>>> bed1accef8c91e9a2f3ca7011479d677b42e0bfd
 # str(packet)
 # df <- df[order(df$rtt),]
 df <- df[order(df$distance),]
@@ -211,26 +207,15 @@ df
 
 outlier<-df
 cumulative_frequencies <- mutate(outlier, cum_frequency=cumsum(outlier$size))
-<<<<<<< Updated upstream
-cumulative_frequencies  
-cumulative_frequencies <- mutate(cumulative_frequencies, 
-                                 percentage
-                                 =cumulative_frequencies$cum_frequency / 
-=======
 cumulative_frequencies
 cumulative_frequencies <- mutate(cumulative_frequencies,
                                  percentage
                                  =cumulative_frequencies$cum_frequency /
->>>>>>> Stashed changes
                                    sum(cumulative_frequencies$size))
 
 cumulative_frequencies <- rbind(c(0,0,0,0,0,0,0,0,0), cumulative_frequencies)
 cumulative_frequencies
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 # plot(x = cumulative_frequencies$rtt, y = cumulative_frequencies$percentage, xlab ="RTT(ms)",
 #      ylab ="Packet Size(%)", main ="CDF of RTT vs Packet Size [1 Millon Packets]\n", type = "l")
 
@@ -238,17 +223,16 @@ plot(x = cumulative_frequencies$distance, y = cumulative_frequencies$percentage,
      ylab ="Packet Size(%)", main ="CDF of RTT vs Packet Size [1 Millon Packets]\n", type = "l")
 
 res = lm(cumulative_frequencies$percentage~cumulative_frequencies$distance)
-abline(res)
+abline(res, col = "red", lwd = 1)
 
-
-<<<<<<< Updated upstream
 
 =======
->>>>>>> Stashed changes
+
+# 4
+>>>>>>> bed1accef8c91e9a2f3ca7011479d677b42e0bfd
 i <- 65
 alphabet  <- function(x) { rawToChar(as.raw(x)) }
 
-# 4
 setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
 file_list <- list.files()
 
@@ -263,32 +247,11 @@ for (name in file_list) {
   print(paste0(getwd(),"/",name,"/","distance"))
   setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
   setwd(toString(paste0(getwd(),"/",name,"/","distance")))
-<<<<<<< Updated upstream
-  
-=======
 
->>>>>>> Stashed changes
   packet <- list.files(pattern = "*.csv")
   packet <- strsplit(packet, " ")
   packet <- toString(packet[2])
   packet <- read.csv(file = packet)
-<<<<<<< Updated upstream
-  
-  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
-  packet <- packet[order(packet$distance),]
-  
-  # df <- packet
-  # name_list <- c(name_list, name)
-  
-  # packet <- cbind(packet, name)
-  # df <- rbind(df, packet)
-  
-  # par(new = T)
-  # plot(x = df$distance, y = df$rtt, col = df$name, type = "l")
-  
-  
-  
-=======
 
   packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
   packet <- packet[order(packet$distance),]
@@ -303,23 +266,50 @@ for (name in file_list) {
   # plot(x = df$distance, y = df$rtt, col = df$name, type = "l")
 
 
->>>>>>> Stashed changes
   plot(x = packet$rtt, y = packet$distance, xlab ="RTT",
-       ylab ="Distance", type = "p", main = alphabet(i))
+       ylab ="Distance", type = "p", main = paste(alphabet(i), "/", round(correlation, digits = 2)))
   i <- i+1
-
   # plot(x = packet$rtt, y = packet$size, xlab ="RTT",
   #      ylab ="Size", type = "p", main = name)
-<<<<<<< Updated upstream
-  
-=======
 
->>>>>>> Stashed changes
   res = lm(packet$distance~packet$rtt)
   # res = lm(packet$size~packet$rtt)
-  abline(res)
+  abline(res, col = "red", lwd = 1)
 }
-<<<<<<< Updated upstream
-
 =======
->>>>>>> Stashed changes
+
+
+# 5
+install.packages("moonBook")
+library(moonBook)
+
+
+setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+t <- list.files()
+
+df <- data.frame()
+
+for (name in t) {
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  print(paste0(getwd(),"/",name,"/","distance"))
+  setwd("C:/Users/Hanul-Park/Desktop/테스트결과")
+  setwd(toString(paste0(getwd(),"/",name,"/","distance")))
+
+  packet <- list.files(pattern = "*.csv")
+  packet <- strsplit(packet, " ")
+  packet <- toString(packet[2])
+  packet <- read.csv(file = packet)
+
+  packet <- packet[(packet$rtt <= 0.4)&(packet$rtt > 0) ,]
+  packet <- cbind(packet, name)
+
+  df <- rbind(df, packet)
+}
+
+df
+
+data(df)
+str(df)
+
+mytable(name~rtt,data=df)
+>>>>>>> bed1accef8c91e9a2f3ca7011479d677b42e0bfd

@@ -4,8 +4,7 @@ $(document).ready(function() {
         var container = document.getElementById('raw_packets');
         var timestamp = getTimestamp();
         readPackets(timestamp[0], container);
-
-      
+        showGraphOptions();
     }
 });
 
@@ -18,7 +17,7 @@ function readPackets(timestamp, container) {
             container.innerHTML = response;
         },
         error: function (error) {
-          console.log(error)
+          console.log(error);
         }
       });
 }
