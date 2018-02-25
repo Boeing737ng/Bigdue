@@ -9,7 +9,10 @@ library(ggplot2)
 library(reshape2)
 library(grid)
 
-packet_local <- read.csv(file="C:/Users/Jaesung/Desktop/merge.csv", sep=",")
+
+# packet 
+# packet_local <- read.csv(file="C:/Users/Jaesung/Desktop/Bigdue/Bigdue/static/data/merge.csv", sep=",")
+packet_local <- read.csv(file="C:/Users/Hanul-Park/Desktop/Bigdue/Bigdue/static/data/merge.csv", sep=",")
 str(packet_local)
 
 # Varibles

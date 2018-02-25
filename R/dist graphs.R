@@ -8,7 +8,8 @@ library(reshape2)
 # CDF RTT vs Size
 
 ########## First packet table ###############
-packet <- read.csv(file="C:/Users/Jaesung/Desktop/merge.csv", sep=",")
+# packet <- read.csv(file="C:/Users/Jaesung/Desktop/Bigdue/Bigdue/static/data/merge.csv", sep=",")
+packet <- read.csv(file="C:/Users/Hanul-Park/Desktop/Bigdue/Bigdue/static/data/merge.csv", sep=",")
 Size_of_Packets = utils:::format.object_size(sum(packet$size), "auto")
 
 Corr_table <- subset(packet, 0<packet$rtt & packet$rtt<0.1)
@@ -41,3 +42,4 @@ plot(packet$size, packet$rtt,
      xlab="Size",
      ylab="RTT",
      main=paste("Relationship between RTT & Size [",Size_of_Packets,"of packets]"))
+
