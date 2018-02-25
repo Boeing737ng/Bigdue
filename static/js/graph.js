@@ -70,6 +70,7 @@ $(document).ready(function() {
     console.log("graph:" + timeStamp);
     readNodeCSV(timeStamp);
     readEdgeCSV(timeStamp);
+    showGraphOptions();
   }
 });
 
