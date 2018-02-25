@@ -6,16 +6,16 @@
 <img src="./img/packet_row.png" width="300px" height="150px">
 
 ### Map Packet Graph
-<img src="./img/packet_map.png" style="width:600px;height:350px;">
+<img src="./img/packet_map.png" width="600px" height="350px">
 
 ### Bubble Packet Graph
-<img src="./img/packet_bubble.png" style="width:400px;height:380px;">
+<img src="./img/packet_bubble.png" width="400px" height="380px">
 
 ### Node Packet Graph
-<img src="./img/packet_node.png" style="width:400px;height:380px;">
+<img src="./img/packet_node.png" width="400px" height="380px">
 
 ### Time Packet Graph
-<img src="./img/packet_time.png" style="width:500px;height:300px;">
+<img src="./img/packet_time.png" width="500px" height="300px">
 
 ## Project
   1. Visualization
