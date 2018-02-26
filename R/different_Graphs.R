@@ -12,7 +12,7 @@ library(grid)
 
 # packet 
 # packet_local <- read.csv(file="C:/Users/Jaesung/Desktop/Bigdue/Bigdue/static/data/merge.csv", sep=",")
-packet_local <- read.csv(file="C:/Users/Hanul-Park/Desktop/Bigdue/Bigdue/static/data/merge.csv", sep=",")
+packet_local <- read.csv(file="C:/Users/Hanul-Park/Desktop/Bigdue/Bigdue/static/data/merge_count.csv", sep=",")
 str(packet_local)
 
 # Varibles
@@ -20,17 +20,21 @@ Xintercept<-3000
 Title_CF="CDF of Distance vs Packet Size [n Packets]\n"
 RTTs = packet_local$rtt
 Distance = packet_local$distance
-Size = packet_local$size
+# Size = packet_local$size
+Count = packet_local$count
 
 packet_local <- packet_local[order(Distance),]
 
-CF_local <- mutate(packet_local, cum_frequency=cumsum(Size))
-CF_local <- mutate(CF_local,  percentage=CF_local$cum_frequency / sum(Size))
+# CF_local <- mutate(packet_local, cum_frequency=cumsum(Size))
+CF_local <- mutate(packet_local, cum_frequency=cumsum(Count))
+# CF_local <- mutate(CF_local,  percentage=CF_local$cum_frequency / sum(Size))
+CF_local <- mutate(CF_local,  percentage=CF_local$cum_frequency / sum(Count))
 CF_local <- rbind(c(0,0,0,0,0,0,0,0,0), CF_local)
 CF_local # check percentage sum up to 1.0
 
-Size_of_Packets = utils:::format.object_size(sum(Size), "auto")
-Title_CF=paste("CDF of Distance vs Packet Size [", Size_of_Packets, "of Packets]\n")
+# Size_of_Packets = utils:::format.object_size(sum(Size), "auto")
+Count_of_Packets = utils:::format.object_size(sum(Count), "auto")
+Title_CF=paste("CDF of Distance vs Packet Size [", Count_of_Packets, "of Packets]\n")
 
 
 legend_detail <- c("Foreign User"="#f04546", "Local User"="#3591d1") #red
@@ -41,7 +45,7 @@ Yintercept<-f2(Xintercept)
 graph_CF<-ggplot() +
   geom_step(data=CF_local, aes(x=distance, y=percentage))  +
   
-  labs(x="Distance(km)", y="Packet Size(%)")+
+  labs(x="Distance(km)", y="CDF")+
   scale_color_manual(name="Index\n", values=legend_detail)+
   theme(axis.text=element_text(size=14), axis.title.y = element_text(size = rel(1.5), angle = 90), 
         axis.title.x = element_text(size = rel(1.5), angle = 00))+
