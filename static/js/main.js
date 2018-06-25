@@ -1,9 +1,9 @@
 
 $(document).ready(function() {
     var menu = document.getElementsByClassName('menu')[0];
-    if (getPreviousFile() == ''){
-        document.getElementById('previous_data').style.display = 'none';
-    }
+    // if (getPreviousFile() == ''){ // Uncomment if needed
+    //     document.getElementById('previous_data').style.display = 'none';
+    // }
     if (window.location.pathname == '/') {
         //menu.style.display = 'none';
         displayPcapFile();
