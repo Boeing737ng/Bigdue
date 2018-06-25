@@ -73,6 +73,7 @@
 ## Mac OS / Linux
   #### 0. Clone Bigdue Project
     - $ git clone https://github.com/Boeing737ng/Bigdue.git
+    - $ cd Bigdue
 
   #### 1. Install python3.6v
     - python3.6v : https://www.python.org/downloads/
